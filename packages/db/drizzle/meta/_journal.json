@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1780073223202,
+      "tag": "0000_grey_microchip",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1780082919097,
+      "tag": "0001_loud_rumiko_fujikawa",
+      "breakpoints": true
+    }
+  ]
+}
