@@ -15,7 +15,7 @@ export function QrCard({ name, tagline, slug }: { name: string; tagline: string;
         <main className="min-h-dvh flex items-center justify-center p-6">
             <div className="tt-card w-full max-w-sm p-8 flex flex-col items-center text-center gap-5">
                 <div>
-                    <div className="tt-eyebrow">Scan to meet your table host</div>
+                    <div className="tt-eyebrow">Tabled · scan to meet your table host</div>
                     <h1 className="tt-display text-[34px] leading-tight mt-2">{name}</h1>
                     <p className="text-sm text-[var(--tt-ink-3)] mt-1">{tagline}</p>
                 </div>

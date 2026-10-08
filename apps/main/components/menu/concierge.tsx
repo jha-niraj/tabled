@@ -222,6 +222,7 @@ export function Concierge({ restaurant }: { restaurant: Restaurant }) {
                     ))}
                 </div>
                 <div ref={bottomRef} className="h-1" />
+                <p className="pt-10 pb-2 text-center text-[11px] tracking-[0.14em] uppercase text-[var(--tt-ink-4)]">Tabled · your table host</p>
             </main>
 
             <div className="fixed bottom-0 inset-x-0 z-20 tt-composer">

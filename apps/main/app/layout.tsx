@@ -23,38 +23,38 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
 	title: {
-		default: "The Coder'z",
-		template: "%s | The Coder'z"
+		default: "Tabled",
+		template: "%s | Tabled"
 	},
-	description: "The Engineering Intelligence Platform for Computer Science Students",
-	keywords: ["Learn", "Build Projects", "Computer Science", "Programming", "Coding", "Developer", "Tech Community", "Coding Resources", "Tech Articles", "Coding Tutorials"],
+	description: "The table host who already knows you. Scan, talk, eat with no regrets.",
+	keywords: ["restaurant", "menu", "AI host", "dining", "food recommendations", "QR menu", "Thai food", "voice ordering"],
 	authors: [{ name: "Niraj Jha" }],
-	creator: "Shunya Tech",
-	publisher: "Shunya Tech",
-	metadataBase: new URL("https://www.coderzai.xyz"),
+	creator: "Tabled",
+	publisher: "Tabled",
+	metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:5000"),
 	alternates: {
 		canonical: "/",
 	},
 	openGraph: {
 		type: "website",
 		locale: "en_US",
-		url: "https://www.coderzai.xyz",
-		siteName: "The Coder'z",
-		title: "The Coder'z - The Engineering Intelligence Platform for Computer Science Students",
-		description: "The Engineering Intelligence Platform for Computer Science Students",
+		url: "/",
+		siteName: "Tabled",
+		title: "Tabled - The table host who already knows you",
+		description: "The table host who already knows you. Scan, talk, eat with no regrets.",
 		images: [
 			{
 				url: "/mainlogo.jpeg",
 				width: 1024,
 				height: 1024,
-				alt: "The Coder'z - The Engineering Intelligence Platform for Computer Science Students",
+				alt: "Tabled",
 			},
 		],
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "The Coder'z - The Engineering Intelligence Platform for Computer Science Students",
-		description: "The Engineering Intelligence Platform for Computer Science Students",
+		title: "Tabled - The table host who already knows you",
+		description: "The table host who already knows you. Scan, talk, eat with no regrets.",
 		images: ["/mainlogo.jpeg"],
 		creator: "@thecoderz",
 	},

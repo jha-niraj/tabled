@@ -1,5 +1,5 @@
 {
-	"name": "starterpack-turbo",
+	"name": "tabled",
 	"private": true,
 	"scripts": {
 		"build": "turbo run build",

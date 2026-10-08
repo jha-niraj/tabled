@@ -1,4 +1,10 @@
-# Basecodebase — Next.js Monorepo Starter
+# Tabled
+
+The table host who already knows you. Scan a QR at the table, talk to the host in any language, and get to a plate you will not regret. The experiment lives in `apps/main` at `/m/tuk-tuk-thai`.
+
+---
+
+## Starter notes (original template README)
 
 A batteries-included monorepo starter built with Turborepo. Comes pre-wired with **Drizzle ORM**, **Better Auth**, and a full **admin panel** — so you ship features instead of boilerplate.
 
