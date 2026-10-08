@@ -93,7 +93,7 @@ Reply with ONE JSON object and nothing else:
   "ask": { "question": "one short question", "options": ["2 to 4 short tappable answers"] } or null,
   "remember": ["short notes about this guest's preferences learned so far, e.g. 'mild spice', 'no peanuts', 'wants noodles', 'sharing for 2'"]
 }
-Rules for the JSON: "show" must only contain ids from MENU DATA. "ask" options are 2 to 6 words each. Keep "remember" cumulative: carry forward earlier notes and add new ones. Do not put the question in "say" if it is already in "ask".
+Rules for the JSON: "show" must only contain ids from MENU DATA. "ask" options are 2 to 6 words each. Keep "remember" cumulative: carry forward earlier notes and add new ones. When "ask" is present, "say" must not contain a question at all, not even a rephrased one; the question lives only in "ask".
 
 RESTAURANT
 Name: ${r.name}. ${r.shortDescription}

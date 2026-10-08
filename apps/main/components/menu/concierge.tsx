@@ -2,14 +2,13 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
-import { ArrowUp, BookOpen, Info, Mic } from "lucide-react"
+import { ArrowUp, BookOpen, Info, Mic, RotateCcw } from "lucide-react"
 import type { AskPrompt, ChatResponse, ChatTurn, Dish, Restaurant } from "@/lib/menu/types"
 import { DishRail } from "./dish-card"
-import { DishSheet } from "./dish-sheet"
 import { ChoiceChips } from "./choice-chips"
 import { MicButton } from "./mic-button"
 import { RestaurantSheet } from "./restaurant-sheet"
-import { MenuSheet } from "./menu-sheet"
+import { ExplorerSheet, type ExplorerView } from "./explorer-sheet"
 import { HostMark } from "./host-mark"
 import { Rating } from "./rating"
 import { SmartImage } from "./smart-image"
@@ -23,6 +22,7 @@ type Message = {
     raw?: string
     pending?: boolean
     error?: boolean
+    retryOf?: { text: string; viaVoice?: boolean; languageCode?: string | null; answering?: string }
     viaVoice?: boolean
     languageCode?: string | null
     answered?: string
@@ -44,6 +44,8 @@ const LANG_LABEL: Record<string, string> = {
 
 let counter = 0
 const nextId = () => `m${Date.now().toString(36)}${(counter++).toString(36)}`
+
+type SendOpts = { viaVoice?: boolean; languageCode?: string | null; answering?: string }
 
 export function Concierge({ restaurant }: { restaurant: Restaurant }) {
     const mostLoved = useMemo(
@@ -78,25 +80,57 @@ export function Concierge({ restaurant }: { restaurant: Restaurant }) {
     const [busy, setBusy] = useState(false)
     const [heard, setHeard] = useState<string | null>(null)
 
-    const [activeDish, setActiveDish] = useState<Dish | null>(null)
-    const [dishOpen, setDishOpen] = useState(false)
+    const [explorerOpen, setExplorerOpen] = useState(false)
+    const [explorerStack, setExplorerStack] = useState<ExplorerView[]>([])
     const [infoOpen, setInfoOpen] = useState(false)
-    const [menuOpen, setMenuOpen] = useState(false)
 
+    const threadRef = useRef<HTMLDivElement>(null)
     const bottomRef = useRef<HTMLDivElement>(null)
+    const followRef = useRef(true)
     const inputRef = useRef<HTMLInputElement>(null)
 
+    const scrollToBottom = useCallback((behavior: ScrollBehavior = "smooth") => {
+        bottomRef.current?.scrollIntoView({ behavior, block: "end" })
+    }, [])
+
+    // Follow the conversation: scroll on every message change, and again whenever the thread
+    // grows (cards and images arrive after the reply), unless the diner scrolled up on purpose
     useEffect(() => {
-        bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" })
-    }, [messages.length, busy])
+        followRef.current = true
+        scrollToBottom()
+    }, [messages, scrollToBottom])
+
+    useEffect(() => {
+        const el = threadRef.current
+        if (!el || typeof ResizeObserver === "undefined") return
+        const ro = new ResizeObserver(() => {
+            if (followRef.current) scrollToBottom("auto")
+        })
+        ro.observe(el)
+        return () => ro.disconnect()
+    }, [scrollToBottom])
+
+    useEffect(() => {
+        const onScroll = () => {
+            const marker = bottomRef.current?.getBoundingClientRect()
+            followRef.current = !marker || marker.top <= window.innerHeight + 40
+        }
+        window.addEventListener("scroll", onScroll, { passive: true })
+        return () => window.removeEventListener("scroll", onScroll)
+    }, [])
 
     const openDish = useCallback((d: Dish) => {
-        setActiveDish(d)
-        setDishOpen(true)
+        setExplorerStack([{ kind: "dish", dish: d }])
+        setExplorerOpen(true)
+    }, [])
+
+    const openMenu = useCallback(() => {
+        setExplorerStack([{ kind: "menu" }])
+        setExplorerOpen(true)
     }, [])
 
     const send = useCallback(
-        async (text: string, opts: { viaVoice?: boolean; languageCode?: string | null; answering?: string } = {}) => {
+        async (text: string, opts: SendOpts = {}) => {
             const clean = text.trim()
             if (!clean || busy) return
             setBusy(true)
@@ -104,16 +138,18 @@ export function Concierge({ restaurant }: { restaurant: Restaurant }) {
 
             const userMsg: Message = { id: nextId(), role: "user", text: clean, viaVoice: opts.viaVoice, languageCode: opts.languageCode ?? null }
             const pendingId = nextId()
-            const history = messagesRef.current
+            const history = messagesRef.current.filter((m) => !m.error)
 
             setMessages((prev) => [
-                ...prev.map((m) => (opts.answering && m.id === opts.answering ? { ...m, answered: clean } : m)),
+                ...prev
+                    .filter((m) => !m.error)
+                    .map((m) => (opts.answering && m.id === opts.answering ? { ...m, answered: clean } : m)),
                 userMsg,
                 { id: pendingId, role: "assistant", text: "", pending: true },
             ])
 
             const turns: ChatTurn[] = [...history, userMsg]
-                .filter((m) => !m.pending && !m.error)
+                .filter((m) => !m.pending)
                 .map((m) => ({
                     role: m.role,
                     content:
@@ -142,14 +178,25 @@ export function Concierge({ restaurant }: { restaurant: Restaurant }) {
             } catch (err) {
                 console.error("[concierge]", err)
                 setMessages((prev) =>
-                    prev.map((m) =>
-                        m.id === pendingId
-                            ? { id: pendingId, role: "assistant", text: "I lost the thread for a second. Say that again?", error: true }
-                            : m,
-                    ),
+                    prev
+                        .filter((m) => m.id !== userMsg.id)
+                        .map((m) =>
+                            m.id === pendingId
+                                ? {
+                                      id: pendingId,
+                                      role: "assistant",
+                                      text: "I lost the thread for a second. Want me to try that again?",
+                                      error: true,
+                                      retryOf: { text: clean, ...opts },
+                                  }
+                                : opts.answering && m.id === opts.answering
+                                  ? { ...m, answered: undefined }
+                                  : m,
+                        ),
                 )
             } finally {
                 setBusy(false)
+                inputRef.current?.focus({ preventScroll: true })
             }
         },
         [busy, restaurant.slug],
@@ -157,8 +204,7 @@ export function Concierge({ restaurant }: { restaurant: Restaurant }) {
 
     const askFromSheet = useCallback(
         (q: string) => {
-            setDishOpen(false)
-            setMenuOpen(false)
+            setExplorerOpen(false)
             window.setTimeout(() => void send(q), 180)
         },
         [send],
@@ -177,7 +223,7 @@ export function Concierge({ restaurant }: { restaurant: Restaurant }) {
                         </span>
                     </button>
                     <div className="flex items-center gap-1.5">
-                        <IconButton label="Full menu" onClick={() => setMenuOpen(true)}>
+                        <IconButton label="Full menu" onClick={openMenu}>
                             <BookOpen size={17} />
                         </IconButton>
                         <IconButton label="About the restaurant" onClick={() => setInfoOpen(true)}>
@@ -196,10 +242,7 @@ export function Concierge({ restaurant }: { restaurant: Restaurant }) {
                         transition={{ duration: 0.5, ease: "easeOut" }}
                     >
                         {hero && <SmartImage src={hero.src} alt={hero.alt} priority style={{ aspectRatio: "16 / 9" }} />}
-                        <div
-                            className="absolute inset-0"
-                            style={{ background: "linear-gradient(180deg, rgba(20,14,10,0.05) 20%, rgba(20,14,10,0.78) 100%)" }}
-                        />
+                        <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(20,14,10,0.05) 20%, rgba(20,14,10,0.78) 100%)" }} />
                         <div className="absolute inset-x-0 bottom-0 p-5 text-white">
                             <div className="tt-eyebrow" style={{ color: "rgba(255,255,255,0.75)" }}>
                                 {restaurant.tagline}
@@ -209,7 +252,7 @@ export function Concierge({ restaurant }: { restaurant: Restaurant }) {
                     </motion.div>
                 </section>
 
-                <div className="flex flex-col gap-7 pt-4">
+                <div ref={threadRef} className="flex flex-col gap-7 pt-4">
                     {messages.map((m, i) => (
                         <MessageView
                             key={m.id}
@@ -218,6 +261,7 @@ export function Concierge({ restaurant }: { restaurant: Restaurant }) {
                             busy={busy}
                             onOpenDish={openDish}
                             onPick={(opt) => void send(opt, { answering: m.id })}
+                            onRetry={() => m.retryOf && void send(m.retryOf.text, m.retryOf)}
                         />
                     ))}
                 </div>
@@ -251,10 +295,9 @@ export function Concierge({ restaurant }: { restaurant: Restaurant }) {
                                 ref={inputRef}
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
-                                placeholder="Ask Noi anything, in any language"
+                                placeholder={busy ? "Noi is thinking, keep typing" : "Ask Noi anything, in any language"}
                                 autoComplete="off"
                                 enterKeyHint="send"
-                                disabled={busy}
                             />
                             <button
                                 type="submit"
@@ -283,24 +326,15 @@ export function Concierge({ restaurant }: { restaurant: Restaurant }) {
                 </div>
             </div>
 
-            <DishSheet
-                dish={activeDish}
+            <ExplorerSheet
                 restaurant={restaurant}
-                open={dishOpen}
-                onOpenChange={setDishOpen}
-                onOpenDish={(d) => setActiveDish(d)}
+                open={explorerOpen}
+                stack={explorerStack}
+                onStackChange={setExplorerStack}
+                onOpenChange={setExplorerOpen}
                 onAsk={askFromSheet}
             />
             <RestaurantSheet restaurant={restaurant} open={infoOpen} onOpenChange={setInfoOpen} />
-            <MenuSheet
-                restaurant={restaurant}
-                open={menuOpen}
-                onOpenChange={setMenuOpen}
-                onOpenDish={(d) => {
-                    setMenuOpen(false)
-                    window.setTimeout(() => openDish(d), 150)
-                }}
-            />
         </div>
     )
 }
@@ -326,12 +360,14 @@ function MessageView({
     busy,
     onOpenDish,
     onPick,
+    onRetry,
 }: {
     message: Message
     isLast: boolean
     busy: boolean
     onOpenDish: (d: Dish) => void
     onPick: (opt: string) => void
+    onRetry: () => void
 }) {
     if (m.role === "user") {
         return (
@@ -356,12 +392,14 @@ function MessageView({
                             <span />
                         </div>
                     ) : (
-                        <p
-                            className="text-[16px] leading-[1.55] whitespace-pre-line"
-                            style={{ color: m.error ? "var(--tt-chili)" : "var(--tt-ink)" }}
-                        >
+                        <p className="text-[16px] leading-[1.55] whitespace-pre-line" style={{ color: m.error ? "var(--tt-chili)" : "var(--tt-ink)" }}>
                             {m.text}
                         </p>
+                    )}
+                    {m.error && m.retryOf && (
+                        <button type="button" className="tt-chip mt-3" onClick={onRetry} disabled={busy}>
+                            <RotateCcw size={13} /> Try again
+                        </button>
                     )}
                 </div>
             </div>

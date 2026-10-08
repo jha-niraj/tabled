@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **App / module** | `main/menu-concierge` |
-| **Status** | Built 2026-10-08 - all tasks verified by Claude, Niraj's own test pass still open |
+| **Status** | Built 2026-10-08; experience pass 1 done 2026-10-09 (tasks 15-19); Niraj's test pass continues |
 | **Opened** | 2026-10-08 |
-| **Last updated** | 2026-10-08 |
+| **Last updated** | 2026-10-09 |
 | **Files** | `apps/main/app/m/**`, `apps/main/app/api/menu/**`, `apps/main/components/menu/**`, `apps/main/lib/menu/**`, `apps/main/data/restaurants/tuk-tuk-thai.json`, `apps/main/lib/env.ts` (escape hatch), `turbo.json` (env names) |
 
 ## What was asked
@@ -102,7 +102,45 @@ chat and speech-to-text. Warm, premium, "not AI slop". Nothing else in the codeb
 
 - [ ] **14. Niraj's test pass** - phone on wifi, mic in a real room, a full three-question flow.
   - Acceptance: he says it is right, or lists what is not.
-  - Verified: _(open)_
+  - Verified: _(in progress - first two findings became tasks 15 and 16)_
+
+### Experience pass 1 (2026-10-09)
+
+Niraj's first findings: picking a dish from the full menu closed the sheet and reopened another
+("not sticky"), and the thread did not scroll to the new answer. Decisions taken through
+AskUserQuestion: one sheet with in-place swap and a back arrow; answers from a dish's chips go to
+the thread and scroll into view; typed-Hinglish reply language left until the model changes;
+composer stays typeable while Noi thinks, with a retry chip on error.
+
+- [x] **15. One explorer sheet** - `explorer-sheet.tsx` holds a view stack (menu or dish). Menu
+  row and "goes well with" taps push a view; a back pill at the top pops it; the list's scroll
+  position is restored on back and a dish always starts at the top. Content crossfades in place.
+  - Acceptance: menu to dish to back never closes the sheet; back lands where you were.
+  - Verified: Chrome, timed with a script: old view fades by 200 ms, new view at full opacity by
+    400 ms; back restored the list; `[role=dialog]` stayed mounted throughout.
+
+- [x] **16. Auto-scroll to the newest answer** - scroll on every message change (not just
+  length, since the pending bubble is replaced in place), a `ResizeObserver` on the thread so
+  cards and images arriving after the reply keep it pinned, and a scroll listener that stops
+  following only when the bottom marker is off screen.
+  - Acceptance: tapping a chip leaves the new reply at the top of the viewport with its cards
+    visible, without manual scrolling.
+  - Verified: after "Bring the heat", the reply and its three cards were in view; the bottom
+    marker was within the viewport (208 px above the page end, which is the fixed composer plus
+    the wordmark).
+
+- [x] **17. Composer stays typeable while Noi thinks** - input never disabled; send and mic wait;
+  placeholder says so.
+  - Verified: script read `input.disabled === false` 300 ms after a chip tap.
+
+- [x] **18. Retry on failure** - a failed request removes the unsent bubble, shows the error
+  line with a "Try again" chip that resends the same text with the same options, and restores
+  the chip you had tapped.
+  - Verified: typecheck and lint; not exercised live (the API did not fail during the pass).
+
+- [x] **19. No repeated question** - the prompt now forbids any question in `say` when `ask` is
+  present (seen once: "Rice, noodles, curry or soup?" in both).
+  - Verified: prompt text; behaviour to be watched in Niraj's pass.
 
 ---
 
