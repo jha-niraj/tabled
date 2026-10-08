@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **App / module** | `main/taste-passport` |
-| **Status** | Planned - blocked on `questions.md` A1-A3, G1-G4 |
+| **Status** | Planned - questions answered 2026-10-09, ready to start |
 | **Opened** | 2026-10-08 |
-| **Last updated** | 2026-10-08 |
+| **Last updated** | 2026-10-09 |
 | **Files** | `packages/db/src/schema.ts`, `packages/auth/*`, `apps/main/.env`, `apps/main/lib/env.ts`, `packages/storage/*` |
 
 ## What was asked
@@ -21,10 +21,12 @@ later phase-2 doc stands on.
 - `tasteProfile`, `visitIntent`, `tableSession`, `visitFeedback` tables exist and are empty.
 - The `/m/[slug]` page still works anonymously with `SKIP_ENV_VALIDATION` removed from `.env`.
 
-## Open questions
+## Decisions (2026-10-09)
 
-See `questions.md` A1-A3 and G1-G4. Working assumptions: optional accounts, Google plus magic
-link, Neon, menus stay as JSON, R2 for voice notes only.
+Optional accounts created from an in-chat nudge, Google plus magic link, Neon, menus move to the
+database linked to a restaurant profile (doc 07), R2 for voice audio (30 days) and restaurant
+media. The starter admin is now `apps/tableadmin` (restaurant portal) with a copy at `apps/admin`
+(platform admin).
 
 ---
 
@@ -48,10 +50,19 @@ link, Neon, menus stay as JSON, R2 for voice notes only.
   - Verified:
 
 - [ ] **4. Schema: `tableSession` and `visitFeedback`** - a session per QR open (`id`,
-  `restaurantSlug`, `userId` nullable, `remember` jsonb, `shownDishIds` jsonb, `startedAt`,
-  `endedAt`) and feedback (`sessionId`, `userId`, `verdict` enum exactly/close/off, `note`,
-  `chosenDishIds` jsonb, `createdAt`).
-  - Acceptance: `db:push` applies; anonymous sessions have null `userId`.
+  `restaurantId`, `tableNumber` text nullable, `userId` nullable, `remember` jsonb,
+  `shownDishIds` jsonb, `starredDishIds` jsonb, `language` text, `startedAt`, `endedAt`) and
+  feedback (`sessionId`, `userId`, `verdict` enum exactly/close/off, `note`, `createdAt`).
+  - Acceptance: `db:push` applies; anonymous sessions have null `userId`; `tableNumber` comes
+    from `?t=` on the QR URL.
+  - Verified:
+
+- [ ] **4b. Schema: `restaurant`, `menuSection`, `dish`, `dishMedia`, `restaurantMember`,
+  `dinerRestaurantShare`** - the restaurant profile and menu (shape mirrors
+  `lib/menu/types.ts` so the JSON seed loads 1:1), owner membership for `tableadmin`, and the
+  per-restaurant opt-in row for sharing a diner's preferences (E3).
+  - Acceptance: `db:push` applies; a seed script loads `tuk-tuk-thai.json` into these tables and
+    `getRestaurant(slug)` reads from the DB with the JSON as fallback.
   - Verified:
 
 - [ ] **5. Better Auth for diners** - enable the methods from A3; the existing email-password and

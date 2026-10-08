@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **App / module** | `main/taste-passport` |
-| **Status** | Planned - blocked on `questions.md` D1-D6 |
+| **Status** | Planned - questions answered 2026-10-09; builds after docs 01, 04, 05 |
 | **Opened** | 2026-10-08 |
-| **Last updated** | 2026-10-08 |
+| **Last updated** | 2026-10-09 |
 | **Files** | `apps/main/app/(main)/going/**`, `apps/main/actions/intent.action.ts`, `apps/main/lib/menu/intent.ts` |
 
 ## What was asked
@@ -19,14 +19,15 @@ menu is there and what they would like is already there."
 
 - `/going` lists restaurants on the platform (one today) with search.
 - Tapping one opens a mic. A 20-second note is transcribed, the situational layer is extracted,
-  and a `visitIntent` row is written with a 6-hour expiry.
+  and a `visitIntent` row is written. Notes are kept forever as text.
 - The diner sees "Noi will have a shortlist ready at Tuk Tuk Thai" and can re-record or cancel.
-- When `/m/tuk-tuk-thai` opens for that diner within 6 hours, the host uses the intent (doc 04).
+- When `/m/tuk-tuk-thai` opens for that diner, the host uses the newest note for that restaurant
+  that no visit has consumed yet (doc 04). Older notes stay as history on `/taste/history`.
 
-## Open questions
+## Decisions (2026-10-09)
 
-See `questions.md` D. Assumptions: one active intent per restaurant, 6-hour life, no push, the
-shortlist is computed on page open, not in the background.
+Notes live forever (Niraj: "it's the user telling something they want, it's just text, store
+it"). No expiry column; `consumedAt` marks the visit that used it. No push, no background job.
 
 ---
 
@@ -45,7 +46,7 @@ shortlist is computed on page open, not in the background.
 
 - [ ] **3. `/going/[slug]` record screen** - mic, transcript shown back, "sounds right" and
   "re-record".
-  - Acceptance: a row appears in `visitIntent` with `expiresAt` 6 h out.
+  - Acceptance: a row appears in `visitIntent`; the newest unconsumed one is what the host reads.
   - Verified:
 
 - [ ] **4. Voice clip to R2** - stored under `voice/<userId>/<intentId>`, key saved on the row.
@@ -57,8 +58,9 @@ shortlist is computed on page open, not in the background.
   - Acceptance: cancel sets `consumedAt` and the card disappears.
   - Verified:
 
-- [ ] **6. Expiry** - expired intents are ignored by the host and hidden from the home page.
-  - Acceptance: set `expiresAt` in the past in Drizzle Studio; the host does not use it.
+- [ ] **6. Consumed notes** - a note is marked consumed when a table session for that
+  restaurant uses it; it then drops off the home card and stays in history.
+  - Acceptance: after a QR open the home card disappears; `/taste/history` lists the note.
   - Verified:
 
 - [-] **7. Background processing with Durable Objects** - not in phase 2. Extraction takes two

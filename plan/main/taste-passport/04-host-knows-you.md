@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **App / module** | `main/taste-passport` |
-| **Status** | Planned - blocked on `questions.md` A1, E1-E5 |
+| **Status** | Planned - questions answered 2026-10-09; first diner-facing slice after doc 01 |
 | **Opened** | 2026-10-08 |
-| **Last updated** | 2026-10-08 |
+| **Last updated** | 2026-10-09 |
 | **Files** | `apps/main/app/m/[slug]/page.tsx`, `apps/main/app/api/menu/chat/route.ts`, `apps/main/lib/menu/knowledge.ts`, `apps/main/components/menu/concierge.tsx` |
 
 ## What was asked
@@ -25,10 +25,12 @@ from someone who just scans anonymously.
   the table.
 - The restaurant sees nothing about the person (E3).
 
-## Open questions
+## Decisions (2026-10-09)
 
-See `questions.md` E. Assumptions: one confirmation question max, "surprise me" can break habits,
-no ordering integration, no groups yet.
+One confirmation question max. "Surprise me" can break habits, hard constraints never. No
+ordering integration, no groups. Accounts come from an in-chat nudge after the first shortlist,
+once per session, one tap, no form. The QR URL carries the table number (`?t=12`). A diner can
+opt in per restaurant to share preferences with the restaurant; hidden by default.
 
 ---
 
@@ -54,9 +56,25 @@ no ordering integration, no groups yet.
   the intent once.
   - Verified:
 
-- [ ] **4. Sign-in link on the QR page** - "I have a taste profile" in the header for anonymous
-  visitors; returns to the same slug after sign-in.
-  - Acceptance: round trip lands back on `/m/tuk-tuk-thai` signed in.
+- [ ] **4. The account nudge** - after the first reply that shows a shortlist, an anonymous
+  session gets one soft card in the thread: "Want me to remember this for next time?" with
+  Google and magic-link buttons. Dismissable, never repeated in that session, and the session's
+  `remember` notes are attached to the new account so nothing said so far is lost. A small
+  "I have a taste profile" link also sits in the header. Both return to the same slug and table.
+  - Acceptance: round trip lands back on `/m/tuk-tuk-thai?t=12` signed in, with the thread intact
+    and the notes promoted (doc 02 task 6).
+  - Verified:
+
+- [ ] **4b. Table number** - `?t=` is read on the QR page, stored on `tableSession.tableNumber`,
+  and shown faintly in the header ("Table 12").
+  - Acceptance: a session row carries the table; a URL without `?t=` still works.
+  - Verified:
+
+- [ ] **4c. Share with this restaurant** - a toggle on the profile page per restaurant visited,
+  off by default. When on, `tableadmin` can show first name and preferences for that diner's
+  sessions. Revoking hides them immediately.
+  - Acceptance: toggle on, the restaurant's session view shows "mild, no peanuts"; toggle off,
+    it shows only the table and verdict.
   - Verified:
 
 - [ ] **5. Propose profile changes mid-chat** - when the host learns a hard constraint, it

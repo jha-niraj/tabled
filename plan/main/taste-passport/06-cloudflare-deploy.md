@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **App / module** | `repo/deploy` |
-| **Status** | Planned - blocked on `questions.md` G4 |
+| **Status** | Planned - Cloudflare confirmed 2026-10-09; last doc in phase 2 |
 | **Opened** | 2026-10-08 |
-| **Last updated** | 2026-10-08 |
+| **Last updated** | 2026-10-09 |
 | **Files** | `apps/main/wrangler.jsonc`, `apps/main/open-next.config.ts`, `apps/main/next.config.js`, GitHub Actions workflow |
 
 ## What was asked
@@ -33,7 +33,7 @@ necessary only for streaming voice sessions or background jobs longer than a req
 
 ## Open questions
 
-- Does the admin app deploy too, or stay local for now? Assumption: main only in phase 2.
+- Which apps deploy. Assumption: `main` and `tableadmin` (owners need it), `admin` stays local.
 - Domain. Assumption: a `tabled.*` domain Niraj registers; until then workers.dev.
 
 ---

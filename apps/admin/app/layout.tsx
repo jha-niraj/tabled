@@ -24,10 +24,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
 	title: {
-		default: "Admin",
-		template: "%s | Admin"
+		default: "Tabled Platform",
+		template: "%s | Tabled Platform"
 	},
-	description: "Admin control panel - manage users, settings, and platform operations.",
+	description: "Tabled Platform - internal admin for the Tabled team: restaurants, owners, and system settings.",
 	robots: { index: false, follow: false },
 };
 

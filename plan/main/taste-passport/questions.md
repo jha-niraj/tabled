@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **App / module** | `main/taste-passport` |
-| **Status** | Open - waiting on Niraj's answers |
+| **Status** | Answered 2026-10-09 - 20 decisions below, the rest run on the stated assumptions |
 | **Opened** | 2026-10-08 |
-| **Last updated** | 2026-10-08 |
+| **Last updated** | 2026-10-09 |
 
 ## What was asked
 
@@ -30,15 +30,18 @@ how the task docs refer back here.
 **A1. Is the account optional at the table?** An anonymous QR scan still gets the three-question
 flow, a signed-in diner skips them.
 - Assumption: optional. Anonymous keeps working exactly as today.
+- **Answer (2026-10-09):** Optional. Nobody is told to sign up; after the first shortlist the host offers once per session "want me to remember this for next time?" and account creation is one tap (no form). The restaurant is the customer; the diner account exists to make dining easier so the restaurant's ratings and reviews improve.
 
 **A2. Where does the diner sign in?** On the `/m/[slug]` page itself (a small "I have a taste
 profile" link), in a separate diner app at `/`, or both.
 - Assumption: both. The QR page offers sign-in without leaving; the landing page becomes the
   diner's home.
+- **Answer (2026-10-09):** Both: the in-chat nudge on the QR page, and the landing page as the diner's home.
 
 **A3. Sign-in methods.** Email and password, Google, phone OTP, or magic link. Phone OTP is the
 Indian default but needs an SMS provider.
 - Assumption: Google plus email magic link via Resend. No phone OTP in phase 2.
+- **Answer (2026-10-09):** Google plus email magic link.
 
 **A4. Does the diner have a name and photo the host uses?** "Welcome back, Niraj" versus nothing
 personal on screen.
@@ -48,6 +51,7 @@ personal on screen.
 three sets of constraints.
 - Assumption: one profile per account in phase 2. Household members and groups are a later
   phase, but the schema should not make it hard (see C6).
+- **Answer (2026-10-09):** One profile per account now; `ownerUserId` + `label` on the table so household members can come later.
 
 ## B. What the profile holds
 
@@ -61,11 +65,13 @@ hunger, company, budget, time), history (what was ordered and how it landed).
 allergic to peanuts" mid-chat.
 - Assumption: never silently. The host proposes "add peanut allergy to your profile?" and the
   diner confirms with a tap. Everything else can be updated quietly.
+- **Answer (2026-10-09):** Never silently. The host proposes, the diner confirms with a tap.
 
 **B3. What counts as a dislike versus a hard no?** "I do not like mushrooms" should lower
 suggestions, not hide them.
 - Assumption: dislikes are soft and the host can still mention a dish if it is the best fit,
   with a note. Hard constraints are filters.
+- **Answer (2026-10-09):** Dislikes are soft and lower a dish; hard constraints filter.
 
 **B4. Spice scale.** Keep the 0 to 4 scale from the prototype, or ask in words.
 - Assumption: store 0 to 4, ask in words ("mild", "medium", "bring the heat").
@@ -88,6 +94,7 @@ words and a delete button per fact.
 people will not talk to a phone in an office.
 - Assumption: voice note first, with a "type instead" link that opens the same prompt as text.
   No multi-step wizard.
+- **Answer (2026-10-09):** Learned from chats; the voice note is optional and lives on the profile page for people who want to fill it directly.
 
 **C2. What does the model extract, and how does the diner confirm?** The note becomes a
 structured draft, shown as editable cards: "Spice: medium. Avoids: mushrooms. Allergy: peanuts
@@ -102,21 +109,25 @@ structured draft, shown as editable cards: "Spice: medium. Avoids: mushrooms. Al
 **C4. Language of the profile.** If the note is in Hindi, is the profile stored in Hindi, in
 English, or both?
 - Assumption: stored in English for matching, shown back in the diner's language by the model.
+- **Answer (2026-10-09):** Stored in English, shown back in the diner's language.
 
 **C5. Can onboarding be skipped and filled later from conversations?** Sign in, scan, chat; the
 host builds the profile over the first two visits.
 - Assumption: yes. The `remember` notes the host already extracts are promoted to the profile
   after the diner confirms at the end of a session.
+- **Answer (2026-10-09):** Yes, this is the primary way the profile gets built.
 
 **C6. Can a diner add a household member ("my daughter, 7, no chilli")?**
 - Assumption: not in phase 2, but the `tasteProfile` table carries an `ownerUserId` and a
   `label` so it can hold more than one profile per account later.
+- **Answer (2026-10-09):** Deferred; schema leaves room.
 
 ## D. The pre-arrival note (visit intent)
 
 **D1. How does the diner pick the restaurant?** Search by name, a list of nearby places, or a
 recent list. Phase 2 has one restaurant.
 - Assumption: a list of restaurants on the platform with search. One entry for now.
+- **Answer (2026-10-09):** Pick from the restaurant list with search.
 
 **D2. What can the note contain?** Mood, hunger, who they are with, what they feel like,
 budget, time, "surprise me".
@@ -124,6 +135,7 @@ budget, time, "surprise me".
 
 **D3. How long does an intent live?** Recorded at noon, used at 1 pm, stale by dinner.
 - Assumption: 6 hours, then it expires and the host falls back to the stable profile.
+- **Answer (2026-10-09):** Notes live forever as text. They are the diner telling us what they want and are useful later. The host uses the newest note for that restaurant that has not been consumed by a visit.
 
 **D4. Can there be more than one open intent?**
 - Assumption: one active intent per restaurant per diner; a new one replaces the old one.
@@ -133,6 +145,7 @@ email, nothing.
 - Assumption: nothing in phase 2. The shortlist is computed when the page opens, not in the
   background. Background processing becomes worth it only when the model is slow or when
   we pre-render media.
+- **Answer (2026-10-09):** Nothing before arrival in phase 2.
 
 **D6. Is the shortlist computed by the same host prompt?**
 - Assumption: yes, one prompt with profile and intent appended. No separate recommender.
@@ -143,6 +156,7 @@ email, nothing.
 chosen from profile plus intent, one confirmation question ("still mild tonight?") or none.
 - Assumption: one confirmation question at most, and only if something in the profile is
   older than 30 days or the intent contradicts the profile.
+- **Answer (2026-10-09):** First name, 3 to 4 picks, at most one confirmation question. Computed without a model call.
 
 **E2. Does the host ever ignore the profile?** "Surprise me" should be allowed to break habits.
 - Assumption: yes, hard constraints always hold, everything else can be overridden by what the
@@ -151,14 +165,17 @@ chosen from profile plus intent, one confirmation question ("still mild tonight?
 **E3. Does the restaurant see anything?** The owner, the kitchen, the waiter.
 - Assumption: nothing about the diner. The restaurant gets aggregate stats later (most asked
   questions, most shown dishes), never a person's profile.
+- **Answer (2026-10-09):** Aggregate by default. A diner can opt in per restaurant to share their preferences so the waiter sees "mild, no peanuts"; revocable. The restaurant also sees which table a session came from (table number in the QR URL).
 
 **E4. Ordering.** Does "I'll have this" do anything, or is it still the waiter.
 - Assumption: still the waiter. The page can show a "my picks" list the diner reads out. No POS
   integration in phase 2.
+- **Answer (2026-10-09):** Star dishes into a my-picks tray; the waiter still takes the order. No ordering integration.
 
 **E5. Groups.** Several signed-in diners at one table, one order for everyone.
 - Assumption: out of phase 2. Written down so the schema leaves room (a `tableSession` with
   many diners).
+- **Answer (2026-10-09):** Deferred; `tableSession` is the hook.
 
 ## F. After the meal
 
@@ -166,13 +183,16 @@ chosen from profile plus intent, one confirmation question ("still mild tonight?
 on next open.
 - Assumption: on next open of the page, or a push if we add push later. Three options:
   "exactly", "close", "not what I pictured", plus optional free text or voice.
+- **Answer (2026-10-09):** On next open, three verdicts, optional note.
 
 **F2. What does the answer change?** It is the regret metric and it updates the profile.
 - Assumption: it writes to history with the dish ids shown and chosen, and the model may propose
   one profile change ("you said the green curry was too hot, lower your spice to mild?").
+- **Answer (2026-10-09):** Stored against the session; may propose one profile change.
 
 **F3. Public reviews?** Do these answers become visible ratings on the dish cards.
 - Assumption: no. The dish ratings stay restaurant-provided data. Diner feedback is private.
+- **Answer (2026-10-09):** Private, never a public rating.
 
 ## G. Data and infrastructure
 
@@ -183,10 +203,12 @@ on next open.
 **G2. Restaurant data.** Stays as JSON files in the repo, or moves to the database.
 - Assumption: stays JSON in phase 2. Moving menus to the DB and giving restaurants an editor is
   its own phase.
+- **Answer (2026-10-09):** Phase 2 moves menus into the database linked to a restaurant profile, with an admin portal for the restaurant (`apps/tableadmin`) where owners manage the menu, upload images and video, and see ratings, reviews and the table they came from. Menus are ingested by scanning menu photos with Sarvam document intelligence, structured by the model, then edited by the owner. The Tuk Tuk Thai JSON is the seed.
 
 **G3. R2.** What goes there: voice notes, dish media uploaded by restaurants, both.
 - Assumption: voice notes only in phase 2, with a 30-day retention, because the transcript is
   what matters.
+- **Answer (2026-10-09):** Transcripts forever, raw audio 30 days in R2.
 
 **G4. Deployment.** Cloudflare Workers with Durable Objects, via OpenNext for Next.js.
 - Assumption: `@opennextjs/cloudflare`. Durable Objects are only needed once something runs
@@ -200,6 +222,7 @@ on next open.
 **G6. Privacy and deletion.** India DPDP rules, account deletion, data export.
 - Assumption: delete-account removes profile, intents, voice notes in R2, and history. Export is
   a JSON download from the profile page.
+- **Answer (2026-10-09):** Delete account removes profile, notes, audio, sessions; JSON export offered first.
 
 ## H. Scope and order
 
@@ -207,9 +230,11 @@ on next open.
 one voice-note onboarding, the host greets you by name and skips the questions. No intent, no
 feedback loop.
 - Assumption: that is phase 2a. Intent and feedback are 2b and 2c in the same phase.
+- **Answer (2026-10-09):** Order: foundation, host-knows-you plus the account nudge, feedback, then pre-arrival notes, then restaurant profile, menus in DB, menu scan and the owner portal.
 
 **H2. Does the admin app get anything?** A list of diners, a list of restaurants.
 - Assumption: a read-only restaurants list and aggregate stats. No diner list, by E3.
+- **Answer (2026-10-09):** The starter admin is renamed `apps/tableadmin` and becomes the restaurant's portal. A copy stays at `apps/admin` for us (platform admin). Done 2026-10-09.
 
 **H3. Model swap timing.** When OpenAI or Claude credits exist, does the whole host move, or
 only profile extraction.

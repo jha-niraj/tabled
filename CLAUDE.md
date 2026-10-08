@@ -2,6 +2,11 @@
 
 Production-ready Next.js monorepo. Clone, fill `.env` files, run `pnpm --filter @repo/db db:push && pnpm --filter @repo/db db:seed`, then `pnpm dev`.
 
+## Working with Niraj
+
+- **Every question goes through the AskUserQuestion tool**, never as plain text in a reply. Put the recommended option first with "(Recommended)" in its label and say why in its description, so picking is one tap. Batch up to four questions per call. This applies to clarifications, design choices, scope calls and anything else that needs an answer.
+- Plan before building: every job gets a doc in `plan/` first (see `plan/README.md`), tasks are ticked only with a real Verified line, and `plan/INDEX.md` stays current.
+
 ## Writing conventions
 
 - Use hyphens (`-`) not em-dashes (`—`) everywhere in copy, comments, and JSX text.
@@ -31,8 +36,9 @@ Production-ready Next.js monorepo. Clone, fill `.env` files, run `pnpm --filter 
 ```
 basecodebase/
 ├── apps/
-│   ├── main/          # Customer-facing Next.js app  (port 3000)
-│   └── admin/         # Admin dashboard              (port 3001)
+│   ├── main/          # Diner-facing Next.js app, QR host at /m/[slug]  (port 3000, run on 5000 locally)
+│   ├── tableadmin/    # Tabled Admin - the restaurant's portal          (port 3001)
+│   └── admin/         # Platform admin for us, copy of tableadmin       (port 3002)
 └── packages/
     ├── auth/          # @repo/auth  - Better Auth config, email templates, session helpers
     ├── db/            # @repo/db    - Drizzle schema, DB client, seed script
@@ -69,8 +75,8 @@ R2_BUCKET_NAME=
 R2_PUBLIC_URL=
 ```
 
-### `apps/admin/.env`
-Same as above minus `GOOGLE_CLIENT_ID/SECRET` and `NEXT_PUBLIC_APP_URL`. `BETTER_AUTH_URL=http://localhost:3001`.
+### `apps/tableadmin/.env` and `apps/admin/.env`
+Same as above minus `GOOGLE_CLIENT_ID/SECRET` and `NEXT_PUBLIC_APP_URL`. `BETTER_AUTH_URL=http://localhost:3001` for tableadmin, `http://localhost:3002` for admin.
 
 ## Getting started
 
@@ -84,7 +90,7 @@ pnpm --filter @repo/db db:push
 pnpm --filter @repo/db db:seed
 # Creates: superadmin@admin.com / Admin@1234
 
-pnpm dev   # main :3000, admin :3001
+pnpm dev   # main :3000, tableadmin :3001, admin :3002
 ```
 
 ## Database (`packages/db`)
@@ -266,7 +272,9 @@ const uploadUrl = await getUploadUrl(key, file.type)
 // Return uploadUrl to client - client does PUT directly to R2
 ```
 
-## Admin App (`apps/admin`) - port 3001
+## Admin apps - `apps/tableadmin` (restaurant portal, port 3001) and `apps/admin` (platform admin, port 3002)
+
+Both started as the same starter admin. `tableadmin` is what a restaurant owner uses (renamed 2026-10-09); `admin` is the copy we keep for ourselves. Everything below applies to both until they diverge.
 
 ### Credentials (seeded)
 
@@ -277,7 +285,7 @@ Password: Admin@1234
 
 Re-seed anytime: `pnpm --filter @repo/db db:seed`
 
-### Middleware (`apps/admin/middleware.ts`)
+### Middleware (`apps/tableadmin/middleware.ts`, same in `apps/admin`)
 
 Cookie-based. Protects all dashboard routes. Logged-in users hitting `/` redirect to `/dashboard`.
 
@@ -356,7 +364,7 @@ if (can('analytics', 'write')) { /* ... */ }
 
 ### Admin server actions
 
-**`apps/admin/actions/admin.action.ts`**
+**`apps/<admin app>/actions/admin.action.ts`**
 - `checkAdminAccess()` - verify current user has active admin record
 - `getCurrentAdmin()` - full admin profile for current user
 - `getAdminUsers()` - list all admins
@@ -372,22 +380,22 @@ if (can('analytics', 'write')) { /* ... */ }
 - `setAdminPassword(newPassword)` - first-time password setup
 - `changeAdminPassword(current, new)` - change with current password verification
 
-**`apps/admin/actions/user.action.ts`**
+**`apps/<admin app>/actions/user.action.ts`**
 - `getUsers(page, limit, search)` - paginated user list with search
 - `getUserById(userId)` - full user details
 - `updateUserStatus(userId, isActive)` - activate/deactivate (SUPER_ADMIN only)
 
-**`apps/admin/actions/system.action.ts`**
+**`apps/<admin app>/actions/system.action.ts`**
 - `getSystemSettings()`, `getSystemSetting(key)`, `updateSystemSetting(key, data)`
 - `getSystemHealth()` - DB status + recent error count
 - `clearCache(keys?)` - revalidate paths
 - `getAdminNotifications(params)` - notification list with pagination
 - `markNotificationAsRead(id)`, `markAllNotificationsAsRead()`
 
-**`apps/admin/actions/analytics.action.ts`**
+**`apps/<admin app>/actions/analytics.action.ts`**
 - `getAnalyticsData()` - platform metrics, 7-day chart data
 
-**`apps/admin/actions/communications.action.ts`**
+**`apps/<admin app>/actions/communications.action.ts`**
 - `getAnnouncements()`, `createAnnouncement(input)`, `updateAnnouncementStatus(id, status)`, `deleteAnnouncement(id)`
 - `getBroadcasts()`, `createBroadcast(input)`
 
@@ -540,7 +548,7 @@ import { getUploadUrl, getDownloadUrl, deleteFile, getPublicUrl, generateKey } f
 2. **New server actions** - create in `apps/<app>/actions/`
 3. **New page** - create under `apps/<app>/app/`
 4. **Protected page (main app)** - add route to `protectedRoutes` in `apps/main/middleware.ts`
-5. **Protected admin page** - wrap content in `<PermissionGate module="..." level="read">`, add nav item to `apps/admin/lib/navigation.ts` with `requiredPermission`
+5. **Protected admin page** - wrap content in `<PermissionGate module="..." level="read">`, add nav item to `apps/<admin app>/lib/navigation.ts` with `requiredPermission`
 6. **Reusable UI component** - add to `packages/ui/src/components/ui/`
 7. **After schema changes** - always run `db:push`
 

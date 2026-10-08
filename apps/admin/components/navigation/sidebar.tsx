@@ -244,7 +244,7 @@ export function AdminSidebar() {
           {!isCollapsed && (
             <div className="min-w-0 flex-1 text-left">
               <h1 className="truncate font-bold tracking-tight text-neutral-900 dark:text-white">
-                Admin Panel
+                Tabled Platform
               </h1>
               <p className="truncate font-mono text-[10px] uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
                 Control Center
@@ -344,7 +344,7 @@ export function AdminSidebar() {
                     {session?.user?.name || "Admin"}
                   </p>
                   <p className="text-[10px] text-neutral-400 dark:text-neutral-500 truncate font-mono">
-                    Admin Panel
+                    Tabled Platform
                   </p>
                 </div>
                 <button

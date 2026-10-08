@@ -95,7 +95,7 @@ function AdminLandingContent() {
                 >
                     <Badge className="mb-6 bg-white/10 text-white border-white/20 hover:bg-white/15 text-sm px-4 py-1.5 font-medium tracking-wide">
                         {/* Replace with your product name */}
-                        Admin Panel
+                        Tabled Platform
                     </Badge>
                     <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight tracking-tight mb-5">
                         {/* Replace with your headline */}

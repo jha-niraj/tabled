@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **App / module** | `main/taste-passport` |
-| **Status** | Planned - blocked on `questions.md` B1-B7, C1-C6 |
+| **Status** | Planned - questions answered 2026-10-09; learned-from-chats path first, voice note second |
 | **Opened** | 2026-10-08 |
-| **Last updated** | 2026-10-08 |
+| **Last updated** | 2026-10-09 |
 | **Files** | `apps/main/app/(main)/taste/**`, `apps/main/actions/taste.action.ts`, `apps/main/lib/menu/profile.ts`, `apps/main/components/taste/**` |
 
 ## What was asked
@@ -25,10 +25,12 @@ does the rest.
   with per-fact delete and a "delete my profile" action.
 - The host at `/m/[slug]` greets a profiled diner by first name and skips the chilli question.
 
-## Open questions
+## Decisions (2026-10-09)
 
-See `questions.md` B and C. Assumptions: four layers, hard constraints never inferred silently,
-dislikes are soft, profile stored in English, Sarvam extracts behind the provider switch.
+Four layers. Hard constraints confirmed by tap, never inferred silently. Dislikes are soft.
+Stored in English, shown in the diner's language. The profile is built mainly from table
+conversations (task 6 is the primary path and ships with doc 04); the voice-note onboarding
+(tasks 2 to 4) is optional and lives on the profile page.
 
 ---
 
