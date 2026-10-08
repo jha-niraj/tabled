@@ -9,7 +9,7 @@ export const runtime = "nodejs"
 const MAX_TURNS = 16
 const MAX_TURN_CHARS = 2000
 
-type Body = { slug?: string; turns?: ChatTurn[]; remember?: string[] }
+type Body = { slug?: string; turns?: ChatTurn[]; remember?: string[]; languageHint?: string | null }
 
 export async function POST(req: Request) {
     let body: Body
@@ -32,9 +32,13 @@ export async function POST(req: Request) {
     }
 
     const remember = (body.remember ?? []).filter((s) => typeof s === "string").slice(0, 12)
-    const system = remember.length
-        ? `${buildSystemPrompt(restaurant)}\n\nWHAT YOU ALREADY KNOW ABOUT THIS GUEST\n${remember.map((r) => `- ${r}`).join("\n")}`
-        : buildSystemPrompt(restaurant)
+    const languageHint = typeof body.languageHint === "string" && /^[a-z]{2}-[A-Z]{2}$/.test(body.languageHint) ? body.languageHint : null
+    const extras: string[] = []
+    if (remember.length) extras.push(`WHAT YOU ALREADY KNOW ABOUT THIS GUEST\n${remember.map((r) => `- ${r}`).join("\n")}`)
+    if (languageHint && languageHint !== "en-IN") {
+        extras.push(`The guest just spoke in language code ${languageHint}. Reply in that language, in its native script, keeping dish names as written on the menu.`)
+    }
+    const system = extras.length ? `${buildSystemPrompt(restaurant)}\n\n${extras.join("\n\n")}` : buildSystemPrompt(restaurant)
 
     try {
         const { content } = await sarvamChat(system, turns)

@@ -29,6 +29,9 @@
     font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
     font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
+}
+
+.tt-root {
     position: relative;
     isolation: isolate;
 }
@@ -58,7 +61,7 @@
     --tt-shadow-sm: 0 1px 1px rgba(0, 0, 0, 0.25), 0 6px 16px -8px rgba(0, 0, 0, 0.5);
 }
 
-.tt::before {
+.tt-root::before {
     content: "";
     position: fixed;
     inset: 0;

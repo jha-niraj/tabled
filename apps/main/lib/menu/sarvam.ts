@@ -53,8 +53,10 @@ export async function sarvamTranscribe(
     file: Blob,
     filename: string,
 ): Promise<{ transcript: string; languageCode: string | null }> {
+    // Browsers label recordings "audio/webm;codecs=opus", which Sarvam rejects; it sniffs the format from the bytes anyway
+    const clean = new Blob([await file.arrayBuffer()], { type: "application/octet-stream" })
     const form = new FormData()
-    form.append("file", file, filename)
+    form.append("file", clean, filename)
     form.append("model", "saaras:v4")
     form.append("language_code", "unknown")
     // codemix keeps English words in Latin script inside Indic sentences, which is how people actually talk

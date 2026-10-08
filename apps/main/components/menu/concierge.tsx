@@ -24,6 +24,7 @@ type Message = {
     pending?: boolean
     error?: boolean
     viaVoice?: boolean
+    languageCode?: string | null
     answered?: string
 }
 
@@ -95,13 +96,13 @@ export function Concierge({ restaurant }: { restaurant: Restaurant }) {
     }, [])
 
     const send = useCallback(
-        async (text: string, opts: { viaVoice?: boolean; answering?: string } = {}) => {
+        async (text: string, opts: { viaVoice?: boolean; languageCode?: string | null; answering?: string } = {}) => {
             const clean = text.trim()
             if (!clean || busy) return
             setBusy(true)
             setInput("")
 
-            const userMsg: Message = { id: nextId(), role: "user", text: clean, viaVoice: opts.viaVoice }
+            const userMsg: Message = { id: nextId(), role: "user", text: clean, viaVoice: opts.viaVoice, languageCode: opts.languageCode ?? null }
             const pendingId = nextId()
             const history = messagesRef.current
 
@@ -125,7 +126,7 @@ export function Concierge({ restaurant }: { restaurant: Restaurant }) {
                 const res = await fetch("/api/menu/chat", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ slug: restaurant.slug, turns, remember: rememberRef.current }),
+                    body: JSON.stringify({ slug: restaurant.slug, turns, remember: rememberRef.current, languageHint: opts.languageCode ?? null }),
                 })
                 const data = (await res.json()) as ChatResponse & { error?: string }
                 if (!res.ok || !data.reply) throw new Error(data.error ?? "Chat failed")
@@ -270,7 +271,7 @@ export function Concierge({ restaurant }: { restaurant: Restaurant }) {
                                 const label = lang ? LANG_LABEL[lang] ?? lang : null
                                 setHeard(label ? `Heard you in ${label}` : "Heard you")
                                 window.setTimeout(() => setHeard(null), 3500)
-                                void send(text, { viaVoice: true })
+                                void send(text, { viaVoice: true, languageCode: lang })
                             }}
                             onError={(msg) => {
                                 setHeard(msg)
