@@ -3,6 +3,7 @@
  * Import this in the root layout (server component) so it runs on every
  * cold start and gives a clear error message before anything else fails.
  *
+ * Set SKIP_ENV_VALIDATION=1 to boot without DB/auth, e.g. for the /m menu prototype.
  * Only validates variables that are ALWAYS required.
  * Optional variables (Google OAuth, Resend, Cloudinary, R2) are handled
  * gracefully by the features that use them.
@@ -14,7 +15,7 @@ const REQUIRED: Record<string, string | undefined> = {
     NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
 }
 
-if (typeof window === "undefined") {
+if (typeof window === "undefined" && process.env.SKIP_ENV_VALIDATION !== "1") {
     // Server-only check - don't run in browser
     const missing = Object.entries(REQUIRED)
         .filter(([, v]) => !v)

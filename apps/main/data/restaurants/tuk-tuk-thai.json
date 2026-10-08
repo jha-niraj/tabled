@@ -1,0 +1,2708 @@
+{
+  "slug": "tuk-tuk-thai",
+  "name": "Tuk Tuk Thai",
+  "tagline": "Pure vegetarian Thai kitchen",
+  "shortDescription": "A pure-veg Thai kitchen that cooks the street food of Bangkok and Chiang Mai without fish sauce, egg or meat. Curry pastes pounded fresh every morning.",
+  "story": "Tuk Tuk Thai started as a four-table place run by a Thai home cook and her Indian husband, who wanted the food of Bangkok's night markets without anything his vegetarian family could not eat. Fish sauce became salt and soy. Egg left the pad thai. Nothing else changed. Eleven years later the menu is twenty pages because they could not stop adding dishes.",
+  "cuisine": [
+    "Thai",
+    "Pure vegetarian",
+    "Vegan-friendly",
+    "Jain options"
+  ],
+  "address": "No. 42, 12th Main Road, Indiranagar, Bengaluru 560038",
+  "neighbourhood": "Indiranagar",
+  "phone": "+91 80 4567 8901",
+  "hours": {
+    "weekdays": "12:00 to 15:30, 19:00 to 23:00",
+    "weekends": "12:00 to 23:30"
+  },
+  "priceRange": "Rs 900 to 1,400 for two",
+  "ratings": {
+    "overall": 4.7,
+    "totalReviews": 6214,
+    "platforms": [
+      {
+        "name": "Google",
+        "rating": 4.7,
+        "count": 3812
+      },
+      {
+        "name": "Zomato",
+        "rating": 4.6,
+        "count": 1890
+      },
+      {
+        "name": "Swiggy Dineout",
+        "rating": 4.8,
+        "count": 512
+      }
+    ],
+    "breakdown": {
+      "food": 4.8,
+      "service": 4.6,
+      "ambience": 4.7,
+      "value": 4.5
+    }
+  },
+  "awards": [
+    "Times Food Awards 2025, Best Thai (Vegetarian)",
+    "Condé Nast Traveller India, Top 50 Restaurants 2024"
+  ],
+  "ambience": [
+    "Warm teak and rattan",
+    "Open wok counter",
+    "Soft lantern light",
+    "Street-market soundtrack"
+  ],
+  "chefNote": "Start with a salad or soup, then one curry with rice per two people, one noodle or wok dish, and share a dessert. That is how a Thai table eats. Do not order everything at once.",
+  "spiceGuide": [
+    {
+      "level": 0,
+      "label": "No heat",
+      "note": "Nothing to worry about"
+    },
+    {
+      "level": 1,
+      "label": "Mild",
+      "note": "A warm glow, kid-safe"
+    },
+    {
+      "level": 2,
+      "label": "Medium",
+      "note": "Noticeable, pleasant"
+    },
+    {
+      "level": 3,
+      "label": "Hot",
+      "note": "Proper Thai heat, you will reach for a drink"
+    },
+    {
+      "level": 4,
+      "label": "Thai hot",
+      "note": "Only if you mean it"
+    }
+  ],
+  "dietaryLegend": {
+    "vegan": "No dairy, no egg, no honey",
+    "vegetarian": "Contains dairy, no egg",
+    "jain-possible": "Can be made without onion, garlic and root vegetables, ask when ordering",
+    "gluten-free": "No wheat or soy sauce with wheat",
+    "contains-nuts": "Contains peanuts or tree nuts",
+    "contains-soy": "Contains soy or tofu",
+    "contains-dairy": "Contains milk products",
+    "contains-gluten": "Contains wheat"
+  },
+  "mostLoved": [
+    "cu-massaman",
+    "sl-som-tam",
+    "de-mango-sticky"
+  ],
+  "welcome": {
+    "greeting": "Sawasdee ka. Twenty pages is a lot.",
+    "intro": "I'm Noi, your table host. Three quick questions and I'll have you at the right plate. Or skip them and just ask me anything, in any language.",
+    "firstQuestion": {
+      "question": "First things first. How do you feel about chilli tonight?",
+      "options": [
+        "Keep it mild",
+        "Medium is good",
+        "Bring the heat",
+        "Surprise me"
+      ]
+    }
+  },
+  "media": {
+    "hero": [
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Interior_of_Yim_Thai_Yeronga%2C_2021.09.jpg/1280px-Interior_of_Yim_Thai_Yeronga%2C_2021.09.jpg",
+        "alt": "Warm teak dining room with lanterns",
+        "credit": "Wikimedia Commons"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/202307_Riding_a_tuk-tuk_in_Bangkok_at_night.jpg/1280px-202307_Riding_a_tuk-tuk_in_Bangkok_at_night.jpg",
+        "alt": "A tuk-tuk ride through Bangkok at night",
+        "credit": "Wikimedia Commons"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Street_food_vendor_by_night_%286962509412%29.jpg",
+        "alt": "A Bangkok street food vendor at night",
+        "credit": "Wikimedia Commons"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Thai_chilis.jpg/1280px-Thai_chilis.jpg",
+        "alt": "Fresh Thai chillies",
+        "credit": "Wikimedia Commons"
+      }
+    ],
+    "video": {
+      "poster": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/10_Things_to_Eat_at_Rot_Fai_Night_Market_in_Bangkok.webm/1280px--10_Things_to_Eat_at_Rot_Fai_Night_Market_in_Bangkok.webm.jpg",
+      "sources": [
+        {
+          "src": "https://upload.wikimedia.org/wikipedia/commons/transcoded/0/0c/10_Things_to_Eat_at_Rot_Fai_Night_Market_in_Bangkok.webm/10_Things_to_Eat_at_Rot_Fai_Night_Market_in_Bangkok.webm.480p.vp9.webm",
+          "type": "video/webm"
+        },
+        {
+          "src": "https://upload.wikimedia.org/wikipedia/commons/transcoded/0/0c/10_Things_to_Eat_at_Rot_Fai_Night_Market_in_Bangkok.webm/10_Things_to_Eat_at_Rot_Fai_Night_Market_in_Bangkok.webm.360p.mpeg4.mov",
+          "type": "video/quicktime"
+        }
+      ],
+      "caption": "Bangkok night market energy, the mood we cook from",
+      "credit": "Wikimedia Commons, CC BY"
+    }
+  },
+  "sections": [
+    {
+      "id": "small-plates",
+      "name": "Small Plates",
+      "thai": "Khong Wang",
+      "order": 1,
+      "blurb": "Crisp, shareable, made for the first ten minutes at the table.",
+      "vibe": [
+        "sharing",
+        "crispy",
+        "starter"
+      ]
+    },
+    {
+      "id": "salads",
+      "name": "Salads",
+      "thai": "Yum",
+      "order": 2,
+      "blurb": "Bright, sour, crunchy. Thai salads wake the mouth up.",
+      "vibe": [
+        "light",
+        "fresh",
+        "sour",
+        "crunchy"
+      ]
+    },
+    {
+      "id": "soups",
+      "name": "Soups",
+      "thai": "Tom",
+      "order": 3,
+      "blurb": "Fragrant broths built on lemongrass, galangal and lime leaf.",
+      "vibe": [
+        "warm",
+        "light",
+        "comfort",
+        "fragrant"
+      ]
+    },
+    {
+      "id": "curries",
+      "name": "Curries",
+      "thai": "Kaeng",
+      "order": 4,
+      "blurb": "Coconut-milk curries from four regions, each a different colour and mood.",
+      "vibe": [
+        "rich",
+        "comfort",
+        "saucy",
+        "with rice"
+      ]
+    },
+    {
+      "id": "noodles",
+      "name": "Noodles & Wok",
+      "thai": "Kuai Tiao",
+      "order": 5,
+      "blurb": "Street-stall wok dishes, smoky and fast.",
+      "vibe": [
+        "filling",
+        "smoky",
+        "one-plate",
+        "noodles"
+      ]
+    },
+    {
+      "id": "rice",
+      "name": "Rice",
+      "thai": "Khao",
+      "order": 6,
+      "blurb": "Fried rice from the wok and jasmine rice for the curries.",
+      "vibe": [
+        "filling",
+        "one-plate",
+        "mild"
+      ]
+    },
+    {
+      "id": "desserts",
+      "name": "Sweets",
+      "thai": "Khong Wan",
+      "order": 7,
+      "blurb": "Coconut, mango, banana. Thai sweets are gentle, never heavy.",
+      "vibe": [
+        "sweet",
+        "coconut",
+        "ending"
+      ]
+    },
+    {
+      "id": "drinks",
+      "name": "Drinks",
+      "thai": "Khrueang Duem",
+      "order": 8,
+      "blurb": "Cold, sweet, and built to calm the chilli.",
+      "vibe": [
+        "cold",
+        "sweet",
+        "refreshing"
+      ]
+    }
+  ],
+  "dishes": [
+    {
+      "id": "sp-spring-rolls",
+      "sectionId": "small-plates",
+      "name": "Crispy Vegetable Spring Rolls",
+      "thaiName": "Po Pia Tod",
+      "pronunciation": "poh-PEE-ah tawt",
+      "tagline": "Shatter-crisp rolls of glass noodle, cabbage and carrot, with a sweet chilli dip.",
+      "description": "Six golden rolls arrive standing in a bamboo basket with a small bowl of sweet chilli sauce. The wrapper is paper-thin and blistered, the inside is soft glass noodle, cabbage, carrot and black fungus with a hit of white pepper.",
+      "story": "The Thai spring roll came up the Chao Phraya with Chinese traders and got lighter and crisper on the way. Ours are rolled every afternoon and fried to order.",
+      "price": 295,
+      "portion": "6 pieces",
+      "serves": "2 to 3 people sharing",
+      "spice": 0,
+      "spiceAdjustable": false,
+      "profile": {
+        "sweet": 2,
+        "sour": 1,
+        "salty": 3,
+        "rich": 3,
+        "fresh": 2
+      },
+      "tastesLike": "A lighter, crisper cousin of the Indo-Chinese veg roll, with less filling and more crunch.",
+      "texture": "Crackly outside, soft and slippery inside.",
+      "keyIngredients": [
+        "glass noodles",
+        "cabbage",
+        "carrot",
+        "black fungus mushroom",
+        "white pepper",
+        "rice-paper wrapper"
+      ],
+      "allergens": [
+        "gluten",
+        "soy"
+      ],
+      "dietary": [
+        "vegan",
+        "contains-gluten",
+        "contains-soy"
+      ],
+      "howToEat": [
+        "Pick one up with your fingers, do not wait, they are best in the first five minutes.",
+        "Dip the end in the sweet chilli sauce, not the whole roll, so the wrapper stays crisp.",
+        "Two bites per roll. Wrap in a lettuce leaf with mint if you want it fresher."
+      ],
+      "pairsWith": [
+        "so-tom-kha",
+        "dr-cha-yen"
+      ],
+      "rating": {
+        "avg": 4.6,
+        "count": 418
+      },
+      "reviews": [
+        {
+          "quote": "Crispiest spring rolls in the city, no exaggeration.",
+          "by": "Priya R.",
+          "when": "Aug 2026"
+        },
+        {
+          "quote": "Perfect starter while you figure out the rest of the menu.",
+          "by": "Arjun S.",
+          "when": "Jul 2026"
+        }
+      ],
+      "tags": [
+        "most-loved",
+        "first-timer-safe",
+        "sharing"
+      ],
+      "prepMinutes": 10,
+      "bestFor": [
+        "sharing",
+        "first visit",
+        "kids"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Vegetable_spring_rolls_-_Siam_Thai_Restaurant_-_Regina_%2830194565608%29.jpg/1280px-Vegetable_spring_rolls_-_Siam_Thai_Restaurant_-_Regina_%2830194565608%29.jpg",
+            "alt": "Crispy vegetable spring rolls with sweet chilli dip",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/VegetableSpringRolls.JPG/1280px-VegetableSpringRolls.JPG",
+            "alt": "Vegetable spring rolls on a plate",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Thai_spring_rolls.jpg/1280px-Thai_spring_rolls.jpg",
+            "alt": "Thai spring rolls cut to show the filling",
+            "credit": "Wikimedia Commons"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sp-tofu-satay",
+      "sectionId": "small-plates",
+      "name": "Tofu Satay with Peanut Sauce",
+      "thaiName": "Satay Tao Hu",
+      "pronunciation": "sa-TAY tao-HOO",
+      "tagline": "Turmeric-marinated tofu grilled on bamboo skewers, with a thick, warm peanut sauce.",
+      "description": "Five skewers of firm tofu, marinated in turmeric, lemongrass and coconut milk, char-grilled so the edges catch. They come on a wooden board with a bowl of warm peanut sauce and a small cucumber-shallot pickle (ajat).",
+      "story": "Satay is Indonesian by birth and Thai by adoption. The peanut sauce here is made from scratch with roasted peanuts, red curry paste and coconut cream.",
+      "price": 325,
+      "portion": "5 skewers",
+      "serves": "2 people sharing",
+      "spice": 1,
+      "spiceAdjustable": false,
+      "profile": {
+        "sweet": 3,
+        "sour": 1,
+        "salty": 3,
+        "rich": 4,
+        "fresh": 1
+      },
+      "tastesLike": "Think paneer tikka's gentler cousin, with a peanut-chutney sauce that is sweeter and creamier.",
+      "texture": "Firm and slightly chewy tofu with a smoky crust, thick silky sauce.",
+      "keyIngredients": [
+        "firm tofu",
+        "turmeric",
+        "lemongrass",
+        "coconut milk",
+        "roasted peanuts",
+        "red curry paste",
+        "cucumber",
+        "shallot"
+      ],
+      "allergens": [
+        "peanuts",
+        "soy"
+      ],
+      "dietary": [
+        "vegan",
+        "gluten-free",
+        "contains-nuts",
+        "contains-soy"
+      ],
+      "howToEat": [
+        "Hold the skewer, dip a piece into the peanut sauce, then eat straight off the stick.",
+        "Take a bit of the cucumber pickle between skewers, it resets your palate.",
+        "Spoon leftover peanut sauce over jasmine rice later. Nobody will judge."
+      ],
+      "pairsWith": [
+        "ri-jasmine",
+        "dr-lemongrass"
+      ],
+      "rating": {
+        "avg": 4.7,
+        "count": 362
+      },
+      "reviews": [
+        {
+          "quote": "The peanut sauce alone is worth the visit.",
+          "by": "Meera K.",
+          "when": "Sep 2026"
+        },
+        {
+          "quote": "Smoky, not rubbery. Finally a tofu dish that converts people.",
+          "by": "Dev P.",
+          "when": "Jun 2026"
+        }
+      ],
+      "tags": [
+        "chef-pick",
+        "first-timer-safe",
+        "sharing"
+      ],
+      "prepMinutes": 12,
+      "bestFor": [
+        "sharing",
+        "tofu sceptics"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Fried_tofu_skewer_with_spicy_peanut_sauce_2018.jpg/1280px-Fried_tofu_skewer_with_spicy_peanut_sauce_2018.jpg",
+            "alt": "Grilled tofu skewers with peanut sauce",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Vegetable_Satay_-_Bali_2025-11-19.jpg/1280px-Vegetable_Satay_-_Bali_2025-11-19.jpg",
+            "alt": "Vegetable satay skewers on a plate",
+            "credit": "Wikimedia Commons"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sp-curry-puffs",
+      "sectionId": "small-plates",
+      "name": "Thai Curry Puffs",
+      "thaiName": "Karipap",
+      "pronunciation": "ka-ree-PAP",
+      "tagline": "Flaky spiral pastry filled with spiced potato, sweet corn and onion.",
+      "description": "Four half-moon pastries with the signature flaky spiral crust. Inside is a soft mash of potato, sweet corn, onion and yellow curry powder. Served with a cool cucumber relish.",
+      "story": "Karipap travelled from Portuguese Goa to Malaysia to Thailand. The filling is the closest thing on this menu to a samosa, which is exactly why first-timers love it.",
+      "price": 265,
+      "portion": "4 pieces",
+      "serves": "2 people sharing",
+      "spice": 1,
+      "spiceAdjustable": false,
+      "profile": {
+        "sweet": 2,
+        "sour": 1,
+        "salty": 3,
+        "rich": 4,
+        "fresh": 1
+      },
+      "tastesLike": "A samosa that went to finishing school. Flakier pastry, sweeter and milder filling.",
+      "texture": "Layers that flake apart, soft and creamy inside.",
+      "keyIngredients": [
+        "potato",
+        "sweet corn",
+        "onion",
+        "yellow curry powder",
+        "butter pastry"
+      ],
+      "allergens": [
+        "gluten",
+        "dairy"
+      ],
+      "dietary": [
+        "vegetarian",
+        "contains-gluten",
+        "contains-dairy"
+      ],
+      "howToEat": [
+        "Eat with your hands. Break one in half first so the steam escapes.",
+        "The cucumber relish is meant to go on top of each bite, like a chutney.",
+        "Pair with Thai iced tea if you want a full tea-time moment."
+      ],
+      "pairsWith": [
+        "dr-cha-yen",
+        "so-tom-yum-hed"
+      ],
+      "rating": {
+        "avg": 4.4,
+        "count": 201
+      },
+      "reviews": [
+        {
+          "quote": "Samosa lovers, start here.",
+          "by": "Rahul N.",
+          "when": "Aug 2026"
+        },
+        {
+          "quote": "That spiral crust is gorgeous and tastes even better.",
+          "by": "Ananya B.",
+          "when": "May 2026"
+        }
+      ],
+      "tags": [
+        "first-timer-safe",
+        "comfort"
+      ],
+      "prepMinutes": 10,
+      "bestFor": [
+        "samosa fans",
+        "kids"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Karipap_Chiang_Mai.jpg/1280px-Karipap_Chiang_Mai.jpg",
+            "alt": "Flaky Thai curry puffs",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Bite_of_Curry_Puff.jpg",
+            "alt": "A curry puff broken open to show the filling",
+            "credit": "Wikimedia Commons"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sl-som-tam",
+      "sectionId": "salads",
+      "name": "Green Papaya Salad",
+      "thaiName": "Som Tam Jay",
+      "pronunciation": "som-TAM jay",
+      "tagline": "Pounded green papaya with lime, palm sugar, chilli, peanuts and long beans. Loud and bright.",
+      "description": "A heap of shredded raw green papaya, pounded in a clay mortar with cherry tomatoes, long beans, roasted peanuts, garlic and bird's eye chilli. Dressed with lime and palm sugar. It arrives on a shallow plate with a wedge of cabbage on the side.",
+      "story": "Som tam is Isan's gift to the world. The Jay version swaps fish sauce for salt and soy so it stays pure vegetarian, and we pound each plate to order so you can set the heat.",
+      "price": 285,
+      "portion": "One generous plate",
+      "serves": "1 as a main, 2 as a side",
+      "spice": 3,
+      "spiceAdjustable": true,
+      "profile": {
+        "sweet": 3,
+        "sour": 5,
+        "salty": 3,
+        "rich": 1,
+        "fresh": 5
+      },
+      "tastesLike": "Imagine a kachumber that got serious: more sour, more crunch, real heat, with peanuts for comfort.",
+      "texture": "Crunchy, juicy, with the pop of peanuts.",
+      "keyIngredients": [
+        "green papaya",
+        "cherry tomato",
+        "long beans",
+        "roasted peanuts",
+        "garlic",
+        "bird's eye chilli",
+        "lime",
+        "palm sugar"
+      ],
+      "allergens": [
+        "peanuts",
+        "soy"
+      ],
+      "dietary": [
+        "vegan",
+        "gluten-free",
+        "contains-nuts",
+        "contains-soy",
+        "jain-possible"
+      ],
+      "howToEat": [
+        "Use a spoon and fork, Thai style: fork pushes, spoon carries.",
+        "Scoop with the raw cabbage wedge if you want crunch on crunch and less heat.",
+        "Eat it alongside sticky rice or a curry. It is a side that steals the show, not a solo act.",
+        "Ask for 1 chilli if you are unsure. 2 is medium. 4 is how Isan eats it."
+      ],
+      "pairsWith": [
+        "ri-jasmine",
+        "cu-massaman",
+        "no-pad-thai"
+      ],
+      "rating": {
+        "avg": 4.8,
+        "count": 530
+      },
+      "reviews": [
+        {
+          "quote": "Asked for 2 chillies, cried happily. Order it.",
+          "by": "Sneha V.",
+          "when": "Sep 2026"
+        },
+        {
+          "quote": "Fresh and punchy. The peanuts make it.",
+          "by": "Karthik M.",
+          "when": "Jul 2026"
+        },
+        {
+          "quote": "Best som tam outside Bangkok, and I have had a lot of som tam.",
+          "by": "Nina L.",
+          "when": "Apr 2026"
+        }
+      ],
+      "tags": [
+        "most-loved",
+        "signature",
+        "light",
+        "sharing"
+      ],
+      "prepMinutes": 8,
+      "bestFor": [
+        "something light",
+        "spice lovers",
+        "sharing"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Som_Tam_green_papaya_salad%2C_Bangkok%2C_Thailand.jpg/1280px-Som_Tam_green_papaya_salad%2C_Bangkok%2C_Thailand.jpg",
+            "alt": "Green papaya salad with peanuts and tomato",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Som_Tam_or_Thai_Green_Papaya_Salad.jpg/1280px-Som_Tam_or_Thai_Green_Papaya_Salad.jpg",
+            "alt": "Som tam on a plate",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Som_Tum_%E0%B8%AA%E0%B9%89%E0%B8%A1%E0%B8%95%E0%B8%B3%E0%B9%84%E0%B8%97%E0%B8%A2-_mortar_pounded_green_papaya_salad_with_palm_sugar%2C_lime_juice%2C_bird_eye_chile%2C_peanuts.jpg/1280px-Som_Tum_%E0%B8%AA%E0%B9%89%E0%B8%A1%E0%B8%95%E0%B8%B3%E0%B9%84%E0%B8%97%E0%B8%A2-_mortar_pounded_green_papaya_salad_with_palm_sugar%2C_lime_juice%2C_bird_eye_chile%2C_peanuts.jpg",
+            "alt": "Som tam being pounded in a clay mortar",
+            "credit": "Wikimedia Commons"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sl-mango-salad",
+      "sectionId": "salads",
+      "name": "Green Mango Salad",
+      "thaiName": "Yum Mamuang",
+      "pronunciation": "yum ma-MUANG",
+      "tagline": "Sour raw mango, toasted coconut, cashews and shallots in a lime-chilli dressing.",
+      "description": "Julienned raw mango tossed with crisp fried shallots, toasted coconut flakes, roasted cashews and mint. The dressing is lime, palm sugar and a little chilli. Served chilled in a shallow bowl.",
+      "story": "Thais eat raw mango with salt and chilli the way Indians eat it with salt and chilli. This salad is that instinct turned into a plate.",
+      "price": 295,
+      "portion": "One plate",
+      "serves": "1 to 2 people",
+      "spice": 2,
+      "spiceAdjustable": true,
+      "profile": {
+        "sweet": 3,
+        "sour": 4,
+        "salty": 2,
+        "rich": 2,
+        "fresh": 5
+      },
+      "tastesLike": "Raw mango with chaat masala energy, but with coconut and cashew doing the crunchy work.",
+      "texture": "Crisp, juicy, with crunchy shallots and nuts.",
+      "keyIngredients": [
+        "raw mango",
+        "fried shallots",
+        "toasted coconut",
+        "cashews",
+        "mint",
+        "lime",
+        "palm sugar",
+        "chilli"
+      ],
+      "allergens": [
+        "tree nuts"
+      ],
+      "dietary": [
+        "vegan",
+        "gluten-free",
+        "contains-nuts"
+      ],
+      "howToEat": [
+        "Toss once at the table so the crunchy bits do not sink.",
+        "Eat it first. It opens the appetite for everything after.",
+        "Great alongside the Massaman, the sour cuts the richness."
+      ],
+      "pairsWith": [
+        "cu-massaman",
+        "cu-khao-soi"
+      ],
+      "rating": {
+        "avg": 4.5,
+        "count": 188
+      },
+      "reviews": [
+        {
+          "quote": "Sour, sweet, crunchy. I think about this salad on Tuesdays.",
+          "by": "Ishita G.",
+          "when": "Aug 2026"
+        },
+        {
+          "quote": "A lovely cold start on a hot evening.",
+          "by": "Tom W.",
+          "when": "Jun 2026"
+        }
+      ],
+      "tags": [
+        "light",
+        "chef-pick"
+      ],
+      "prepMinutes": 8,
+      "bestFor": [
+        "something light",
+        "hot evenings"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Mango_salad_%2812263431403%29.jpg/1280px-Mango_salad_%2812263431403%29.jpg",
+            "alt": "Green mango salad with cashews and herbs",
+            "credit": "Wikimedia Commons"
+          }
+        ]
+      }
+    },
+    {
+      "id": "so-tom-yum-hed",
+      "sectionId": "soups",
+      "name": "Tom Yum Mushroom Soup",
+      "thaiName": "Tom Yum Hed",
+      "pronunciation": "tom-YUM het",
+      "tagline": "Hot and sour broth with lemongrass, galangal, lime leaf and three kinds of mushroom.",
+      "description": "A clear, reddish broth that smells of lemongrass before it reaches the table. Inside are oyster, button and straw mushrooms, cherry tomatoes and a handful of coriander. It comes in a deep bowl with a wide spoon, for one or to share.",
+      "story": "Tom yum is the national soup of Thailand. Hed means mushroom. The 'nam sai' clear version is lighter than the creamy one, and it is how most Bangkok kitchens serve it.",
+      "price": 315,
+      "portion": "Bowl, about 400 ml",
+      "serves": "1 as a starter, 2 to share",
+      "spice": 3,
+      "spiceAdjustable": true,
+      "profile": {
+        "sweet": 1,
+        "sour": 5,
+        "salty": 3,
+        "rich": 1,
+        "fresh": 5
+      },
+      "tastesLike": "A rasam that discovered lemongrass. Sharp, hot, aromatic and very light.",
+      "texture": "Thin broth, meaty mushrooms, soft tomato.",
+      "keyIngredients": [
+        "lemongrass",
+        "galangal",
+        "kaffir lime leaf",
+        "oyster mushroom",
+        "straw mushroom",
+        "cherry tomato",
+        "lime",
+        "chilli",
+        "coriander"
+      ],
+      "allergens": [
+        "soy"
+      ],
+      "dietary": [
+        "vegan",
+        "gluten-free",
+        "contains-soy"
+      ],
+      "howToEat": [
+        "Do not eat the lemongrass stalks, galangal slices or lime leaves. They are for flavour, push them aside.",
+        "Sip the broth first, then go for the mushrooms with the spoon.",
+        "Squeeze the extra lime wedge in if you want it sharper.",
+        "Pour a ladle over jasmine rice if you ordered rice. That is a very Thai move."
+      ],
+      "pairsWith": [
+        "ri-jasmine",
+        "sp-spring-rolls"
+      ],
+      "rating": {
+        "avg": 4.7,
+        "count": 447
+      },
+      "reviews": [
+        {
+          "quote": "Cleared my sinuses and my mood.",
+          "by": "Vikram D.",
+          "when": "Sep 2026"
+        },
+        {
+          "quote": "Light enough to have before a curry. Perfectly balanced.",
+          "by": "Lara J.",
+          "when": "Jul 2026"
+        }
+      ],
+      "tags": [
+        "most-loved",
+        "light",
+        "signature"
+      ],
+      "prepMinutes": 10,
+      "bestFor": [
+        "something light",
+        "rainy evenings",
+        "a cold"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Tom_Yum_Soup_with_mushroom_-_Siam_Siam_2025-09-07.jpg/1280px-Tom_Yum_Soup_with_mushroom_-_Siam_Siam_2025-09-07.jpg",
+            "alt": "Tom yum mushroom soup in a bowl",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Tom_Yum_Soup_with_Mushroom_-_Easythaiger_2026-04-21.jpg/1280px-Tom_Yum_Soup_with_Mushroom_-_Easythaiger_2026-04-21.jpg",
+            "alt": "Clear tom yum with mushrooms and herbs",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Tom_Yum_%28Hot_%26_Sour_Soup%29_with_Tofu_-_Thai_Pad_Thai_2025-12-03.jpg/1280px-Tom_Yum_%28Hot_%26_Sour_Soup%29_with_Tofu_-_Thai_Pad_Thai_2025-12-03.jpg",
+            "alt": "Tom yum with tofu",
+            "credit": "Wikimedia Commons"
+          }
+        ]
+      }
+    },
+    {
+      "id": "so-tom-kha",
+      "sectionId": "soups",
+      "name": "Coconut Galangal Soup with Tofu",
+      "thaiName": "Tom Kha Tao Hu",
+      "pronunciation": "tom-KAH tao-HOO",
+      "tagline": "Creamy coconut broth, gentle galangal warmth, silken tofu and mushrooms. The soft landing.",
+      "description": "A pale, creamy soup in a deep bowl. Coconut milk simmered with galangal, lemongrass and lime leaf, with cubes of silken tofu and mushrooms. Finished with lime and a few coriander leaves. Barely any chilli.",
+      "story": "Tom kha is tom yum's calm sibling. Same aromatics, but coconut milk rounds everything off. It is the soup we hand to anyone nervous about Thai food.",
+      "price": 325,
+      "portion": "Bowl, about 400 ml",
+      "serves": "1 as a starter, 2 to share",
+      "spice": 1,
+      "spiceAdjustable": true,
+      "profile": {
+        "sweet": 3,
+        "sour": 3,
+        "salty": 3,
+        "rich": 4,
+        "fresh": 3
+      },
+      "tastesLike": "A thin, fragrant coconut stew. If you like a Kerala-style coconut curry, this is its soup form.",
+      "texture": "Silky and creamy, soft tofu, tender mushrooms.",
+      "keyIngredients": [
+        "coconut milk",
+        "galangal",
+        "lemongrass",
+        "kaffir lime leaf",
+        "silken tofu",
+        "mushrooms",
+        "lime",
+        "coriander"
+      ],
+      "allergens": [
+        "soy"
+      ],
+      "dietary": [
+        "vegan",
+        "gluten-free",
+        "contains-soy"
+      ],
+      "howToEat": [
+        "Push the galangal slices and lemongrass to the side, they are too woody to eat.",
+        "Spoon the tofu gently, it is silken and breaks easily.",
+        "Great with a side of jasmine rice if you want to turn it into a light meal."
+      ],
+      "pairsWith": [
+        "ri-jasmine",
+        "sp-spring-rolls"
+      ],
+      "rating": {
+        "avg": 4.6,
+        "count": 310
+      },
+      "reviews": [
+        {
+          "quote": "The gentlest, most comforting bowl. My go-to when I am tired.",
+          "by": "Anjali T.",
+          "when": "Aug 2026"
+        },
+        {
+          "quote": "Brought my parents, they loved this and asked for it again.",
+          "by": "Rohan P.",
+          "when": "Jun 2026"
+        }
+      ],
+      "tags": [
+        "first-timer-safe",
+        "comfort",
+        "light"
+      ],
+      "prepMinutes": 10,
+      "bestFor": [
+        "mild eaters",
+        "parents",
+        "comfort"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Tom_kha_servido_en_Bangkok.jpg/1280px-Tom_kha_servido_en_Bangkok.jpg",
+            "alt": "Creamy tom kha coconut soup",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/5/52/Tom_kha_gai2.jpg",
+            "alt": "Tom kha in a bowl with herbs",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Tom_Kha_Gai_Polevka_Zlaty_Klas_2025.jpg",
+            "alt": "Coconut galangal soup close-up",
+            "credit": "Wikimedia Commons"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cu-green",
+      "sectionId": "curries",
+      "name": "Green Curry with Tofu & Thai Eggplant",
+      "thaiName": "Kaeng Khiao Wan",
+      "pronunciation": "geng kee-ow WAHN",
+      "tagline": "The famous one. Fresh green chilli and basil in coconut milk, with tofu, Thai eggplant and bamboo shoot.",
+      "description": "A pale green, glossy curry in a ceramic bowl, served with a plate of jasmine rice. Tofu, small round Thai eggplants, bamboo shoots and sweet basil float in a coconut sauce that smells of lemongrass and lime leaf. Hot, but the sweetness catches it.",
+      "story": "Khiao wan means 'green sweet'. The paste is pounded fresh here from green bird's eye chilli, galangal, coriander root and kaffir lime zest. It is the dish most people picture when they hear 'Thai food'.",
+      "price": 395,
+      "portion": "Bowl with jasmine rice",
+      "serves": "1, or 2 with another main",
+      "spice": 3,
+      "spiceAdjustable": true,
+      "profile": {
+        "sweet": 3,
+        "sour": 1,
+        "salty": 3,
+        "rich": 4,
+        "fresh": 4
+      },
+      "tastesLike": "Nothing quite Indian. Closest is a coconut-based curry with a green-chilli chutney stirred in, plus a herbal, almost citrus perfume.",
+      "texture": "Thin-to-medium sauce, soft tofu, slightly bitter crunchy eggplant.",
+      "keyIngredients": [
+        "green curry paste",
+        "coconut milk",
+        "tofu",
+        "Thai eggplant",
+        "bamboo shoot",
+        "sweet basil",
+        "kaffir lime leaf",
+        "palm sugar"
+      ],
+      "allergens": [
+        "soy"
+      ],
+      "dietary": [
+        "vegan",
+        "gluten-free",
+        "contains-soy"
+      ],
+      "howToEat": [
+        "Spoon the curry over the rice, a little at a time, rather than pouring it all in.",
+        "Eat with a spoon, fork in the other hand to push. No knife needed.",
+        "The small round things are Thai eggplants, eat them, they are slightly bitter on purpose.",
+        "Order 'mild' if you are heat-shy. The flavour stays, the burn goes."
+      ],
+      "pairsWith": [
+        "ri-jasmine",
+        "sp-spring-rolls",
+        "dr-cha-yen"
+      ],
+      "rating": {
+        "avg": 4.8,
+        "count": 612
+      },
+      "reviews": [
+        {
+          "quote": "Tastes like Bangkok. The basil at the end is everything.",
+          "by": "Farah A.",
+          "when": "Sep 2026"
+        },
+        {
+          "quote": "I order this every single time. Mild version is still full of flavour.",
+          "by": "Suresh R.",
+          "when": "Aug 2026"
+        },
+        {
+          "quote": "Fresh paste, you can tell. Not from a jar.",
+          "by": "Elena M.",
+          "when": "May 2026"
+        }
+      ],
+      "tags": [
+        "most-loved",
+        "signature",
+        "comfort"
+      ],
+      "prepMinutes": 15,
+      "bestFor": [
+        "first visit",
+        "a proper meal",
+        "curry lovers"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Thai_Green_Curry_with_Rice.jpg/1280px-Thai_Green_Curry_with_Rice.jpg",
+            "alt": "Green curry served with jasmine rice",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Yellow_curry_and_green_curry_-_Nok_Nok_Kitchen_at_The_Cow_2025-09-30.jpg/1280px-Yellow_curry_and_green_curry_-_Nok_Nok_Kitchen_at_The_Cow_2025-09-30.jpg",
+            "alt": "Green and yellow curry side by side",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Thai_green_curry_paste.jpg/1280px-Thai_green_curry_paste.jpg",
+            "alt": "Fresh green curry paste in a mortar",
+            "credit": "Wikimedia Commons"
+          }
+        ],
+        "video": {
+          "poster": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/May_Kaidee%27s_Cooking_School_P1130031.ogv/1280px--May_Kaidee%27s_Cooking_School_P1130031.ogv.jpg",
+          "sources": [
+            {
+              "src": "https://upload.wikimedia.org/wikipedia/commons/transcoded/e/ef/May_Kaidee%27s_Cooking_School_P1130031.ogv/May_Kaidee%27s_Cooking_School_P1130031.ogv.480p.vp9.webm",
+              "type": "video/webm"
+            },
+            {
+              "src": "https://upload.wikimedia.org/wikipedia/commons/transcoded/e/ef/May_Kaidee%27s_Cooking_School_P1130031.ogv/May_Kaidee%27s_Cooking_School_P1130031.ogv.360p.mpeg4.mov",
+              "type": "video/quicktime"
+            }
+          ],
+          "caption": "Inside a vegetarian Thai kitchen in Bangkok",
+          "credit": "Wikimedia Commons, CC BY-SA"
+        }
+      }
+    },
+    {
+      "id": "cu-red",
+      "sectionId": "curries",
+      "name": "Red Curry with Tofu & Pumpkin",
+      "thaiName": "Kaeng Phet",
+      "pronunciation": "geng PET",
+      "tagline": "Deeper and smokier than green. Dried red chilli paste, coconut milk, sweet pumpkin and tofu.",
+      "description": "A brick-red curry, a shade thicker than the green, with cubes of pumpkin, tofu, red pepper and basil. Served in a bowl with jasmine rice on the side. The pumpkin sweetens it as it cooks.",
+      "story": "Phet means spicy, and historically this was the hot one. Dried red chillies give it depth instead of the green's freshness. The pumpkin is our kitchen's touch for the Indian palate.",
+      "price": 385,
+      "portion": "Bowl with jasmine rice",
+      "serves": "1, or 2 with another main",
+      "spice": 3,
+      "spiceAdjustable": true,
+      "profile": {
+        "sweet": 3,
+        "sour": 1,
+        "salty": 3,
+        "rich": 4,
+        "fresh": 2
+      },
+      "tastesLike": "Closer to home than the green: think of a coconut-rich, red-chilli gravy with a sweet vegetable in it.",
+      "texture": "Medium-bodied sauce, melting pumpkin, firm tofu.",
+      "keyIngredients": [
+        "red curry paste",
+        "coconut milk",
+        "tofu",
+        "pumpkin",
+        "red bell pepper",
+        "sweet basil",
+        "kaffir lime leaf"
+      ],
+      "allergens": [
+        "soy"
+      ],
+      "dietary": [
+        "vegan",
+        "gluten-free",
+        "contains-soy"
+      ],
+      "howToEat": [
+        "Mash a piece of pumpkin into the sauce on your spoon, it makes the curry creamier.",
+        "Spoon over rice bit by bit. Thai curries are eaten with rice, never alone.",
+        "Finish with a sip of something cold, the red curry builds slowly."
+      ],
+      "pairsWith": [
+        "ri-jasmine",
+        "sl-som-tam"
+      ],
+      "rating": {
+        "avg": 4.6,
+        "count": 389
+      },
+      "reviews": [
+        {
+          "quote": "Pumpkin in red curry is genius, it sweetens every bite.",
+          "by": "Gautam H.",
+          "when": "Aug 2026"
+        },
+        {
+          "quote": "Spicier than green but rounder. My favourite of the two.",
+          "by": "Maya S.",
+          "when": "Jul 2026"
+        }
+      ],
+      "tags": [
+        "comfort",
+        "spicy"
+      ],
+      "prepMinutes": 15,
+      "bestFor": [
+        "spice lovers",
+        "a proper meal"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Red_curry_with_tofu%2C_egg_fried_rice_-_Little_Thai_2024-07-21.jpg/1280px-Red_curry_with_tofu%2C_egg_fried_rice_-_Little_Thai_2024-07-21.jpg",
+            "alt": "Red curry with tofu",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/8/85/Thai_Red_Curry_with_Rice.jpg",
+            "alt": "Red curry served with rice",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/3/31/Vatch_kaeng_phet.jpg",
+            "alt": "Red curry in a bowl",
+            "credit": "Wikimedia Commons"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cu-massaman",
+      "sectionId": "curries",
+      "name": "Massaman Curry with Potato & Peanuts",
+      "thaiName": "Kaeng Matsaman",
+      "pronunciation": "geng MAT-sa-man",
+      "tagline": "Mild, sweet, cinnamon-scented. The curry that tastes like it already knows you.",
+      "description": "A warm brown curry, thick and glossy, with soft potato chunks, onion, roasted peanuts and a cinnamon stick resting on top. Served with jasmine rice. Almost no chilli heat, lots of warmth from spices.",
+      "story": "Massaman came to Thailand with Persian and Indian Muslim traders in the 1600s, which is why it has cardamom, cinnamon and cumin. CNN once named it the world's most delicious dish. It is the bridge between Indian and Thai cooking.",
+      "price": 395,
+      "portion": "Bowl with jasmine rice",
+      "serves": "1, or 2 with another main",
+      "spice": 1,
+      "spiceAdjustable": true,
+      "profile": {
+        "sweet": 4,
+        "sour": 1,
+        "salty": 3,
+        "rich": 5,
+        "fresh": 1
+      },
+      "tastesLike": "A gentle Thai cousin of a korma, with tamarind sweetness and coconut instead of cream.",
+      "texture": "Thick, velvety sauce, fluffy potato, crunchy peanuts.",
+      "keyIngredients": [
+        "massaman paste",
+        "coconut milk",
+        "potato",
+        "onion",
+        "roasted peanuts",
+        "cinnamon",
+        "cardamom",
+        "star anise",
+        "tamarind",
+        "palm sugar"
+      ],
+      "allergens": [
+        "peanuts"
+      ],
+      "dietary": [
+        "vegan",
+        "gluten-free",
+        "contains-nuts"
+      ],
+      "howToEat": [
+        "Leave the cinnamon stick and cardamom pods on the side, they are not meant to be eaten.",
+        "This one loves rice. Spoon generously, it is thick enough to coat every grain.",
+        "Add a squeeze of lime if you want to lift the sweetness."
+      ],
+      "pairsWith": [
+        "ri-jasmine",
+        "sl-mango-salad",
+        "sl-som-tam"
+      ],
+      "rating": {
+        "avg": 4.9,
+        "count": 701
+      },
+      "reviews": [
+        {
+          "quote": "If you are scared of Thai food, this is your door in. Then you never leave.",
+          "by": "Nikhil B.",
+          "when": "Sep 2026"
+        },
+        {
+          "quote": "Rich, sweet, comforting. My kids demolished it.",
+          "by": "Shruti P.",
+          "when": "Aug 2026"
+        },
+        {
+          "quote": "The potatoes soak up everything. Incredible.",
+          "by": "Daniel K.",
+          "when": "Jun 2026"
+        }
+      ],
+      "tags": [
+        "most-loved",
+        "first-timer-safe",
+        "comfort",
+        "signature"
+      ],
+      "prepMinutes": 15,
+      "bestFor": [
+        "mild eaters",
+        "first visit",
+        "kids",
+        "comfort"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Mixed_Veggies_Matsaman_Curry_rice_-_Tookta%27s_Thai_Food.jpg/1280px-Mixed_Veggies_Matsaman_Curry_rice_-_Tookta%27s_Thai_Food.jpg",
+            "alt": "Vegetable massaman curry with rice",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Masaman-curry.jpg/1280px-Masaman-curry.jpg",
+            "alt": "Massaman curry with potato and peanuts",
+            "credit": "Wikimedia Commons"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cu-yellow",
+      "sectionId": "curries",
+      "name": "Yellow Curry with Vegetables",
+      "thaiName": "Kaeng Kari",
+      "pronunciation": "geng ka-REE",
+      "tagline": "Turmeric-gold, mild, with potato, carrot and onion. Thailand's softest curry.",
+      "description": "A golden, mellow curry in a bowl, with potato, carrot, onion and baby corn in a thick coconut sauce. Served with jasmine rice and a little cucumber relish.",
+      "story": "Kari is the Thai pronunciation of 'curry'. This is the Thai south's take on an Indian curry: turmeric, cumin and coriander in coconut milk. The relish on the side is the traditional partner.",
+      "price": 365,
+      "portion": "Bowl with jasmine rice",
+      "serves": "1, or 2 with another main",
+      "spice": 1,
+      "spiceAdjustable": true,
+      "profile": {
+        "sweet": 3,
+        "sour": 1,
+        "salty": 3,
+        "rich": 4,
+        "fresh": 1
+      },
+      "tastesLike": "The most Indian-tasting dish on the menu: a mild coconut sabzi with a Thai perfume.",
+      "texture": "Thick sauce, soft vegetables.",
+      "keyIngredients": [
+        "yellow curry paste",
+        "turmeric",
+        "coconut milk",
+        "potato",
+        "carrot",
+        "onion",
+        "baby corn",
+        "cumin"
+      ],
+      "allergens": [],
+      "dietary": [
+        "vegan",
+        "gluten-free",
+        "jain-possible"
+      ],
+      "howToEat": [
+        "Spoon over rice. Try a bite with a spoonful of the cucumber relish, the sourness is the point.",
+        "Mild by default. Ask for extra chilli on the side if you want it."
+      ],
+      "pairsWith": [
+        "ri-jasmine",
+        "sp-curry-puffs"
+      ],
+      "rating": {
+        "avg": 4.4,
+        "count": 240
+      },
+      "reviews": [
+        {
+          "quote": "Comfort food. Safe, warm, lovely.",
+          "by": "Kavya N.",
+          "when": "Jul 2026"
+        },
+        {
+          "quote": "Got the Jain version, they handled it without fuss.",
+          "by": "Hetal S.",
+          "when": "May 2026"
+        }
+      ],
+      "tags": [
+        "first-timer-safe",
+        "comfort",
+        "mild"
+      ],
+      "prepMinutes": 15,
+      "bestFor": [
+        "mild eaters",
+        "Jain guests",
+        "kids"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Yellow_curry_%283279519415%29.jpg",
+            "alt": "Yellow curry with vegetables",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Kaeng_Kari_amb_Arr%C3%B2s_-_1.jpeg/1280px-Kaeng_Kari_amb_Arr%C3%B2s_-_1.jpeg",
+            "alt": "Yellow curry served with rice",
+            "credit": "Wikimedia Commons"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cu-khao-soi",
+      "sectionId": "curries",
+      "name": "Chiang Mai Curry Noodles",
+      "thaiName": "Khao Soi Jay",
+      "pronunciation": "kao SOY jay",
+      "tagline": "Northern Thai coconut curry broth over egg-free noodles, topped with a crispy noodle nest.",
+      "description": "A bowl of soft flat noodles in a golden, curry-rich coconut broth, crowned with a tangle of crispy fried noodles. On the side: pickled mustard greens, sliced shallots, lime and chilli oil. It looks dramatic and eats like a hug.",
+      "story": "Khao soi is Chiang Mai's signature, with Burmese and Yunnanese roots. We make it with tofu and oyster mushrooms. The crunchy top is the whole experience.",
+      "price": 395,
+      "portion": "One large bowl",
+      "serves": "1 as a full meal",
+      "spice": 2,
+      "spiceAdjustable": true,
+      "profile": {
+        "sweet": 3,
+        "sour": 2,
+        "salty": 3,
+        "rich": 5,
+        "fresh": 2
+      },
+      "tastesLike": "If a mild red curry and a noodle soup had a child, with a crunchy crown. Faintly like a coconut-based Burmese khow suey.",
+      "texture": "Soft noodles, rich broth, shatteringly crispy top.",
+      "keyIngredients": [
+        "khao soi curry paste",
+        "coconut milk",
+        "flat wheat noodles",
+        "tofu",
+        "oyster mushroom",
+        "pickled mustard greens",
+        "shallot",
+        "lime",
+        "chilli oil"
+      ],
+      "allergens": [
+        "gluten",
+        "soy"
+      ],
+      "dietary": [
+        "vegan",
+        "contains-gluten",
+        "contains-soy"
+      ],
+      "howToEat": [
+        "Squeeze the lime and add the shallots and pickled greens before you start. They are not garnish, they balance the richness.",
+        "Eat the crispy noodles early, before they soften.",
+        "Chopsticks for noodles, spoon for broth. Slurping is fine.",
+        "Chilli oil is strong. Half a teaspoon first."
+      ],
+      "pairsWith": [
+        "sl-mango-salad",
+        "dr-lemongrass"
+      ],
+      "rating": {
+        "avg": 4.7,
+        "count": 266
+      },
+      "reviews": [
+        {
+          "quote": "That crispy noodle top is a drama I will pay for every week.",
+          "by": "Aditya V.",
+          "when": "Sep 2026"
+        },
+        {
+          "quote": "Rich, comforting, a complete meal in one bowl.",
+          "by": "Joanna F.",
+          "when": "Jul 2026"
+        }
+      ],
+      "tags": [
+        "chef-pick",
+        "signature",
+        "comfort"
+      ],
+      "prepMinutes": 15,
+      "bestFor": [
+        "a full meal alone",
+        "cold nights"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Khao_soi_Chiang_Mai.jpg/1280px-Khao_soi_Chiang_Mai.jpg",
+            "alt": "Khao soi with crispy noodle topping",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Khao_Soi.jpg/1280px-Khao_Soi.jpg",
+            "alt": "Khao soi curry noodles",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Khao_Soi_02.jpg/1280px-Khao_Soi_02.jpg",
+            "alt": "Khao soi with condiments",
+            "credit": "Wikimedia Commons"
+          }
+        ]
+      }
+    },
+    {
+      "id": "no-pad-thai",
+      "sectionId": "noodles",
+      "name": "Pad Thai with Tofu",
+      "thaiName": "Phat Thai Jay",
+      "pronunciation": "pat-TAI jay",
+      "tagline": "Stir-fried rice noodles in tamarind sauce, with tofu, bean sprouts, chives and crushed peanuts.",
+      "description": "A plate of thin rice noodles glazed in a sweet-sour tamarind sauce, tossed in a hot wok with tofu, bean sprouts and garlic chives. On the side: crushed peanuts, chilli flakes, a lime wedge and extra bean sprouts, so you season it yourself.",
+      "story": "Pad Thai was promoted by the Thai government in the 1940s to build a national identity around rice noodles. Ours uses tamarind and palm sugar, no ketchup, no fish sauce.",
+      "price": 345,
+      "portion": "One plate",
+      "serves": "1 as a full meal",
+      "spice": 1,
+      "spiceAdjustable": true,
+      "profile": {
+        "sweet": 4,
+        "sour": 3,
+        "salty": 3,
+        "rich": 3,
+        "fresh": 3
+      },
+      "tastesLike": "Sweet-and-sour noodles with a tamarind tang. If you like the sweetness of a Hakka noodle but want more character, this is it.",
+      "texture": "Slippery soft noodles, crunchy sprouts and peanuts.",
+      "keyIngredients": [
+        "rice noodles",
+        "tamarind",
+        "palm sugar",
+        "tofu",
+        "bean sprouts",
+        "garlic chives",
+        "peanuts",
+        "lime"
+      ],
+      "allergens": [
+        "peanuts",
+        "soy"
+      ],
+      "dietary": [
+        "vegan",
+        "gluten-free",
+        "contains-nuts",
+        "contains-soy"
+      ],
+      "howToEat": [
+        "Season it yourself: squeeze the lime, add peanuts, then a pinch of chilli flakes. Toss and taste.",
+        "Fork and spoon, or chopsticks. Both are correct.",
+        "Eat it hot. Pad Thai does not improve with waiting."
+      ],
+      "pairsWith": [
+        "so-tom-yum-hed",
+        "dr-cha-yen"
+      ],
+      "rating": {
+        "avg": 4.6,
+        "count": 588
+      },
+      "reviews": [
+        {
+          "quote": "Not overly sweet like most places. Proper tamarind.",
+          "by": "Rhea C.",
+          "when": "Aug 2026"
+        },
+        {
+          "quote": "The safe choice that is actually great.",
+          "by": "Manish G.",
+          "when": "Jun 2026"
+        }
+      ],
+      "tags": [
+        "most-loved",
+        "first-timer-safe",
+        "one-plate"
+      ],
+      "prepMinutes": 12,
+      "bestFor": [
+        "first visit",
+        "a full meal alone",
+        "kids"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Pad_Thai_tofu_and_veg_-_Mint_Thai_AUD9.jpg/1280px-Pad_Thai_tofu_and_veg_-_Mint_Thai_AUD9.jpg",
+            "alt": "Pad thai with tofu and vegetables",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Vegan_Pad_Thai_%289923505613%29.jpg/1280px-Vegan_Pad_Thai_%289923505613%29.jpg",
+            "alt": "Vegan pad thai with peanuts and lime",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Pad_Thai_at_Restaurant_Thai_Vegan_Kitchen_Helsinki.jpg/1280px-Pad_Thai_at_Restaurant_Thai_Vegan_Kitchen_Helsinki.jpg",
+            "alt": "Vegan pad thai plate",
+            "credit": "Wikimedia Commons"
+          }
+        ]
+      }
+    },
+    {
+      "id": "no-pad-see-ew",
+      "sectionId": "noodles",
+      "name": "Pad See Ew",
+      "thaiName": "Phat Si-io",
+      "pronunciation": "pat see-EW",
+      "tagline": "Wide rice noodles, dark soy, Chinese broccoli and tofu, charred in a screaming-hot wok.",
+      "description": "Broad, chewy rice noodles stained dark with sweet soy, with pieces of Chinese broccoli and tofu. Smoky edges from the wok. No sauce pooling, just glossy noodles on a plate.",
+      "story": "See ew means soy sauce. This is the Thai-Chinese comfort noodle, the one Bangkok office workers eat at lunch. The smokiness, 'wok hei', is the thing to taste for.",
+      "price": 335,
+      "portion": "One plate",
+      "serves": "1 as a full meal",
+      "spice": 0,
+      "spiceAdjustable": true,
+      "profile": {
+        "sweet": 3,
+        "sour": 0,
+        "salty": 4,
+        "rich": 3,
+        "fresh": 2
+      },
+      "tastesLike": "Closest to a good Indo-Chinese chilli-garlic noodle minus the chilli, with wider, chewier noodles and more smoke.",
+      "texture": "Soft, chewy, slightly crisp edges.",
+      "keyIngredients": [
+        "wide rice noodles",
+        "dark soy sauce",
+        "Chinese broccoli",
+        "tofu",
+        "garlic",
+        "white pepper"
+      ],
+      "allergens": [
+        "soy",
+        "gluten"
+      ],
+      "dietary": [
+        "vegan",
+        "contains-soy",
+        "contains-gluten"
+      ],
+      "howToEat": [
+        "Add chilli vinegar from the condiment set, a teaspoon. It cuts the sweetness.",
+        "Chopsticks work best for wide noodles, but a fork is fine.",
+        "Order it mild and it is the safest hot dish on the menu."
+      ],
+      "pairsWith": [
+        "so-tom-kha",
+        "dr-lemongrass"
+      ],
+      "rating": {
+        "avg": 4.5,
+        "count": 302
+      },
+      "reviews": [
+        {
+          "quote": "Smoky and savoury, zero heat. My non-spicy friend's favourite.",
+          "by": "Pooja L.",
+          "when": "Jul 2026"
+        },
+        {
+          "quote": "Wok flavour is real here.",
+          "by": "Sam O.",
+          "when": "May 2026"
+        }
+      ],
+      "tags": [
+        "first-timer-safe",
+        "mild",
+        "one-plate"
+      ],
+      "prepMinutes": 10,
+      "bestFor": [
+        "mild eaters",
+        "a quick meal"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Pad_See_Ew_-_Bangkok.jpg/1280px-Pad_See_Ew_-_Bangkok.jpg",
+            "alt": "Pad see ew with wide rice noodles",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Plate_of_pad_see_ew_from_9_Pad_Thai.jpg/1280px-Plate_of_pad_see_ew_from_9_Pad_Thai.jpg",
+            "alt": "Pad see ew plate",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/9/96/Phat_si_io_IMG_0198.jpg",
+            "alt": "Pad see ew close-up",
+            "credit": "Wikimedia Commons"
+          }
+        ]
+      }
+    },
+    {
+      "id": "no-pad-kee-mao",
+      "sectionId": "noodles",
+      "name": "Drunken Noodles",
+      "thaiName": "Phat Khi Mao Jay",
+      "pronunciation": "pat kee-MAO jay",
+      "tagline": "Wide noodles with holy basil, fresh chilli, garlic and vegetables. The loud, hot wok dish.",
+      "description": "Wide rice noodles tossed with lots of holy basil, green peppercorns, chilli, garlic, baby corn, bell pepper and tofu. Glossy, dark, fragrant. It smells like a street stall.",
+      "story": "Nobody agrees why it is called drunken. Best theory: it is what you cook at midnight to sober up. There is no alcohol in it, just enough chilli to wake you.",
+      "price": 355,
+      "portion": "One plate",
+      "serves": "1 as a full meal",
+      "spice": 4,
+      "spiceAdjustable": true,
+      "profile": {
+        "sweet": 2,
+        "sour": 1,
+        "salty": 4,
+        "rich": 3,
+        "fresh": 4
+      },
+      "tastesLike": "A Thai answer to a spicy Schezwan noodle, but herbal instead of saucy, with holy basil doing the talking.",
+      "texture": "Chewy noodles, crisp vegetables, lots of leaf.",
+      "keyIngredients": [
+        "wide rice noodles",
+        "holy basil",
+        "bird's eye chilli",
+        "garlic",
+        "green peppercorn",
+        "baby corn",
+        "bell pepper",
+        "tofu",
+        "soy sauce"
+      ],
+      "allergens": [
+        "soy",
+        "gluten"
+      ],
+      "dietary": [
+        "vegan",
+        "contains-soy",
+        "contains-gluten"
+      ],
+      "howToEat": [
+        "Eat the basil leaves, they are the dish.",
+        "Keep a cold drink nearby. The chilli is fresh and arrives late.",
+        "Ask for 'medium' if you are unsure. 'Thai hot' is not a dare, it is a warning."
+      ],
+      "pairsWith": [
+        "dr-cha-yen",
+        "so-tom-kha"
+      ],
+      "rating": {
+        "avg": 4.7,
+        "count": 351
+      },
+      "reviews": [
+        {
+          "quote": "Spicy, basil-heavy, perfect. Ordered Thai hot and survived.",
+          "by": "Zoya K.",
+          "when": "Sep 2026"
+        },
+        {
+          "quote": "My favourite noodle on the menu, every time.",
+          "by": "Abhishek J.",
+          "when": "Jul 2026"
+        }
+      ],
+      "tags": [
+        "spicy",
+        "chef-pick",
+        "one-plate"
+      ],
+      "prepMinutes": 10,
+      "bestFor": [
+        "spice lovers",
+        "a quick meal"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Guaytiew_Pad_Kee_Mao_%28Drunken_Noodles%29_with_Veg_%26_Tofu_-_Rosa%27s_Thai_2025-07-22.jpg/1280px-Guaytiew_Pad_Kee_Mao_%28Drunken_Noodles%29_with_Veg_%26_Tofu_-_Rosa%27s_Thai_2025-07-22.jpg",
+            "alt": "Drunken noodles with vegetables and tofu",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Amir_Aharoni%27s_vegetarian_drunken_noodle_Wikimania_2021.jpg/1280px-Amir_Aharoni%27s_vegetarian_drunken_noodle_Wikimania_2021.jpg",
+            "alt": "Vegetarian drunken noodles",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Drunken_noodles_%28pad_kee_mao%29.jpg/1280px-Drunken_noodles_%28pad_kee_mao%29.jpg",
+            "alt": "Pad kee mao close-up",
+            "credit": "Wikimedia Commons"
+          }
+        ],
+        "video": {
+          "poster": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Wikimania_2021_%E2%80%93_Cook-along_%E2%80%95_Drunken_Noodles.webm/1280px--Wikimania_2021_%E2%80%93_Cook-along_%E2%80%95_Drunken_Noodles.webm.jpg",
+          "sources": [
+            {
+              "src": "https://upload.wikimedia.org/wikipedia/commons/transcoded/f/fb/Wikimania_2021_%E2%80%93_Cook-along_%E2%80%95_Drunken_Noodles.webm/Wikimania_2021_%E2%80%93_Cook-along_%E2%80%95_Drunken_Noodles.webm.480p.vp9.webm",
+              "type": "video/webm"
+            },
+            {
+              "src": "https://upload.wikimedia.org/wikipedia/commons/transcoded/f/fb/Wikimania_2021_%E2%80%93_Cook-along_%E2%80%95_Drunken_Noodles.webm/Wikimania_2021_%E2%80%93_Cook-along_%E2%80%95_Drunken_Noodles.webm.360p.mpeg4.mov",
+              "type": "video/quicktime"
+            }
+          ],
+          "caption": "A vegetarian drunken noodle cook-along, wok and all",
+          "credit": "Wikimania 2021 cook-along, CC BY-SA"
+        }
+      }
+    },
+    {
+      "id": "no-pak-boong",
+      "sectionId": "noodles",
+      "name": "Flash-fried Morning Glory",
+      "thaiName": "Pak Boong Fai Daeng",
+      "pronunciation": "pak-BOONG fai-DENG",
+      "tagline": "Water spinach flamed in the wok with garlic, chilli and soybean paste. Thirty seconds, done.",
+      "description": "A tangle of bright green water spinach stems and leaves, glossy with garlic and fermented soybean paste, with slices of red chilli. Served on a plate, meant to be shared like a sabzi.",
+      "story": "Fai daeng means 'red fire'. At street stalls the cook tosses this in a wok that flares up to the ceiling. It is the vegetable side every Thai table orders.",
+      "price": 265,
+      "portion": "One plate",
+      "serves": "2 to 3 as a side",
+      "spice": 2,
+      "spiceAdjustable": true,
+      "profile": {
+        "sweet": 1,
+        "sour": 0,
+        "salty": 4,
+        "rich": 2,
+        "fresh": 4
+      },
+      "tastesLike": "A garlicky stir-fried saag with crunch and a salty-umami kick, more like a Chinese greens dish than anything Indian.",
+      "texture": "Crunchy stems, silky leaves.",
+      "keyIngredients": [
+        "water spinach (kangkong)",
+        "garlic",
+        "red chilli",
+        "fermented soybean paste",
+        "soy sauce"
+      ],
+      "allergens": [
+        "soy"
+      ],
+      "dietary": [
+        "vegan",
+        "contains-soy"
+      ],
+      "howToEat": [
+        "Share it. Put it in the middle like a vegetable side.",
+        "Eat with jasmine rice and a curry. It is the green that balances the meal.",
+        "Eat the stems too, they are the best part."
+      ],
+      "pairsWith": [
+        "ri-jasmine",
+        "cu-red",
+        "cu-green"
+      ],
+      "rating": {
+        "avg": 4.5,
+        "count": 177
+      },
+      "reviews": [
+        {
+          "quote": "Garlicky and crunchy. Finally a green I want to order.",
+          "by": "Leela R.",
+          "when": "Aug 2026"
+        },
+        {
+          "quote": "Perfect side to the green curry.",
+          "by": "Omar S.",
+          "when": "Jun 2026"
+        }
+      ],
+      "tags": [
+        "sharing",
+        "light",
+        "side"
+      ],
+      "prepMinutes": 5,
+      "bestFor": [
+        "sharing",
+        "a vegetable side"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/1/19/Pak_boong_fai_daeng.jpg",
+            "alt": "Stir-fried morning glory with garlic and chilli",
+            "credit": "Wikimedia Commons"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ri-pineapple",
+      "sectionId": "rice",
+      "name": "Pineapple Fried Rice",
+      "thaiName": "Khao Phat Sapparot",
+      "pronunciation": "kao-PAT sap-pa-ROT",
+      "tagline": "Served in a hollowed pineapple: curry-scented rice with pineapple, cashews, raisins and peas.",
+      "description": "Half a pineapple, scooped out and filled with golden fried rice. Chunks of pineapple, cashews, raisins, peas and spring onion, with a dusting of yellow curry powder. Sweet, savoury, and very photogenic.",
+      "story": "A Thai-Chinese restaurant invention from the 1970s tourism boom, now a Thai classic in its own right. Everyone photographs it. Nobody regrets ordering it.",
+      "price": 375,
+      "portion": "One pineapple half",
+      "serves": "1 as a meal, 2 as a side",
+      "spice": 0,
+      "spiceAdjustable": true,
+      "profile": {
+        "sweet": 4,
+        "sour": 2,
+        "salty": 3,
+        "rich": 3,
+        "fresh": 2
+      },
+      "tastesLike": "A sweeter, fruitier pulao with a light curry scent. If you like raisins in your biryani, you are home.",
+      "texture": "Fluffy rice, juicy pineapple, crunchy cashew.",
+      "keyIngredients": [
+        "jasmine rice",
+        "pineapple",
+        "cashews",
+        "raisins",
+        "peas",
+        "spring onion",
+        "yellow curry powder",
+        "soy sauce"
+      ],
+      "allergens": [
+        "tree nuts",
+        "soy"
+      ],
+      "dietary": [
+        "vegan",
+        "gluten-free",
+        "contains-nuts",
+        "contains-soy"
+      ],
+      "howToEat": [
+        "Take the photo first, we know.",
+        "Eat from the pineapple with a spoon, it keeps the rice warm and perfumed.",
+        "Great with the red curry on the side, sweet and hot together."
+      ],
+      "pairsWith": [
+        "cu-red",
+        "so-tom-yum-hed"
+      ],
+      "rating": {
+        "avg": 4.6,
+        "count": 456
+      },
+      "reviews": [
+        {
+          "quote": "Kids go crazy for the pineapple bowl. Adults too, honestly.",
+          "by": "Sunita M.",
+          "when": "Aug 2026"
+        },
+        {
+          "quote": "Sweet-savoury done right. Cashews in every bite.",
+          "by": "Peter H.",
+          "when": "Jul 2026"
+        }
+      ],
+      "tags": [
+        "most-loved",
+        "first-timer-safe",
+        "mild"
+      ],
+      "prepMinutes": 12,
+      "bestFor": [
+        "kids",
+        "mild eaters",
+        "a photo"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Thai-style_Fried_Rice_in_Pineapple.jpg/1280px-Thai-style_Fried_Rice_in_Pineapple.jpg",
+            "alt": "Pineapple fried rice served in a pineapple",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Fried_Rice_in_Pineapple.jpg/1280px-Fried_Rice_in_Pineapple.jpg",
+            "alt": "Fried rice in a hollowed pineapple",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Christina%27s_Thai-style_Pineapple_Fried_Rice_%28816520906%29.jpg/1280px-Christina%27s_Thai-style_Pineapple_Fried_Rice_%28816520906%29.jpg",
+            "alt": "Thai-style pineapple fried rice",
+            "credit": "Wikimedia Commons"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ri-basil-tofu",
+      "sectionId": "rice",
+      "name": "Holy Basil Fried Rice with Tofu",
+      "thaiName": "Khao Phat Kaphrao",
+      "pronunciation": "kao-PAT ka-PRAO",
+      "tagline": "Street-stall fried rice with holy basil, garlic, chilli and crispy tofu. Bangkok's lunch.",
+      "description": "A mound of wok-fried jasmine rice flecked with holy basil, garlic, fresh chilli and crispy tofu cubes, with a wedge of lime and cucumber slices on the side.",
+      "story": "Kaphrao is Thailand's most-ordered lunch. It is what you ask for when you cannot decide. The holy basil is peppery and clove-like, nothing like Italian basil.",
+      "price": 325,
+      "portion": "One plate",
+      "serves": "1 as a full meal",
+      "spice": 3,
+      "spiceAdjustable": true,
+      "profile": {
+        "sweet": 1,
+        "sour": 1,
+        "salty": 4,
+        "rich": 3,
+        "fresh": 4
+      },
+      "tastesLike": "A spicy garlic fried rice with a herb you have not met before. Nearer to a chilli-garlic fried rice than to anything Indian.",
+      "texture": "Fluffy rice, crispy tofu, soft wilted basil.",
+      "keyIngredients": [
+        "jasmine rice",
+        "holy basil",
+        "garlic",
+        "bird's eye chilli",
+        "crispy tofu",
+        "soy sauce",
+        "lime"
+      ],
+      "allergens": [
+        "soy"
+      ],
+      "dietary": [
+        "vegan",
+        "gluten-free",
+        "contains-soy"
+      ],
+      "howToEat": [
+        "Squeeze the lime over everything first.",
+        "Eat with a spoon, it is a one-plate meal.",
+        "Cucumber slices are there to cool your mouth between bites."
+      ],
+      "pairsWith": [
+        "so-tom-kha",
+        "dr-lemongrass"
+      ],
+      "rating": {
+        "avg": 4.5,
+        "count": 233
+      },
+      "reviews": [
+        {
+          "quote": "Simple, hot, fast. My weekday order.",
+          "by": "Tanvi A.",
+          "when": "Sep 2026"
+        },
+        {
+          "quote": "Holy basil is addictive. Order medium.",
+          "by": "Chris D.",
+          "when": "Jun 2026"
+        }
+      ],
+      "tags": [
+        "spicy",
+        "one-plate"
+      ],
+      "prepMinutes": 10,
+      "bestFor": [
+        "a quick meal",
+        "spice lovers"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Tofu_Kee_Mao_Fried_Rice_-_Nok_Nok_Kitchen_at_The_Cow_2025-03-15.jpg/1280px-Tofu_Kee_Mao_Fried_Rice_-_Nok_Nok_Kitchen_at_The_Cow_2025-03-15.jpg",
+            "alt": "Tofu basil fried rice",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Fried_rice_%28Unsplash%29.jpg/1280px-Fried_rice_%28Unsplash%29.jpg",
+            "alt": "Wok-fried rice with vegetables",
+            "credit": "Wikimedia Commons"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ri-jasmine",
+      "sectionId": "rice",
+      "name": "Steamed Jasmine Rice",
+      "thaiName": "Khao Hom Mali",
+      "pronunciation": "kao hom ma-LEE",
+      "tagline": "Fragrant Thai jasmine rice, steamed soft. The quiet partner to every curry.",
+      "description": "A bowl of long-grain jasmine rice, slightly sticky and faintly floral. One bowl is enough for one curry.",
+      "story": "Hom mali means 'jasmine fragrance'. Thai rice is softer and stickier than basmati on purpose, so it holds curry.",
+      "price": 95,
+      "portion": "One bowl",
+      "serves": "1 per curry",
+      "spice": 0,
+      "spiceAdjustable": false,
+      "profile": {
+        "sweet": 1,
+        "sour": 0,
+        "salty": 0,
+        "rich": 1,
+        "fresh": 1
+      },
+      "tastesLike": "Softer and more fragrant than basmati, less fluffy, slightly clingy.",
+      "texture": "Soft, a little sticky.",
+      "keyIngredients": [
+        "jasmine rice"
+      ],
+      "allergens": [],
+      "dietary": [
+        "vegan",
+        "gluten-free",
+        "jain-possible"
+      ],
+      "howToEat": [
+        "Spoon curry over a little rice at a time. Do not drown it.",
+        "One bowl per person per curry is the usual ratio."
+      ],
+      "pairsWith": [
+        "cu-green",
+        "cu-massaman",
+        "cu-red",
+        "cu-yellow"
+      ],
+      "rating": {
+        "avg": 4.3,
+        "count": 120
+      },
+      "reviews": [
+        {
+          "quote": "Perfectly cooked every time.",
+          "by": "Regular guest",
+          "when": "Jul 2026"
+        }
+      ],
+      "tags": [
+        "side",
+        "mild"
+      ],
+      "prepMinutes": 3,
+      "bestFor": [
+        "with any curry"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Steaming_rice.jpg/1280px-Steaming_rice.jpg",
+            "alt": "Steamed jasmine rice",
+            "credit": "Wikimedia Commons"
+          }
+        ]
+      }
+    },
+    {
+      "id": "de-mango-sticky",
+      "sectionId": "desserts",
+      "name": "Mango Sticky Rice",
+      "thaiName": "Khao Niao Mamuang",
+      "pronunciation": "kao NEE-ow ma-MUANG",
+      "tagline": "Warm coconut sticky rice, cold ripe mango, salted coconut cream, crunchy mung beans.",
+      "description": "Slices of sweet ripe mango fanned beside a small mound of glutinous rice that has been steamed and soaked in sweetened coconut milk. A spoon of salted coconut cream on top and a sprinkle of toasted mung beans. Warm rice, cool mango.",
+      "story": "Thailand's most famous dessert, originally a hot-season treat when mangoes peak. The salt in the coconut cream is not a mistake, it makes the mango taste sweeter.",
+      "price": 285,
+      "portion": "One plate",
+      "serves": "1, or 2 to share",
+      "spice": 0,
+      "spiceAdjustable": false,
+      "profile": {
+        "sweet": 4,
+        "sour": 1,
+        "salty": 2,
+        "rich": 4,
+        "fresh": 3
+      },
+      "tastesLike": "A coconut kheer that set into rice, next to the best mango of the season.",
+      "texture": "Chewy, sticky rice, soft mango, crunchy beans.",
+      "keyIngredients": [
+        "glutinous rice",
+        "coconut milk",
+        "ripe mango",
+        "palm sugar",
+        "salt",
+        "toasted mung beans"
+      ],
+      "allergens": [],
+      "dietary": [
+        "vegan",
+        "gluten-free",
+        "jain-possible"
+      ],
+      "howToEat": [
+        "Get a bit of rice and a bit of mango on the same spoon. Never separately.",
+        "Drag the spoon through the salted coconut cream on the way.",
+        "Eat it while the rice is still warm, the contrast is the whole point."
+      ],
+      "pairsWith": [
+        "dr-cha-yen"
+      ],
+      "rating": {
+        "avg": 4.9,
+        "count": 823
+      },
+      "reviews": [
+        {
+          "quote": "I came for the curry and left thinking only about this.",
+          "by": "Aarav M.",
+          "when": "Sep 2026"
+        },
+        {
+          "quote": "Warm rice, cold mango, salty cream. Perfect.",
+          "by": "Divya R.",
+          "when": "Aug 2026"
+        },
+        {
+          "quote": "Best dessert in town. Fight me.",
+          "by": "Kabir S.",
+          "when": "May 2026"
+        }
+      ],
+      "tags": [
+        "most-loved",
+        "signature",
+        "sweet"
+      ],
+      "prepMinutes": 8,
+      "bestFor": [
+        "ending the meal",
+        "sharing"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Mango_sticky_rice_served_in_Thailand.jpg/1280px-Mango_sticky_rice_served_in_Thailand.jpg",
+            "alt": "Mango sticky rice with coconut cream",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Mango_sticy_rice_%283859549574%29.jpg/1280px-Mango_sticy_rice_%283859549574%29.jpg",
+            "alt": "Mango sticky rice plate",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Thai_Classic_Mango_%26_Sticky_Rice_with_Coconut_Ice_Cream_-_Namo_2026-07-30.jpg/1280px-Thai_Classic_Mango_%26_Sticky_Rice_with_Coconut_Ice_Cream_-_Namo_2026-07-30.jpg",
+            "alt": "Mango sticky rice with coconut ice cream",
+            "credit": "Wikimedia Commons"
+          }
+        ]
+      }
+    },
+    {
+      "id": "de-coconut-ice",
+      "sectionId": "desserts",
+      "name": "Fresh Coconut Ice Cream",
+      "thaiName": "I-tim Kathi",
+      "pronunciation": "ee-TIM ka-TEE",
+      "tagline": "Churned from fresh coconut milk, served in a coconut shell with roasted peanuts and sweet corn.",
+      "description": "Two scoops of pale coconut ice cream in a young coconut shell, with soft coconut flesh at the bottom, a scattering of roasted peanuts and a spoon of sweet corn kernels. Yes, corn. Trust it.",
+      "story": "Coconut ice cream is sold from carts all over Bangkok, with toppings like sticky rice, corn and peanuts. The corn is a 1950s Bangkok habit that stuck.",
+      "price": 225,
+      "portion": "2 scoops in shell",
+      "serves": "1",
+      "spice": 0,
+      "spiceAdjustable": false,
+      "profile": {
+        "sweet": 4,
+        "sour": 0,
+        "salty": 1,
+        "rich": 4,
+        "fresh": 3
+      },
+      "tastesLike": "Tender coconut and malai kulfi had a child, lighter than kulfi, cleaner than regular ice cream.",
+      "texture": "Smooth and icy, crunchy peanuts, soft corn.",
+      "keyIngredients": [
+        "fresh coconut milk",
+        "coconut flesh",
+        "sugar",
+        "roasted peanuts",
+        "sweet corn"
+      ],
+      "allergens": [
+        "peanuts"
+      ],
+      "dietary": [
+        "vegan",
+        "gluten-free",
+        "contains-nuts"
+      ],
+      "howToEat": [
+        "Scrape the young coconut flesh off the inside of the shell with each spoonful.",
+        "Try one bite with corn before you decide you do not like corn on ice cream."
+      ],
+      "pairsWith": [
+        "dr-cha-yen"
+      ],
+      "rating": {
+        "avg": 4.6,
+        "count": 298
+      },
+      "reviews": [
+        {
+          "quote": "Corn on ice cream sounded wrong. It is right.",
+          "by": "Neha D.",
+          "when": "Aug 2026"
+        },
+        {
+          "quote": "Light, fresh, not sugary. Ideal after a spicy meal.",
+          "by": "Luca B.",
+          "when": "Jun 2026"
+        }
+      ],
+      "tags": [
+        "sweet",
+        "chef-pick"
+      ],
+      "prepMinutes": 3,
+      "bestFor": [
+        "after something spicy"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Coconut_Ice_Cream%2C_Bangkok.jpg/1280px-Coconut_Ice_Cream%2C_Bangkok.jpg",
+            "alt": "Coconut ice cream in a coconut shell",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Coconut_ice_cream_-_Bangkok_-_2017-05-23_%28002%29.jpg/1280px-Coconut_ice_cream_-_Bangkok_-_2017-05-23_%28002%29.jpg",
+            "alt": "Coconut ice cream with toppings",
+            "credit": "Wikimedia Commons"
+          }
+        ]
+      }
+    },
+    {
+      "id": "de-khanom-krok",
+      "sectionId": "desserts",
+      "name": "Coconut Pancake Bites",
+      "thaiName": "Khanom Krok",
+      "pronunciation": "ka-NOM krok",
+      "tagline": "Little half-domes of rice-flour and coconut batter, crisp outside, custardy inside, with spring onion or corn.",
+      "description": "Eight bite-sized pancakes cooked in a cast-iron dimpled pan. The edges are crisp, the centre is soft coconut custard. Topped with spring onion, sweet corn or taro. Served warm in a banana-leaf cup.",
+      "story": "A street breakfast that moonlights as dessert. The savoury spring onion topping on a sweet coconut base confuses everyone for one bite and then makes complete sense.",
+      "price": 215,
+      "portion": "8 pieces",
+      "serves": "2 to share",
+      "spice": 0,
+      "spiceAdjustable": false,
+      "profile": {
+        "sweet": 3,
+        "sour": 0,
+        "salty": 2,
+        "rich": 3,
+        "fresh": 2
+      },
+      "tastesLike": "Like a tiny appam that turned into a custard. Sweet-salty, coconutty, a little crisp.",
+      "texture": "Crisp shell, molten custardy middle.",
+      "keyIngredients": [
+        "rice flour",
+        "coconut milk",
+        "sugar",
+        "spring onion",
+        "sweet corn"
+      ],
+      "allergens": [],
+      "dietary": [
+        "vegan",
+        "gluten-free"
+      ],
+      "howToEat": [
+        "Eat in one bite while warm. They collapse if you wait.",
+        "Pick with fingers or a toothpick. No cutlery needed."
+      ],
+      "pairsWith": [
+        "dr-cha-yen",
+        "dr-lemongrass"
+      ],
+      "rating": {
+        "avg": 4.5,
+        "count": 164
+      },
+      "reviews": [
+        {
+          "quote": "Tiny, warm, custardy. I ordered two rounds.",
+          "by": "Meghna S.",
+          "when": "Jul 2026"
+        },
+        {
+          "quote": "Reminded me of appam with coconut milk. Lovely.",
+          "by": "George V.",
+          "when": "Apr 2026"
+        }
+      ],
+      "tags": [
+        "sharing",
+        "sweet",
+        "first-timer-safe"
+      ],
+      "prepMinutes": 8,
+      "bestFor": [
+        "sharing",
+        "something small and sweet"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/DFC_0023_Golden-brown_Thai_coconut_pancakes_khanom_krok_served_in_small_green_banana-leaf_cups_fresh_from_the_griddle.jpg/1280px-DFC_0023_Golden-brown_Thai_coconut_pancakes_khanom_krok_served_in_small_green_banana-leaf_cups_fresh_from_the_griddle.jpg",
+            "alt": "Khanom krok coconut pancakes in banana-leaf cups",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/DFC_4471_Crispy_Thai_coconut_pancakes_khanom_krok_topped_with_sweet_shredded_coconut_and_a_sprinkle_of_savory_garnish_arranged_on_a_woven_tray.jpg/1280px-DFC_4471_Crispy_Thai_coconut_pancakes_khanom_krok_topped_with_sweet_shredded_coconut_and_a_sprinkle_of_savory_garnish_arranged_on_a_woven_tray.jpg",
+            "alt": "Khanom krok on a woven tray",
+            "credit": "Wikimedia Commons"
+          }
+        ]
+      }
+    },
+    {
+      "id": "de-roti-kluai",
+      "sectionId": "desserts",
+      "name": "Banana Roti",
+      "thaiName": "Roti Kluai",
+      "pronunciation": "ROH-tee KLOO-ay",
+      "tagline": "Crispy street roti folded over caramelised banana, cut into squares, drizzled with condensed milk and chocolate.",
+      "description": "A thin, stretched roti pan-fried in butter with sliced banana inside, folded into a parcel, cut into nine squares and finished with condensed milk and a zigzag of chocolate. Served on a paper-lined plate like the street stalls.",
+      "story": "Thai roti came with Indian Muslim traders and became a night-market dessert. Yes, it is basically a sweet paratha, and it is unbeatable.",
+      "price": 195,
+      "portion": "9 squares",
+      "serves": "1 to 2",
+      "spice": 0,
+      "spiceAdjustable": false,
+      "profile": {
+        "sweet": 5,
+        "sour": 0,
+        "salty": 1,
+        "rich": 5,
+        "fresh": 1
+      },
+      "tastesLike": "A sweet, crisp paratha stuffed with banana. You already know you like this.",
+      "texture": "Crisp and flaky, soft caramel banana inside.",
+      "keyIngredients": [
+        "roti dough",
+        "banana",
+        "butter",
+        "condensed milk",
+        "chocolate sauce",
+        "sugar"
+      ],
+      "allergens": [
+        "gluten",
+        "dairy"
+      ],
+      "dietary": [
+        "vegetarian",
+        "contains-gluten",
+        "contains-dairy"
+      ],
+      "howToEat": [
+        "Toothpick or fingers, square by square.",
+        "Eat fast, it is crispest in the first minutes.",
+        "Share it. It is sweeter than it looks."
+      ],
+      "pairsWith": [
+        "dr-cha-yen"
+      ],
+      "rating": {
+        "avg": 4.7,
+        "count": 341
+      },
+      "reviews": [
+        {
+          "quote": "Pure night-market joy on a plate.",
+          "by": "Sara F.",
+          "when": "Sep 2026"
+        },
+        {
+          "quote": "Banana, butter, condensed milk. Nothing to think about, just happiness.",
+          "by": "Varun K.",
+          "when": "Jul 2026"
+        }
+      ],
+      "tags": [
+        "most-loved",
+        "sweet",
+        "sharing"
+      ],
+      "prepMinutes": 8,
+      "bestFor": [
+        "kids",
+        "sharing",
+        "a sweet tooth"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/4/47/Roti_kluai_khai_chiang_mai_04.jpg",
+            "alt": "Banana roti cut into squares",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Roti_kluai_khai_chiang_mai_01.jpg",
+            "alt": "Banana roti with condensed milk",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Banana_rotee_stall_%2811900303024%29.jpg/1280px-Banana_rotee_stall_%2811900303024%29.jpg",
+            "alt": "A banana roti stall",
+            "credit": "Wikimedia Commons"
+          }
+        ]
+      }
+    },
+    {
+      "id": "de-kluai-buat-chi",
+      "sectionId": "desserts",
+      "name": "Bananas in Warm Coconut Milk",
+      "thaiName": "Kluai Buat Chi",
+      "pronunciation": "KLOO-ay boo-at CHEE",
+      "tagline": "Ripe banana simmered gently in sweet, lightly salted coconut milk. The simplest, kindest dessert here.",
+      "description": "A small bowl of warm coconut milk with soft pieces of banana, sweetened with palm sugar and a pinch of salt. Served warm, sometimes with a few pandan leaves for scent.",
+      "story": "The name means 'bananas ordained as nuns', because the pale coconut milk looks like white robes. Thai grandmothers make this. It takes ten minutes and fixes most things.",
+      "price": 185,
+      "portion": "One bowl",
+      "serves": "1",
+      "spice": 0,
+      "spiceAdjustable": false,
+      "profile": {
+        "sweet": 3,
+        "sour": 0,
+        "salty": 1,
+        "rich": 3,
+        "fresh": 1
+      },
+      "tastesLike": "A banana payasam with coconut milk, thinner and warmer, less sweet.",
+      "texture": "Soft banana, silky warm milk.",
+      "keyIngredients": [
+        "ripe banana",
+        "coconut milk",
+        "palm sugar",
+        "salt",
+        "pandan leaf"
+      ],
+      "allergens": [],
+      "dietary": [
+        "vegan",
+        "gluten-free",
+        "jain-possible"
+      ],
+      "howToEat": [
+        "Spoon it like a soup, warm.",
+        "If you want a bit of crunch, ask for toasted sesame on top."
+      ],
+      "pairsWith": [
+        "dr-lemongrass"
+      ],
+      "rating": {
+        "avg": 4.4,
+        "count": 96
+      },
+      "reviews": [
+        {
+          "quote": "Soft, warm, nostalgic even though I had never had it before.",
+          "by": "Ritu B.",
+          "when": "Aug 2026"
+        }
+      ],
+      "tags": [
+        "sweet",
+        "comfort",
+        "mild"
+      ],
+      "prepMinutes": 8,
+      "bestFor": [
+        "something gentle",
+        "after a spicy meal"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Kluai_buat_chi.jpg/1280px-Kluai_buat_chi.jpg",
+            "alt": "Bananas in coconut milk",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Bananas_in_coconut_milk_%282297648042%29.jpg/1280px-Bananas_in_coconut_milk_%282297648042%29.jpg",
+            "alt": "Kluai buat chi in a bowl",
+            "credit": "Wikimedia Commons"
+          }
+        ],
+        "video": {
+          "poster": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Stop_Motion_-_Making_of_Bananas_in_Coconut_Milk.webm/1280px--Stop_Motion_-_Making_of_Bananas_in_Coconut_Milk.webm.jpg",
+          "sources": [
+            {
+              "src": "https://upload.wikimedia.org/wikipedia/commons/transcoded/2/2e/Stop_Motion_-_Making_of_Bananas_in_Coconut_Milk.webm/Stop_Motion_-_Making_of_Bananas_in_Coconut_Milk.webm.480p.vp9.webm",
+              "type": "video/webm"
+            },
+            {
+              "src": "https://upload.wikimedia.org/wikipedia/commons/transcoded/2/2e/Stop_Motion_-_Making_of_Bananas_in_Coconut_Milk.webm/Stop_Motion_-_Making_of_Bananas_in_Coconut_Milk.webm.360p.mpeg4.mov",
+              "type": "video/quicktime"
+            }
+          ],
+          "caption": "How bananas in coconut milk come together",
+          "credit": "Wikimedia Commons, CC BY-SA"
+        }
+      }
+    },
+    {
+      "id": "dr-cha-yen",
+      "sectionId": "drinks",
+      "name": "Thai Iced Tea",
+      "thaiName": "Cha Yen",
+      "pronunciation": "chah YEN",
+      "tagline": "Strong spiced black tea over ice, with condensed milk floating on top in a bright orange swirl.",
+      "description": "A tall glass packed with ice, deep orange tea with star anise and tamarind notes, and a layer of milk poured over the top. Stir and it turns the colour of a sunset.",
+      "story": "The orange colour comes from the Thai tea blend itself. It was built to tame chilli, which is why every table in Bangkok has one.",
+      "price": 165,
+      "portion": "Tall glass, 350 ml",
+      "serves": "1",
+      "spice": 0,
+      "spiceAdjustable": false,
+      "profile": {
+        "sweet": 5,
+        "sour": 0,
+        "salty": 0,
+        "rich": 4,
+        "fresh": 3
+      },
+      "tastesLike": "A cold, very sweet masala chai with a smoky edge. Think chai, iced, with condensed milk.",
+      "texture": "Icy, creamy.",
+      "keyIngredients": [
+        "Thai black tea",
+        "star anise",
+        "condensed milk",
+        "evaporated milk",
+        "sugar",
+        "ice"
+      ],
+      "allergens": [
+        "dairy"
+      ],
+      "dietary": [
+        "vegetarian",
+        "contains-dairy"
+      ],
+      "howToEat": [
+        "Stir before the first sip so the milk layer mixes in.",
+        "Ask for 'less sweet' if you are used to sugar-free chai, the default is dessert-level sweet.",
+        "Order it before the food, it arrives fast and helps with any chilli."
+      ],
+      "pairsWith": [
+        "no-pad-kee-mao",
+        "cu-green",
+        "sl-som-tam"
+      ],
+      "rating": {
+        "avg": 4.7,
+        "count": 520
+      },
+      "reviews": [
+        {
+          "quote": "Cold, sweet, saved me from the drunken noodles.",
+          "by": "Ira P.",
+          "when": "Sep 2026"
+        },
+        {
+          "quote": "Prettiest drink on the table.",
+          "by": "Noah L.",
+          "when": "Jun 2026"
+        }
+      ],
+      "tags": [
+        "most-loved",
+        "sweet",
+        "cold"
+      ],
+      "prepMinutes": 3,
+      "bestFor": [
+        "with spicy food",
+        "a sweet tooth"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Cha-Yen_%28Thai_iced_tea%29_-_Namo_2026-07-30.jpg/1280px-Cha-Yen_%28Thai_iced_tea%29_-_Namo_2026-07-30.jpg",
+            "alt": "Thai iced tea in a tall glass",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Cha_Yen_-_Mint_Thai_AUD2.50.jpg",
+            "alt": "Thai iced tea with milk swirl",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/4/42/Cha_yen.JPG",
+            "alt": "Cha yen over ice",
+            "credit": "Wikimedia Commons"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dr-lemongrass",
+      "sectionId": "drinks",
+      "name": "Lemongrass & Ginger Cooler",
+      "thaiName": "Nam Takrai",
+      "pronunciation": "nahm ta-KRAI",
+      "tagline": "Fresh lemongrass and ginger, lightly sweetened, served ice cold. Pale green and clean.",
+      "description": "A tall glass of pale green lemongrass infusion with a hint of ginger and lime, over ice. Not very sweet, very refreshing.",
+      "story": "Nam takrai is what Thai homes serve guests on hot afternoons. It calms the stomach and cuts through rich coconut curries.",
+      "price": 145,
+      "portion": "Tall glass, 350 ml",
+      "serves": "1",
+      "spice": 0,
+      "spiceAdjustable": false,
+      "profile": {
+        "sweet": 2,
+        "sour": 2,
+        "salty": 0,
+        "rich": 0,
+        "fresh": 5
+      },
+      "tastesLike": "Like a cold lemongrass tea or a lighter nimbu pani with a ginger kick.",
+      "texture": "Light, icy.",
+      "keyIngredients": [
+        "lemongrass",
+        "ginger",
+        "lime",
+        "palm sugar",
+        "ice"
+      ],
+      "allergens": [],
+      "dietary": [
+        "vegan",
+        "gluten-free",
+        "jain-possible"
+      ],
+      "howToEat": [
+        "Sip between bites of a rich curry, it resets your palate.",
+        "Ask for 'no sugar' if you want it purely herbal."
+      ],
+      "pairsWith": [
+        "cu-massaman",
+        "cu-khao-soi",
+        "sp-tofu-satay"
+      ],
+      "rating": {
+        "avg": 4.5,
+        "count": 211
+      },
+      "reviews": [
+        {
+          "quote": "Not sweet, super fresh. Had two.",
+          "by": "Amit C.",
+          "when": "Aug 2026"
+        },
+        {
+          "quote": "Perfect with the massaman.",
+          "by": "Grace T.",
+          "when": "May 2026"
+        }
+      ],
+      "tags": [
+        "cold",
+        "light",
+        "chef-pick"
+      ],
+      "prepMinutes": 3,
+      "bestFor": [
+        "with rich food",
+        "not too sweet"
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Lemongrass_ginger_tea.jpg/1280px-Lemongrass_ginger_tea.jpg",
+            "alt": "Lemongrass and ginger cooler",
+            "credit": "Wikimedia Commons"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Lemongrass_Cold_Drinks_%287001125558%29.jpg/1280px-Lemongrass_Cold_Drinks_%287001125558%29.jpg",
+            "alt": "Lemongrass drink over ice",
+            "credit": "Wikimedia Commons"
+          }
+        ]
+      }
+    }
+  ]
+}
