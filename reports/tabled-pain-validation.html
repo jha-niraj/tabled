@@ -1,0 +1,844 @@
+<title>Tabled pain validation</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single reading column like a kitchen docket, with figures and tables allowed to run wider than the text. */
+:root {
+  --bg: #F2F4F0;
+  --surface: #FFFFFF;
+  --surface-2: #E8ECE6;
+  --ink: #1A1F1C;
+  --ink-2: #49524C;
+  --ink-3: #7A847D;
+  --line: #CFD6CF;
+  --line-2: #E1E6DF;
+  --accent: #B5302A;
+  --accent-soft: #F6E3E1;
+  --good: #2E7A4E;
+  --good-soft: #DFEFE4;
+  --warn: #A5711A;
+  --warn-soft: #F5EBD3;
+  --display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141816; --surface: #1C211E; --surface-2: #242A26;
+    --ink: #ECEFEA; --ink-2: #B3BBB4; --ink-3: #7F8982;
+    --line: #333B36; --line-2: #2A312D;
+    --accent: #E3615A; --accent-soft: #3A2320;
+    --good: #5FB885; --good-soft: #1F3328;
+    --warn: #D8A445; --warn-soft: #3A2F18;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141816; --surface: #1C211E; --surface-2: #242A26;
+  --ink: #ECEFEA; --ink-2: #B3BBB4; --ink-3: #7F8982;
+  --line: #333B36; --line-2: #2A312D;
+  --accent: #E3615A; --accent-soft: #3A2320;
+  --good: #5FB885; --good-soft: #1F3328;
+  --warn: #D8A445; --warn-soft: #3A2F18;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.55; margin: 0; }
+.wrap { max-width: 1040px; margin: 0 auto; padding-block: 40px 96px; padding-inline: 20px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 500; letter-spacing: -0.01em; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(38px, 6vw, 64px); line-height: 1.02; }
+h2 { font-size: clamp(28px, 3.6vw, 38px); line-height: 1.1; margin-top: 72px; }
+h3 { font-size: 22px; line-height: 1.2; margin-top: 36px; }
+p { margin: 14px 0 0; max-width: 68ch; }
+p.wide { max-width: none; }
+a { color: inherit; text-decoration-color: var(--line); text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--accent); }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); }
+.standfirst { font-family: var(--display); font-size: clamp(20px, 2.4vw, 25px); line-height: 1.35; color: var(--ink-2); max-width: 36em; margin-top: 22px; }
+.meta { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); }
+.meta b { color: var(--ink); font-weight: 500; }
+.tag { display: inline-block; font-family: var(--mono); font-size: 11px; line-height: 1; padding: 4px 6px; border-radius: 4px; border: 1px solid var(--line); color: var(--ink-2); vertical-align: 1px; }
+.tag.m { border-color: var(--good); color: var(--good); }
+.tag.v { border-color: var(--warn); color: var(--warn); }
+.tag.i { border-color: var(--ink-3); color: var(--ink-3); }
+
+/* verdict docket */
+.docket { margin-top: 36px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.docket-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; padding: 14px 20px; border-bottom: 1px dashed var(--line); font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+.docket-body { padding: 8px 20px 20px; }
+.verdict-line { font-family: var(--display); font-size: clamp(22px, 3vw, 30px); line-height: 1.25; margin-top: 12px; }
+.verdict-line em { font-style: italic; color: var(--accent); }
+.objs { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 22px; }
+.obj { border-top: 2px solid var(--ink); padding-top: 10px; }
+.obj .q { font-family: var(--display); font-style: italic; font-size: 18px; line-height: 1.3; }
+.obj .a { margin-top: 8px; font-size: 14.5px; color: var(--ink-2); }
+.obj .a b { color: var(--ink); font-weight: 600; }
+.chip { display: inline-block; font-family: var(--mono); font-size: 11.5px; padding: 3px 8px; border-radius: 999px; border: 1px solid; white-space: nowrap; }
+.chip.right { color: var(--good); border-color: var(--good); background: var(--good-soft); }
+.chip.half { color: var(--warn); border-color: var(--warn); background: var(--warn-soft); }
+.chip.wrong { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+.chip.open { color: var(--ink-2); border-color: var(--line); background: var(--surface-2); }
+
+/* sections */
+.section-eyebrow { margin-top: 72px; }
+.section-eyebrow + h2 { margin-top: 8px; }
+.lede { font-size: 18px; color: var(--ink-2); max-width: 62ch; }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px 36px; margin-top: 20px; }
+.cols p { margin-top: 8px; }
+.cols h4 { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; margin: 0; }
+.cols h4.for { color: var(--good); }
+.cols h4.against { color: var(--accent); }
+ul { margin: 12px 0 0; padding-left: 20px; max-width: 68ch; }
+li { margin-top: 7px; }
+li::marker { color: var(--ink-3); }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* figures */
+figure { margin: 28px 0 0; }
+.fig-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); padding: 14px 10px; }
+.fig-scroll svg { display: block; width: 100%; height: auto; min-width: 760px; color: var(--ink); }
+figcaption { margin-top: 10px; font-size: 13.5px; color: var(--ink-2); max-width: 70ch; }
+figcaption b { color: var(--ink); font-weight: 600; }
+svg text { font-family: var(--body); font-size: 12.5px; fill: currentColor; }
+svg text.t { font-size: 13.5px; font-weight: 600; }
+svg text.s { font-size: 11px; fill: var(--ink-2); }
+svg text.k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; fill: var(--ink-3); }
+svg text.a { fill: var(--accent); }
+svg .box { fill: var(--surface); stroke: currentColor; stroke-width: 1.2; }
+svg .box.soft { fill: var(--surface-2); stroke: var(--line); }
+svg .box.hi { stroke: var(--accent); stroke-width: 1.6; }
+svg .box.good { stroke: var(--good); stroke-width: 1.6; }
+svg .edge { fill: none; stroke: currentColor; stroke-width: 1.2; }
+svg .edge.hi { stroke: var(--accent); stroke-width: 1.6; }
+svg .edge.dash { stroke-dasharray: 4 4; }
+svg .edge.dim { stroke: var(--ink-3); }
+svg .band { fill: none; stroke: var(--line); stroke-dasharray: 2 5; }
+
+/* tables */
+.tbl { overflow-x: auto; margin-top: 24px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line-2); }
+th { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; background: var(--surface-2); }
+tr:last-child td { border-bottom: 0; }
+td.n { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+table.compact td, table.compact th { padding: 8px 10px; font-size: 13.5px; }
+table.wide { min-width: 900px; }
+.st { font-family: var(--mono); font-size: 11.5px; padding: 2px 7px; border-radius: 4px; white-space: nowrap; border: 1px solid; }
+.st.v { color: var(--good); border-color: var(--good); background: var(--good-soft); }
+.st.p { color: var(--warn); border-color: var(--warn); background: var(--warn-soft); }
+.st.u { color: var(--ink-2); border-color: var(--line); background: var(--surface-2); }
+.st.c { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+
+/* callouts */
+.note { margin-top: 24px; padding: 16px 18px; border-left: 3px solid var(--accent); background: var(--surface); border-radius: 0 6px 6px 0; max-width: 72ch; }
+.note p { margin-top: 6px; }
+.note .k { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+.quiet { margin-top: 24px; padding: 16px 18px; border: 1px dashed var(--line); border-radius: 6px; background: var(--surface); max-width: 72ch; font-size: 14.5px; color: var(--ink-2); }
+.quiet code { font-family: var(--mono); font-size: 13px; color: var(--ink); }
+.steps { counter-reset: s; list-style: none; padding: 0; max-width: none; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 44px 1fr; gap: 10px; padding: 14px 0; border-top: 1px solid var(--line-2); margin: 0; }
+.steps li::before { content: counter(s); font-family: var(--display); font-size: 28px; line-height: 1; color: var(--accent); }
+.steps b { font-weight: 600; }
+.steps p { margin-top: 4px; font-size: 14.5px; color: var(--ink-2); }
+.srcs { columns: 2; column-gap: 36px; font-size: 13.5px; max-width: none; padding-left: 18px; }
+.srcs li { break-inside: avoid; margin-top: 5px; }
+@media (max-width: 640px) {
+  .srcs { columns: 1; }
+  h2 { margin-top: 56px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  a { transition: text-decoration-color 160ms ease; }
+}
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">Tabled · validation memo · 9 October 2026 · prepared for Niraj and his seniors</div>
+  <h1 style="margin-top:14px">Sell the table, not the confused diner</h1>
+  <p class="standfirst">Is "I don't know what this dish is" a real pain, or a founder's experiment that got interesting? The evidence says the pain is real but narrower than the pitch, and that it is not, on its own, what a restaurant will pay for. The direction is right. The unit of value is wrong.</p>
+  <div class="meta">
+    <span><b>6</b> research tracks</span>
+    <span><b>154</b> cited sources</span>
+    <span>Every number is tagged <span class="tag m">M</span> measured, <span class="tag v">V</span> vendor or commissioned poll, <span class="tag i">I</span> inference with working shown</span>
+    <span>Full report: <code>reports/Tabled pain validation.md</code></span>
+  </div>
+
+  <section class="docket" aria-label="Verdict">
+    <div class="docket-head"><span>Verdict</span><span>four objections, four answers</span></div>
+    <div class="docket-body">
+      <div class="verdict-line">Right direction. Wrong wedge. <em>The unfamiliar-dish moment is the demo, not the invoice.</em></div>
+      <div class="objs">
+        <div class="obj">
+          <div class="q">"Diners will just Google it."</div>
+          <div class="a"><span class="chip half">half right</span><br>Conceded on capability: Google Search Live answers in Hindi at a Bengaluru table today. <b>Tabled's defence is provenance</b>, this kitchen's recipe, allergens, spice and portion, not speed.</div>
+        </div>
+        <div class="obj">
+          <div class="q">"Restaurants will not pay."</div>
+          <div class="a"><span class="chip right">right, as software</span><br>QR ordering is bundled into Petpooja at Rs 20-30k a year and NWaiter sells vernacular voice ordering at Rs 999 a month. <b>Open as a marketing line</b> at Rs 5-15k a month for groups.</div>
+        </div>
+        <div class="obj">
+          <div class="q">"Too occasional to matter."</div>
+          <div class="a"><span class="chip half">right per table</span><br>About once a month per diner, a few tables a day per restaurant. <b>Wrong in aggregate</b>: on the order of 133 million table-occasions a year in the top eight metros, and rising.</div>
+        </div>
+        <div class="obj">
+          <div class="q">"Zomato or Google own this."</div>
+          <div class="a"><span class="chip wrong">capability yes, incentive no</span><br>Their revenue sits on the consumer side and on ads, and NRAI fought aggregator ownership of the table twice. <b>The live fast follower is Petpooja.</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1. THE MOMENT -->
+  <div class="eyebrow section-eyebrow">01 · The moment</div>
+  <h2>Ten minutes between sitting down and ordering</h2>
+  <p class="lede">What happens today when a diner meets a dish name they do not know, what each coping path costs, and what the table looks like with a host that answers from the kitchen's own data. The restaurant never hears about the plate that disappointed.</p>
+
+  <figure>
+    <div class="fig-scroll">
+      <svg viewBox="0 0 960 580" role="img" aria-label="Flow of a diner meeting an unknown dish today, with four coping paths that all end at a plate the kitchen never hears about, compared with the Tabled path where one scan leads to a restaurant-specific answer, the order, and a feedback tap that returns to the kitchen.">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker>
+          <marker id="arrA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--accent)"/></marker>
+        </defs>
+        <text x="20" y="26" class="k">TODAY</text>
+        <rect x="20" y="60" width="160" height="56" rx="3" class="box"/>
+        <text x="100" y="82" text-anchor="middle" class="t">Seated, menu open</text>
+        <text x="100" y="100" text-anchor="middle" class="s">9 min deciding on average</text>
+        <path d="M180 88 H218" class="edge" marker-end="url(#arr)"/>
+        <polygon points="220,88 300,52 380,88 300,124" class="box"/>
+        <text x="300" y="84" text-anchor="middle" class="t">A name you</text>
+        <text x="300" y="100" text-anchor="middle" class="t">don't know</text>
+
+        <path d="M380 88 H410 V66 H438" class="edge" marker-end="url(#arr)"/>
+        <path d="M410 88 V136 H438" class="edge" marker-end="url(#arr)"/>
+        <path d="M410 136 V206 H438" class="edge" marker-end="url(#arr)"/>
+        <path d="M410 206 V276 H438" class="edge" marker-end="url(#arr)"/>
+
+        <rect x="440" y="40" width="220" height="52" rx="3" class="box"/>
+        <text x="452" y="60" class="t">Ask the waiter</text>
+        <text x="452" y="78" class="s">38% feel awkward; 50% trust staff know (FSA 2025)</text>
+        <rect x="440" y="110" width="220" height="52" rx="3" class="box"/>
+        <text x="452" y="130" class="t">Google it</text>
+        <text x="452" y="148" class="s">5-6 actions per dish; answers about "a" Khow Suey</text>
+        <rect x="440" y="180" width="220" height="52" rx="3" class="box"/>
+        <text x="452" y="200" class="t">Order the safe thing</text>
+        <text x="452" y="218" class="s">30% order the same dish every time (CRI 2023)</text>
+        <rect x="440" y="250" width="220" height="52" rx="3" class="box"/>
+        <text x="452" y="270" class="t">Skip it, or skip the place</text>
+        <text x="452" y="288" class="s">40% of Gen Z won't go without pre-reading (Prezzo)</text>
+
+        <path d="M660 66 H690 V158 H718" class="edge" marker-end="url(#arr)"/>
+        <path d="M660 136 H690" class="edge"/>
+        <path d="M660 206 H690" class="edge"/>
+        <path d="M660 276 H690 V158" class="edge"/>
+        <rect x="720" y="130" width="200" height="56" rx="3" class="box"/>
+        <text x="820" y="152" text-anchor="middle" class="t">Plate arrives</text>
+        <text x="820" y="170" text-anchor="middle" class="s">the only check that counts</text>
+        <path d="M820 186 V228" class="edge" marker-end="url(#arr)"/>
+        <rect x="720" y="230" width="200" height="52" rx="3" class="box"/>
+        <text x="820" y="250" text-anchor="middle" class="t">Not what you expected</text>
+        <text x="820" y="268" text-anchor="middle" class="s">14.8% of mains left uneaten (WRAP UK)</text>
+        <path d="M820 282 V318" class="edge dash dim" marker-end="url(#arr)"/>
+        <rect x="720" y="320" width="200" height="44" rx="3" class="box soft"/>
+        <text x="820" y="346" text-anchor="middle" class="s">Kitchen never hears why</text>
+
+        <line x1="20" y1="392" x2="940" y2="392" class="band"/>
+        <text x="20" y="416" class="k a">WITH TABLED</text>
+        <rect x="20" y="432" width="130" height="52" rx="3" class="box hi"/>
+        <text x="85" y="454" text-anchor="middle" class="t">Scan once</text>
+        <text x="85" y="472" text-anchor="middle" class="s">no app, no sign-in</text>
+        <path d="M150 458 H178" class="edge hi" marker-end="url(#arrA)"/>
+        <rect x="180" y="432" width="150" height="52" rx="3" class="box hi"/>
+        <text x="255" y="454" text-anchor="middle" class="t">2-3 questions</text>
+        <text x="255" y="472" text-anchor="middle" class="s">narrow, don't list</text>
+        <path d="M330 458 H358" class="edge hi" marker-end="url(#arrA)"/>
+        <rect x="360" y="432" width="220" height="52" rx="3" class="box hi"/>
+        <text x="470" y="452" text-anchor="middle" class="t">This kitchen's answer</text>
+        <text x="470" y="470" text-anchor="middle" class="s">photo, video, spice, portion, Jain/veg, allergens, in your language</text>
+        <path d="M580 458 H608" class="edge hi" marker-end="url(#arrA)"/>
+        <rect x="610" y="432" width="150" height="52" rx="3" class="box hi"/>
+        <text x="685" y="454" text-anchor="middle" class="t">Waiter takes order</text>
+        <text x="685" y="472" text-anchor="middle" class="s">from your starred picks</text>
+        <path d="M760 458 H788" class="edge hi" marker-end="url(#arrA)"/>
+        <rect x="790" y="432" width="150" height="52" rx="3" class="box hi"/>
+        <text x="865" y="462" text-anchor="middle" class="t">Plate arrives</text>
+
+        <path d="M865 484 V538 H792" class="edge hi" marker-end="url(#arrA)"/>
+        <rect x="610" y="512" width="180" height="52" rx="3" class="box hi"/>
+        <text x="700" y="534" text-anchor="middle" class="t">Was it what you expected?</text>
+        <text x="700" y="552" text-anchor="middle" class="s">one tap, with a why</text>
+        <path d="M610 538 H582" class="edge hi" marker-end="url(#arrA)"/>
+        <rect x="360" y="512" width="220" height="52" rx="3" class="box good"/>
+        <text x="470" y="534" text-anchor="middle" class="t">Kitchen and host both learn</text>
+        <text x="470" y="552" text-anchor="middle" class="s">regret rate by dish and table</text>
+        <path d="M400 512 V486" class="edge dash" marker-end="url(#arr)"/>
+        <text x="408" y="502" class="s">sharper next time</text>
+      </svg>
+    </div>
+    <figcaption><b>Figure 1.</b> Today, every coping path ends at a plate and the kitchen never learns whether it landed. With Tabled, the answer comes from the restaurant's own data and the verdict goes back to the kitchen. The loop at the bottom is the part no incumbent has built.</figcaption>
+  </figure>
+
+  <div class="cols">
+    <div>
+      <h4 class="for">What is measured, for</h4>
+      <p><span class="num">79%</span> of 1,003 US adults have trouble choosing; <span class="num">9 minutes</span> deciding once seated; <span class="num">66%</span> have skipped a dish on its photo alone (US Foods, Sept 2023 <span class="tag v">V</span>).</p>
+      <p>Menu anxiety is steeply age-graded: <span class="num">41%</span> of 18-43s vs <span class="num">15%</span> of 44-77s (OnePoll, June 2023 <span class="tag v">V</span>); <span class="num">34%</span> of UK Gen Z get someone else to talk to the waiter (Prezzo 2023 <span class="tag v">V</span>).</p>
+      <p>The one peer-reviewed result on unfamiliar names: when a dish name is ambiguous, a photo alone can make "visualiser" diners <em>less</em> likely to order (Hou, Yang and Sun, IJHM 2017 <span class="tag m">M</span>). The explanation on top of the picture is the untested extension.</p>
+      <p>A 2026 HCI study of cultural newcomers: names opaque, 11 of 13 needed portion info, most wanted spice info, participants avoided asking waiters and juggled 3-5 apps per order (Zhang and Chen, arXiv April 2026 <span class="tag m">M</span>, small). It proposes almost exactly Tabled's product.</p>
+      <p>Restricted diners: <span class="num">38%</span> feel awkward asking staff, only <span class="num">50%</span> think staff are knowledgeable, and written info is trusted <span class="num">87%</span> vs <span class="num">75%</span> verbal (FSA/Ipsos 2025, n=780 <span class="tag m">M</span>).</p>
+    </div>
+    <div>
+      <h4 class="against">What is measured, against</h4>
+      <p>A meta-analysis of 50 choice-overload experiments finds a mean effect "virtually zero" and "more is better" for food when preferences are clear (Scheibehenne et al. 2010 <span class="tag m">M</span>).</p>
+      <p><span class="num">51%</span> of 4,189 foreign tourists leaving Japan reported no problems at all; only <span class="num">10.8%</span> cited signage including menus (Japan Tourism Agency 2024 <span class="tag m">M</span>).</p>
+      <p><span class="num">30%</span> of US QSR diners order the same thing every time; only <span class="num">13%</span> arrive undecided (CRI 2023 <span class="tag v">V</span>).</p>
+      <p><b>No survey anywhere, and none in India, measures "I did not recognise the dish" or "I ordered the wrong thing and regretted it".</b> This is the seniors' strongest point and the cheapest hole to fill.</p>
+    </div>
+  </div>
+
+  <h3>India's version of the pain is linguistic and religious, not allergenic</h3>
+  <p>Only <span class="num">10.6%</span> of Indians reported any English in the 2011 Census and fluent speakers are nearer <span class="num">3-6%</span> (Census 2011; Lok Foundation 2019 <span class="tag m">M</span>). An English-only menu in a metro restaurant is partly unreadable for a large share of migrants and domestic travellers, and domestic tourism hit <span class="num">428 crore</span> visits in 2025 against <span class="num">91 lakh</span> foreign arrivals <span class="tag m">M</span>. The unfamiliar-menu moment in India is overwhelmingly domestic, which is why "any Indian language" matters more than "English for tourists".</p>
+  <p><span class="num">39%</span> of Indian adults self-describe as vegetarian and <span class="num">81%</span> limit meat in some way (Pew 2021 <span class="tag m">M</span>). India has no national food-allergy prevalence figure at all, and FSSAI's menu-labelling guidance (Feb 2022) binds only chains with ten or more outlets. The independent Thai or Korean restaurant has no duty to say whether the broth has fish sauce. That is an argument for a trusted explainer, and a warning that Tabled would hold liability-adjacent information the restaurant itself is not required to verify.</p>
+  <p>Exposure is growing fast from a small base: Korean orders <span class="num">+50%</span> YoY (Swiggy, July 2025 <span class="tag v">V</span>), growth indices of <span class="num">17x</span> Korean, <span class="num">6x</span> Vietnamese, hyper-regional Indian categories <span class="num">2-8x</span> faster than mainstream (Swiggy-Kearney 2025 <span class="tag v">V</span>). Against that, biryani was Zomato's top dish for the ninth year and India had only about 528 Japanese restaurants in late 2025. The bigger unfamiliarity engine is intra-Indian: Chettinad, Kerala, Northeast, Kashmiri and Goan menus served to a migrant population that does not know them <span class="tag i">I</span>.</p>
+  <div class="note">
+    <div class="k">Sharpest segment, by inference</div>
+    <p>Organised casual dining and cafes in the top eight metros, serving non-native (Pan-Asian, Korean, Japanese, Mediterranean) or hyper-regional Indian menus, to young, partly vegetarian or Jain, mixed-language parties. Fine dining has a captain who already explains; QSR and street food have neither the menu length nor the margin. The seniors' "most people manage fine" is right for the biryani-and-North-Indian core and wrong for this segment, which is also where NRAI says the growth is.</p>
+  </div>
+
+  <!-- 2. OBJECTION 1 -->
+  <div class="eyebrow section-eyebrow">02 · Objection one</div>
+  <h2>"Diners will just Google it." True, and the defence is provenance</h2>
+  <p class="lede">Concede capability outright. Google Search Live launched in India in October 2025 in English and Hindi, AI Mode covers seven more Indian languages, Ask Maps chat went live for the US and India in March 2026, and by August 2026 Maps could order a dish through Square and Toast. Tabled must never pitch "the phone cannot do this".</p>
+
+  <figure>
+    <div class="fig-scroll">
+      <svg viewBox="0 0 960 420" role="img" aria-label="Two pipelines side by side. Google's answer is built from crowd menu photos, strangers' reviews, web recipes and owner uploads through a general model, producing a generic answer about a dish in general. Tabled's answer is built from the kitchen's allergen sheet, this plate's photo and video, spice and portion calibration and tonight's availability, producing a restaurant-specific answer. A dashed arrow shows Tabled pushing the verified menu to Google Business Profile so Google becomes distribution.">
+        <defs>
+          <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker>
+          <marker id="arr2A" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--accent)"/></marker>
+        </defs>
+        <text x="40" y="28" class="k">GOOGLE, GEMINI, LENS, ASK MAPS</text>
+        <text x="520" y="28" class="k a">TABLED HOST</text>
+        <line x1="480" y1="12" x2="480" y2="400" class="band"/>
+
+        <rect x="40" y="56" width="180" height="40" rx="3" class="box soft"/><text x="130" y="81" text-anchor="middle">Crowd menu photos</text>
+        <rect x="40" y="106" width="180" height="40" rx="3" class="box soft"/><text x="130" y="131" text-anchor="middle">Strangers' reviews</text>
+        <rect x="40" y="156" width="180" height="40" rx="3" class="box soft"/><text x="130" y="181" text-anchor="middle">Web recipes</text>
+        <rect x="40" y="206" width="180" height="40" rx="3" class="box soft"/><text x="130" y="226" text-anchor="middle">Owner uploads</text><text x="130" y="240" text-anchor="middle" class="s">AI menu tool invented prices</text>
+        <path d="M220 76 H250 V150 H278" class="edge" marker-end="url(#arr2)"/>
+        <path d="M220 126 H250" class="edge"/>
+        <path d="M220 176 H250" class="edge"/>
+        <path d="M220 226 H250 V150" class="edge"/>
+        <rect x="280" y="120" width="150" height="60" rx="3" class="box"/>
+        <text x="355" y="146" text-anchor="middle" class="t">General model</text>
+        <text x="355" y="164" text-anchor="middle" class="s">"not every dish gets added"</text>
+        <path d="M355 180 V258" class="edge" marker-end="url(#arr2)"/>
+        <rect x="260" y="260" width="190" height="78" rx="3" class="box"/>
+        <text x="355" y="284" text-anchor="middle" class="t">"a Khow Suey"</text>
+        <text x="355" y="302" text-anchor="middle" class="s">generic; audio-only in Live;</text>
+        <text x="355" y="318" text-anchor="middle" class="s">hallucinates on unfamiliar items</text>
+
+        <rect x="520" y="56" width="200" height="40" rx="3" class="box"/><text x="620" y="81" text-anchor="middle">Kitchen allergen sheet</text>
+        <rect x="520" y="106" width="200" height="40" rx="3" class="box"/><text x="620" y="131" text-anchor="middle">This plate's photo and video</text>
+        <rect x="520" y="156" width="200" height="40" rx="3" class="box"/><text x="620" y="181" text-anchor="middle">Spice and portion, calibrated</text>
+        <rect x="520" y="206" width="200" height="40" rx="3" class="box"/><text x="620" y="231" text-anchor="middle">Tonight's menu and availability</text>
+        <path d="M720 76 H750 V150 H778" class="edge hi" marker-end="url(#arr2A)"/>
+        <path d="M720 126 H750" class="edge hi"/>
+        <path d="M720 176 H750" class="edge hi"/>
+        <path d="M720 226 H750 V150" class="edge hi"/>
+        <rect x="780" y="120" width="150" height="60" rx="3" class="box hi"/>
+        <text x="855" y="146" text-anchor="middle" class="t">Host</text>
+        <text x="855" y="164" text-anchor="middle" class="s">plus what you told it</text>
+        <path d="M855 180 V258" class="edge hi" marker-end="url(#arr2A)"/>
+        <rect x="750" y="260" width="190" height="78" rx="3" class="box hi"/>
+        <text x="845" y="284" text-anchor="middle" class="t">"this Khow Suey, for you"</text>
+        <text x="845" y="302" text-anchor="middle" class="s">Jain or veg, mild, in Kannada,</text>
+        <text x="845" y="318" text-anchor="middle" class="s">on screen, one tap per dish</text>
+
+        <path d="M780 150 H760 V380 H130 V248" class="edge dash dim" marker-end="url(#arr2)"/>
+        <text x="455" y="398" text-anchor="middle" class="s">Tabled pushes the verified structured menu to Google Business Profile, so Google becomes distribution rather than a rival</text>
+      </svg>
+    </div>
+    <figcaption><b>Figure 2.</b> Same question, different inputs. Google answers about the dish in general from crowd data; the host answers about this kitchen's plate from data the restaurant verified. The dashed path is the strategic move: feed Google rather than fight it.</figcaption>
+  </figure>
+
+  <div class="cols">
+    <div>
+      <h4>What the phone does today</h4>
+      <ul>
+        <li>Google Lens has highlighted "popular dishes" on a photographed menu since 2019, from the restaurant's Maps listing <span class="tag m">M</span>.</li>
+        <li>Search Live in India from 8 Oct 2025, English and Hindi; "India is Google's largest user base for voice and visual search" <span class="tag m">M</span>. About a third of Indian search is spoken (Google SVP, 2023 <span class="tag m">M</span>).</li>
+        <li>Ask Maps per-place chat from 12 March 2026, US and India first; ordering via Square and Toast from 6 Aug 2026 <span class="tag m">M</span>.</li>
+        <li>Yelp Menu Vision (Oct 2025) and OpenTable Concierge (July 2025, 60,000 restaurants) answer "what to order" from menus and reviews.</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Where it falls short, with evidence</h4>
+      <ul>
+        <li>Lens dish matching needs an earlier user's menu photo in Google's database; Maps says "not every dish gets added" <span class="tag m">M</span>. The 2025 Lens redesign removed any Dining mode.</li>
+        <li>Gemini Live camera is audio-only, "you simply can't trust the information blindly" (9to5Google hands-on, 2025 <span class="tag m">M</span>, anecdotal). 72% of Indians usually dine with family: a phone held up over the table is a poor fit.</li>
+        <li>Allergens: ChatGPT put almond milk into "nut-free" diets (Clinical Nutrition 2023 <span class="tag m">M</span>); The Verge, Oct 2026, reports servers facing diners who dispute shellfish warnings "because ChatGPT disagrees" (secondary summary, verify before quoting).</li>
+        <li>Crowd and AI menu data fails visibly: Google's Business Profile menu tool invented prices; Zomato pulled AI dish images (Aug 2024) and auto-described "Chicken Pops" with chickenpox symptoms (July 2025) <span class="tag m">M</span>.</li>
+        <li>No one has timed seconds per dish. From help pages, a Lens lookup is 5-6 deliberate actions per item; a QR host loaded once is one tap, already scoped to the restaurant <span class="tag i">I</span>.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="note">
+    <div class="k">Residual risk</div>
+    <p>Google is assembling the pieces to close the provenance gap: AI menu generation in Business Profile, AI menu overviews in test (Sept 2025), Ask Maps, Gemini API grounding on Maps, and "Ask Maps to order food" strings in a July 2026 teardown. An "ask about this menu" feature for Indian restaurants in 12-18 months is plausible. But Google needs the restaurant to feed it verified structured menu data and offers no revenue share or CRM for doing so. That chore is the one Tabled would own. Push the menu to Google on the restaurant's behalf and Google becomes a distribution channel.</p>
+  </div>
+
+  <!-- 3. OBJECTION 3 -->
+  <div class="eyebrow section-eyebrow">03 · Objection three</div>
+  <h2>"Too occasional." Once a month per diner, a few tables a day, 133 million tables a year</h2>
+  <p class="lede">The seniors are right about frequency per person and per restaurant, and the estimate below does not pretend otherwise. The widely quoted "Indians dine out 7.9 times a month" blends dine-out with order-in; NRAI's own city chapters put pure dine-out at 3.09 (Hyderabad) to 3.6 (Chennai) a month, and Bain-Swiggy calls eating out in India "a special event" at about 5 a month versus 25-30 in the US and China.</p>
+
+  <figure>
+    <div class="fig-scroll">
+      <svg viewBox="0 0 960 310" role="img" aria-label="Bottom-up estimate: 70 million eating-out consumers in the top eight metros times 40 dine-outs a year gives 2.8 billion visits, 40 percent table-service gives 1.1 billion, divided by a party of 3 gives 370 million tables, times a 0.36 chance that someone at the table meets a dish they do not recognise gives 133 million table-occasions a year, range 42 to 307 million. Per restaurant, 80,000 outlets means about 13 tables a day each, of which about 4.5 contain the moment.">
+        <defs>
+          <marker id="arr3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker>
+        </defs>
+        <text x="20" y="26" class="k">AGGREGATE, TOP 8 METROS, PER YEAR</text>
+        <rect x="20" y="50" width="150" height="76" rx="3" class="box"/>
+        <text x="95" y="78" text-anchor="middle" class="t">70m consumers</text>
+        <text x="95" y="96" text-anchor="middle" class="s">who eat out</text>
+        <text x="95" y="112" text-anchor="middle" class="s">range 50-90m · I</text>
+        <path d="M170 88 H208" class="edge" marker-end="url(#arr3)"/>
+        <text x="189" y="76" text-anchor="middle" class="k">×40/yr</text>
+        <rect x="210" y="50" width="150" height="76" rx="3" class="box"/>
+        <text x="285" y="78" text-anchor="middle" class="t">2.8bn visits</text>
+        <text x="285" y="96" text-anchor="middle" class="s">3.09-3.6 dine-outs</text>
+        <text x="285" y="112" text-anchor="middle" class="s">a month · NRAI 2024</text>
+        <path d="M360 88 H398" class="edge" marker-end="url(#arr3)"/>
+        <text x="379" y="76" text-anchor="middle" class="k">×40%</text>
+        <rect x="400" y="50" width="150" height="76" rx="3" class="box"/>
+        <text x="475" y="78" text-anchor="middle" class="t">1.1bn table-service</text>
+        <text x="475" y="96" text-anchor="middle" class="s">casual, fine, cafe;</text>
+        <text x="475" y="112" text-anchor="middle" class="s">not QSR or street · I</text>
+        <path d="M550 88 H588" class="edge" marker-end="url(#arr3)"/>
+        <text x="569" y="76" text-anchor="middle" class="k">÷3</text>
+        <rect x="590" y="50" width="150" height="76" rx="3" class="box"/>
+        <text x="665" y="78" text-anchor="middle" class="t">370m tables</text>
+        <text x="665" y="96" text-anchor="middle" class="s">72% dine with family,</text>
+        <text x="665" y="112" text-anchor="middle" class="s">12% alone · Rakuten 2025</text>
+        <path d="M740 88 H778" class="edge" marker-end="url(#arr3)"/>
+        <text x="759" y="76" text-anchor="middle" class="k">×0.36</text>
+        <rect x="780" y="50" width="160" height="76" rx="3" class="box hi"/>
+        <text x="860" y="78" text-anchor="middle" class="t">133m with the moment</text>
+        <text x="860" y="96" text-anchor="middle" class="s">range 42-307m</text>
+        <text x="860" y="112" text-anchor="middle" class="s">~200m nationally · I</text>
+        <text x="780" y="150" class="s">The 0.36 is the weakest link: no survey measures it. It assumes 30% of tables are at an "unfamiliar" venue and</text>
+        <text x="780" y="166" class="s">a party of 3 with per-person odds of 0.50 there and 0.10 at familiar places.</text>
+
+        <line x1="20" y1="196" x2="940" y2="196" class="band"/>
+        <text x="20" y="222" class="k">PER RESTAURANT, THE SENIOR'S POINT RESTATED</text>
+        <rect x="20" y="240" width="220" height="54" rx="3" class="box soft"/>
+        <text x="130" y="262" text-anchor="middle" class="t">~80,000 outlets</text>
+        <text x="130" y="280" text-anchor="middle" class="s">table-service, 8 metros · from Hyderabad counts</text>
+        <path d="M240 267 H278" class="edge" marker-end="url(#arr3)"/>
+        <rect x="280" y="240" width="220" height="54" rx="3" class="box soft"/>
+        <text x="390" y="262" text-anchor="middle" class="t">~13 tables a day each</text>
+        <text x="390" y="280" text-anchor="middle" class="s">low for a real casual-dining room</text>
+        <path d="M500 267 H538" class="edge" marker-end="url(#arr3)"/>
+        <rect x="540" y="240" width="220" height="54" rx="3" class="box soft"/>
+        <text x="650" y="262" text-anchor="middle" class="t">~4.5 with the moment</text>
+        <text x="650" y="280" text-anchor="middle" class="s">a few tables a day: not a unit of value</text>
+      </svg>
+    </div>
+    <figcaption><b>Figure 3.</b> The first attempt found anywhere to size the "unfamiliar dish at the table" moment for India. Occasion counts are sourced; the probability that a table contains the moment is an assumption. Both rows are honest: big in aggregate, thin per venue.</figcaption>
+  </figure>
+
+  <div class="tbl">
+    <table class="compact">
+      <thead><tr><th>Step</th><th>Low</th><th>Base</th><th>High</th><th>Source or assumption</th></tr></thead>
+      <tbody>
+        <tr><td>Eating-out consumers, top 8 metros</td><td class="n">50m</td><td class="n">70m</td><td class="n">90m</td><td><span class="tag i">I</span> ~115-120m agglomeration population × 60% penetration; Bain's 320-340m national base, 70% in top 50 cities (2024 <span class="tag v">V</span>)</td></tr>
+        <tr><td>Dine-out visits per consumer per year</td><td class="n">36</td><td class="n">40</td><td class="n">44</td><td>NRAI 2023-24 city data, 3.09-3.6 a month <span class="tag v">V</span>; Zomato Gold 2019 members 2.8-3.3 <span class="tag v">V</span></td></tr>
+        <tr><td>Share that is table-service</td><td class="n">35%</td><td class="n">40%</td><td class="n">45%</td><td><span class="tag i">I</span> casual dining is 48% of organised value (NRAI FY24 <span class="tag v">V</span>); Rakuten 2025 venue mix</td></tr>
+        <tr><td>Party size</td><td class="n">3.0</td><td class="n">3.0</td><td class="n">2.8</td><td><span class="tag i">I</span> 72% dine with family, 12% alone (Rakuten 2025 <span class="tag v">V</span>)</td></tr>
+        <tr><td><b>Table-occasions per year</b></td><td class="n">~210m</td><td class="n">~370m</td><td class="n">~640m</td><td>Arithmetic</td></tr>
+        <tr><td>Share at an "unfamiliar" venue</td><td class="n">20%</td><td class="n">30%</td><td class="n">40%</td><td><span class="tag i">I</span> no direct source; 6+ restaurants and 3+ cuisines a year (Bain 2024 <span class="tag v">V</span>); 17x Korean, 2-8x hyper-regional growth (2025 <span class="tag v">V</span>)</td></tr>
+        <tr><td>P(someone at the table meets an unknown dish they are considering)</td><td class="n">0.20</td><td class="n">0.36</td><td class="n">0.48</td><td><span class="tag i">I</span> per-person 0.35/0.50/0.55 at unfamiliar venues, 0.05/0.10/0.15 at familiar; only anchor is 13% undecided and 70% not locked in (CRI 2023 <span class="tag v">V</span>, QSR)</td></tr>
+        <tr><td><b>Tables containing the moment</b></td><td class="n"><b>~42m</b></td><td class="n"><b>~133m</b></td><td class="n"><b>~307m</b></td><td>Product. Rest of India adds roughly 1.5x for ~200m nationally, weaker because frequency and non-native density are lower</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Sanity checks: Zomato alone logged <span class="num">1.25 crore</span> table reservations in Delhi in 2024 <span class="tag v">V</span>, about 13% of the estimated Delhi NCR table-occasions, consistent with Rakuten's 45% "usually reserve" once walk-ins and phone bookings are netted out. The 2019 Zomato Gold frequency matches the 2023-24 NRAI city figures. Tier II and III cities grew from 21% to 32% of the market (2016-2023, NRAI) and dining-out growth outside the top eight is twice that inside (Swiggy-Kearney 2025 <span class="tag v">V</span>).</p>
+  <div class="note">
+    <div class="k">The central finding</div>
+    <p>"Too occasional" is true per diner (about one in three table-service visits) and per restaurant (a few tables a day). It is false in aggregate, and the share is rising with non-native cuisines, hyper-regional menus, pre-booked tables growing 7x faster than walk-ins, and nine in ten Indians unable to read an English menu fluently. The business consequence: <b>Tabled cannot be priced on the confused table. The restaurant pays for every table, and the unfamiliar-dish moment is the demo, not the unit of value.</b></p>
+  </div>
+
+  <!-- 4. OBJECTION 2 -->
+  <div class="eyebrow section-eyebrow">04 · Objection two</div>
+  <h2>"Restaurants won't pay." Rs 1,000 is the software anchor, Rs 15,000 the marketing anchor</h2>
+  <p class="lede">QR ordering in India has already been commoditised to zero. If an owner files Tabled under "software", the Petpooja comparison kills anything above Rs 3,000 a month. The money that exists sits in a different line, and positioning decides which line applies.</p>
+
+  <div class="tbl">
+    <table class="compact">
+      <thead><tr><th>Price per outlet per month</th><th>What the owner compares it to</th><th>Who buys at this level <span class="tag i">I</span></th></tr></thead>
+      <tbody>
+        <tr><td class="n">Rs 0-1,000</td><td>Orderzy (free); NWaiter Rs 999 with vernacular AI voice ordering, 9 Indian languages plus Hinglish, 60 tables; DineOpen from ~Rs 1,700</td><td>Any outlet. Commodity QR ordering. No room for the cost of verified content.</td></tr>
+        <tr><td class="n">Rs 1,500-3,000</td><td>Petpooja Operations with Scan &amp; QR Order, captain app and KDS bundled: Rs 20-30k a year (~Rs 1,700-2,500 a month); Posist Rs 2,500-8,000 (competitor estimate)</td><td>Single independents filing it as software. Viable only as a volume play once a pooled uplift number exists.</td></tr>
+        <tr><td class="n">Rs 5,000-15,000</td><td>Petpooja Marketing Manager (CRM, loyalty, feedback QR) Rs 20-40k a year; Zomato ads Rs 15,000-75,000 a month <span class="tag v">V</span></td><td><b>3-20 outlet casual-dining and cafe groups filing it as marketing or guest experience</b>, bought with an insight dashboard and a review story.</td></tr>
+        <tr><td class="n">Rs 15,000+</td><td>Zomato ad budgets, agency retainers; dine-in pay-via-app took 4-12% per bill plus a 15-40% forced discount (NRAI advisory 2022 <span class="tag m">M</span>)</td><td>Multi-outlet groups and hotels with a named ROI owner.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cols">
+    <div>
+      <h4>Affordability is not the problem, observability is</h4>
+      <p>Illustrative 60-seat Bengaluru or Mumbai restaurant <span class="tag i">I</span>: 100 covers a day at Rs 600 is about <span class="num">Rs 18 lakh</span> a month; after food (~30%), labour (28-32%), rent (15%), utilities and other, it keeps roughly <span class="num">Rs 2 lakh</span>, an 11% pre-tax margin, consistent with vendor estimates of 5-15% net and "sub 20% EBITDA".</p>
+      <p>Break-even revenue lift: <span class="num">0.17%</span> for Rs 3,000 a month, <span class="num">0.56%</span> for Rs 10,000, <span class="num">1.4%</span> for Rs 25,000. Even pessimistic uplift claims clear those. But a single owner cannot see a sub-2% lift in a noisy P&amp;L, so the sale rests on trust and visible proxies: scan counts, feedback volume, reviews, a dashboard.</p>
+      <p>Western prices do not transfer: Sunday $199-299 plus $5 per QR, Popmenu $179-499, Owner.com $249 plus 5%, IAMenu EUR 19-69. At Rs 17,000-42,000 a month those are 8-15x Indian software prices for equivalent scope.</p>
+    </div>
+    <div>
+      <h4>The uplift evidence is vendor-only</h4>
+      <p>Sunday 15% spend, 12% baskets (2022 <span class="tag v">V</span>); me&amp;u "up to 40%" with no method <span class="tag v">V</span>; Toast Mobile Order &amp; Pay 10-12% volume (2022 <span class="tag v">V</span>); photos sell 6.5% more (Deliveroo via a vendor <span class="tag v">V</span>). The closest to a controlled result is Toast's 2025 Coca-Cola pilot: <span class="num">15%</span> on one beverage line across <span class="num">440</span> US locations over eight weeks against a control, self-reported. It took 440 locations to show 15% on one line.</p>
+      <p>The only causally identified revenue effects are about ratings: an extra Yelp star raised independents' revenue <span class="num">5-9%</span> (Luca, HBS <span class="tag m">M</span>); a half-star raised prime-time sell-outs 19 points (Anderson and Magruder 2012 <span class="tag m">M</span>). If a host that reduces disappointing orders moved a Google rating by half a star, that is roughly Rs 45,000-80,000 a month on the illustrative restaurant <span class="tag i">I</span>, an upper bound with no Indian replication.</p>
+      <p>Retention: regulars are about <span class="num">7%</span> of guests but up to <span class="num">50%</span> of orders; 48% feel most valued when remembered, 30% get it (Toast and Resy, Q1 2026 <span class="tag v">V</span>).</p>
+    </div>
+  </div>
+
+  <h3>The QR backlash is severe and must be answered in the product</h3>
+  <ul>
+    <li>The one peer-reviewed study on QR menus: they <b>reduce customer loyalty</b> versus paper through perceived inconvenience (Journal of Hospitality and Tourism Management 2024/25 <span class="tag m">M</span>).</li>
+    <li>US usage rose from 42% (2022) to 65% (2025) while only <span class="num">37%</span> like it and <span class="num">58%</span> want paper back (Ipsos 2025 <span class="tag m">M</span>); 81% prefer physical menus (Toast 2024 <span class="tag v">V</span>); <span class="num">66%</span> dislike getting a phone out at the start of a meal (Technomic 2022 <span class="tag v">V</span>).</li>
+    <li>One restaurant group saw check averages fall <span class="num">10%</span> with QR menus because diners never scrolled to dessert (WSJ, secondhand <span class="tag v">V</span>). Twin Cities operators dropped QR despite $4-5k a year in printing savings (Axios 2023 <span class="tag m">M</span>).</li>
+    <li>Mr Yum and me&amp;u merged after both cut staff (2023); Sunday exited 60% of its markets (2022). Only <span class="num">6%</span> of US operators use AI for customer orders (NRA 2026 <span class="tag m">M</span>).</li>
+    <li>India has no diner survey and no owner discourse on AI table hosts at all. The category does not exist in Indian owners' minds: there is no latent demand to tap, only demand to create <span class="tag i">I</span>. The one Indian data point is a May 2026 Pune incident where a staffer allegedly pulled a diner's number from the QR system.</li>
+  </ul>
+  <p>Read correctly, the backlash is a design brief. Diners punish QR when it is a worse menu than paper (small fonts, no overview, forced phone-out) and tolerate it when it removes a wait. The 10% check decline from unscrolled menus is the strongest argument for narrowing by questions; the loyalty penalty is the argument for leaving the paper menu on the table and making the host additive. Both are arguments, not evidence, and need Tabled's own A/B data.</p>
+
+  <!-- 5. OBJECTION 4 -->
+  <div class="eyebrow section-eyebrow">05 · Objection four</div>
+  <h2>"Zomato or Google could add it in a week." They could, and have no reason to</h2>
+  <p class="lede">Nobody with funding sells a diner-facing AI table host in India in October 2026. The POS players sell plain QR ordering where staff still validate each order before the kitchen ticket. The aggregators' AI points at support, delivery and discovery. None of it touches the ten minutes between sitting down and ordering.</p>
+
+  <div class="tbl">
+    <table class="wide compact">
+      <thead><tr><th>Player, Oct 2026</th><th>At the table</th><th>Explains dishes?</th><th>Restaurant-verified data?</th><th>Per-venue memory?</th><th>Dish-level feedback?</th><th>India?</th><th>Price</th></tr></thead>
+      <tbody>
+        <tr><td>Google Lens / Search Live / Ask Maps</td><td>Translate, popular dishes from crowd photos, voice Q&amp;A, ordering via Square and Toast (Aug 2026)</td><td>Generic, yes</td><td>No; AI menu tool invented prices</td><td>No</td><td>No</td><td>Yes, Hindi plus 7 languages in AI Mode</td><td class="n">Free</td></tr>
+        <tr><td>Zomato District / Swiggy Dineout</td><td>Booking, discounts, pay-via-app; Gold-only pre-visit chat; MCP and Sarvam voice for bookings</td><td>Pre-visit only</td><td>Delivery menu data (chickenpox incident)</td><td>Aggregator-owned</td><td>No; Zomato dropped sub-ratings</td><td>Yes</td><td class="n">Memberships; 4-12% dine-in commission (2022)</td></tr>
+        <tr><td>Petpooja / Restroworks</td><td>QR scan-and-order into POS, captain app, KDS</td><td>No</td><td>Menu and KOT, no explanation layer</td><td>OTP phone only</td><td>Feedback QR (Marketing tier)</td><td>100k+ / 25k+ outlets</td><td class="n">Rs 20-40k a year</td></tr>
+        <tr><td>NWaiter / DineOpen</td><td>QR menu with vernacular voice order-taking</td><td>No</td><td>Restaurant menu, unverified</td><td>No</td><td>No</td><td>Yes, unfunded</td><td class="n">Rs 999 / $20-99 a month</td></tr>
+        <tr><td>OpenTable Concierge / Yelp Menu Vision</td><td>Pre-visit Q&amp;A from menus and reviews; camera on a paper menu shows photos and reviews</td><td>From reviews</td><td>No</td><td>Planned, not shipped</td><td>No</td><td>No</td><td class="n">Free to diner</td></tr>
+        <tr><td>Sunday / Qlub / me&amp;u / GoTab / DoorDash Tableside</td><td>QR order and pay; payments margin</td><td>No</td><td>Menu only</td><td>Some CRM</td><td>Toast Pay thumbs per item</td><td>No</td><td class="n">$199-299 a month plus payments</td></tr>
+        <tr><td>IAMenu (EU) / ai-waiter.com / QRSur</td><td>QR menu with AI chat, allergen Q&amp;A, 90+ languages</td><td>Yes</td><td>Restaurant-entered</td><td>No</td><td>No</td><td>No, unfunded</td><td class="n">EUR 19-69 a month; $0.01 per request</td></tr>
+        <tr><td>Toast IQ / Owner.com / Dishio / YC 2025-26 / Slang / PolyAI</td><td>Operator dashboards, phone agents, menu engineering</td><td>No</td><td>Operator-side</td><td>CRM</td><td>Toast Pay item review</td><td>No</td><td class="n">$179-499 a month</td></tr>
+        <tr><td><b>Tabled, proposed</b></td><td>At-table host: photo and video, taste comparison, how to eat, verified allergens, 2-3 question narrowing, any Indian language, opt-in memory, regret tap</td><td><b>Yes, restaurant-specific</b></td><td><b>Yes, the point</b></td><td><b>Yes, opt-in, restaurant-side</b></td><td><b>Yes</b></td><td><b>Yes</b></td><td class="n">Open</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cols">
+    <div>
+      <h4>Why the incumbents stay away</h4>
+      <p>Zomato's District is being run for ticketing share: Q3 FY26 NOV Rs 2,587 crore, revenue Rs 300 crore, adjusted EBITDA loss <span class="num">Rs 121 crore</span>, management "doubling down" on movies and events <span class="tag m">M</span>. Swiggy Out-of-Home: Rs 1,245 crore GOV, +43%, 0.8% margin, 52,000 restaurant partners (Q4 FY26 <span class="tag m">M</span>). Both monetise the consumer side. A restaurant-paid, restaurant-branded host carries neither brand and generates no commission.</p>
+      <p>NRAI ran logout campaigns against Zomato Gold (2019) and Swiggy Dineout (2022) and warned dine-in EBITDA of 18-20% could fall to 4% under pay-via-app terms. If an aggregator shipped a table assistant it would live inside District or Dineout for members, putting the diner's memory on the aggregator's ledger, which is exactly what the trade body fought. A restaurant-owned host has a political ally in NRAI <span class="tag i">I</span>.</p>
+      <p>Google's dish AI is built from crowd photos, reviews and owner uploads; its revenue is ads and partner orders through Square and Toast. A restaurant-branded surface that keeps the diner off Maps does not help Google sell ads. Google is the discovery layer that drops the diner at the door.</p>
+    </div>
+    <div>
+      <h4>Where the money went, and what that says</h4>
+      <p>2025-26 venture money went to the phone (Slang AI $36M, PolyAI $86M at $750M, Yelp Host, Popmenu Answering) and to the operator dashboard (Toast IQ, Owner.com $240M at $2.3B, Dishio, YC's Certus, Zavo, Elyra, Marble), plus one $1.2B exit for restaurant-owned guest CRM when DoorDash bought SevenRooms (June 2025).</p>
+      <p>The at-table diner conversation is unfunded everywhere: a vacuum or a verdict. The one dead "AI waiter" (w8r.ai, 2020) and the pay-at-table cohort suggest the verdict was "no standalone business in a QR chat layer", not "no demand for help choosing" <span class="tag i">I</span>.</p>
+      <p>Chat, translation and Indian-language speech are rentable from Sarvam (22 languages, code-mixing), and Swiggy already rents them. <b>"Voice in Indian languages" is not a moat.</b> The defensible parts are the ones that are not an API call: restaurant-owned verified dish data and video, per-venue memory both sides consented to, and a post-meal loop that closes on the dish.</p>
+    </div>
+  </div>
+  <div class="note">
+    <div class="k">The real fast follower</div>
+    <p>Petpooja owns the POS and the kitchen ticket in 100,000+ outlets and raised a <b>Rs 137 crore Series C in September 2025</b> earmarked partly for "AI-driven automation" <span class="tag m">M</span>. A host that cannot push an order to the KOT is a brochure; a chat layer on Scan &amp; Order would reach more restaurants in a quarter than a startup can in years. Mitigation is integration, not competition: build on Petpooja and Restroworks first so the host is the front end of a stack the owner already pays for. If Tabled's pilots produce the uplift number first, Petpooja is a channel. If Petpooja produces it first, Tabled is a feature.</p>
+  </div>
+
+  <!-- 6. MEMORY -->
+  <div class="eyebrow section-eyebrow">06 · The second half of the idea</div>
+  <h2>Memory sells to the restaurant, the regret tap has precedent, and DPDP sets the terms</h2>
+  <p class="lede">Indians say they want tailoring more than anyone and are more privacy-anxious than anyone: 82% and 82% in the same survey. A stable third of diners find memory creepy. Two 2025 studies say the diner should set the profile, not have it inferred.</p>
+  <div class="cols">
+    <div>
+      <h4 class="for">Validated</h4>
+      <ul>
+        <li>Qualtrics Q3 2024, 23,730 consumers in 23 countries: <span class="num">82%</span> of Indians prefer tailored experiences (highest anywhere) and <span class="num">82%</span> are extremely or very privacy-concerned; comfort with location data only 23% <span class="tag m">M</span>.</li>
+        <li>US: 83% open to restaurant programmes; <span class="num">25%</span> say "welcome back" is the most valued staff moment; only 20% deterred by data requests (SevenRooms 2025 <span class="tag v">V</span>).</li>
+        <li>Active beats passive: customer-set personalisation lifts confidence 2.3x while passive personalisation makes regret <span class="num">3.2x</span> more likely (Gartner, June 2025 <span class="tag m">M</span>); self-customising guests show higher loyalty than guests whose stored data was silently applied, with identical outcomes (Cornell Hospitality Quarterly 2025 <span class="tag m">M</span>). <b>Design rule: the diner states "mild, no peanuts, Jain"; the host shows its working.</b></li>
+        <li>Restaurant-held memory is a proven business: Resy guest notes, SevenRooms ($1.2B exit). Resy explicitly tells venues to collect dietary restrictions.</li>
+        <li>The regret tap has a direct precedent: Toast Pay Menu Item Review asks thumbs up or down on up to three items after payment and sends operators a weekly item report; Tattle runs item-level surveys at ~10% participation, 94% completion <span class="tag v">V</span>.</li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="against">Unproven or contradicted</h4>
+      <ul>
+        <li>Diner-owned taste profiles have not worked at scale: Beli (~$5M raised, no disclosed users), DoorDash's Zesty launched Dec 2025 and shut April 2026, OpenTable's network-wide AI diner tags became a privacy story because diners had not knowingly consented.</li>
+        <li>Account creation at the table fights the current: Petpooja's winning pitch is "no app, no signup"; a US loyalty vendor admits optional post-order sign-up "rarely breaks single digits". <b>Phase 1 must work fully anonymous; the account belongs on WhatsApp before or after the visit.</b></li>
+        <li>Nobody publishes a regret rate as a restaurant KPI. Operators want a diagnosable cause, so the tap must carry a why (spice, portion, expectation set by the host). And a host that steers the order then measures regret is partly scoring its own error rate; present it as an honest loop.</li>
+        <li>No source shows Indians prefer voice specifically for menu tasks. A third of Indian search is spoken (Google 2023 <span class="tag m">M</span>) and WhatsApp carries 7 billion voice notes a day (2022 <span class="tag v">V</span>), which makes the pre-visit voice note a natural input, not a proven one.</li>
+      </ul>
+    </div>
+  </div>
+  <h3>DPDP makes memory workable and sets three hard rules</h3>
+  <p>The DPDP Rules were notified on 14 November 2025 with an 18-month phase-in, so consent, retention, erasure and security duties bite from about May 2027 <span class="tag m">M</span>. There is no statutory "sensitive data" tier, but hospitality counsel says dietary disclosures "can shade into health information", bundled consent fails, and the data fiduciary stays liable for its processor's lapses.</p>
+  <ul>
+    <li><b>One year of inactivity means erasure</b> (48 hours' notice), which conflicts with "remembers you across years". Dormant profiles must be deleted or re-consented.</li>
+    <li><b>Penalties to INR 2.5 billion per breach</b> make a dietary-data breach existential. Store hard constraints only, never free-text health notes.</li>
+    <li><b>Sharing with a restaurant has two legal shapes</b>: restaurant as Tabled's processor (Tabled liable for the waiter's misuse, as in Pune) or as its own fiduciary (needing a notice it will not write). Single-site restaurants will not run DPDP programmes, so Tabled carries compliance for them: a cost and a selling point.</li>
+  </ul>
+  <p>Abroad the wind is at Tabled's back: the UK FSA's March 2025 guidance says written allergen information "should always be available" alongside a staff conversation and accepts QR-linked allergen matrices with a non-digital fallback; the EU mandates allergen disclosure for restaurant food; UK courts have jailed an owner over a "no nuts" curry (Zaman, 2016) and prosecuted two more venues in 2025. In India the law gives no mandate, so <b>the Indian pitch leads with Jain, veg, spice and portion in the diner's language, and "verified allergens" is the global differentiator.</b></p>
+
+  <!-- 7. SCORECARD -->
+  <div class="eyebrow section-eyebrow">07 · Scorecard</div>
+  <h2>Fourteen claims in the thesis, graded</h2>
+  <div class="tbl">
+    <table class="compact">
+      <thead><tr><th>Claim</th><th>Status</th><th>Best evidence</th></tr></thead>
+      <tbody>
+        <tr><td>Diners find choosing hard</td><td><span class="st v">validated (West)</span> <span class="st u">unmeasured (India)</span></td><td>79% of 1,003 US adults, US Foods 2023 <span class="tag v">V</span>; 9 minutes deciding</td></tr>
+        <tr><td>Not knowing a dish is a real barrier</td><td><span class="st p">partly validated</span></td><td>Ambiguous names make photos backfire, IJHM 2017 <span class="tag m">M</span>; 40% don't know carne asada, Datassential <span class="tag v">V</span>; newcomer study, arXiv 2026 <span class="tag m">M</span> small</td></tr>
+        <tr><td>Sharpest among young, restricted and newcomer diners</td><td><span class="st v">validated</span></td><td>41% vs 15% by age, OnePoll 2023 <span class="tag v">V</span>; 38% awkward asking staff, FSA 2025 <span class="tag m">M</span>; 68% of allergic adults distressed, Allergy 2024 <span class="tag m">M</span></td></tr>
+        <tr><td>India has a distinctive version of the pain</td><td><span class="st p">validated by inference only</span></td><td>10.6% English, Census 2011 <span class="tag m">M</span>; 39% vegetarian, Pew 2021 <span class="tag m">M</span>; 17x Korean, Swiggy-Kearney 2025 <span class="tag v">V</span>; no Indian survey</td></tr>
+        <tr><td>Diners will scan a QR at the table for this</td><td><span class="st u">unproven, headwind</span></td><td>58% want paper back, Ipsos 2025 <span class="tag m">M</span>; 66% dislike phone-out, Technomic 2022 <span class="tag v">V</span>; QR reduces loyalty, JHTM 2024/25 <span class="tag m">M</span></td></tr>
+        <tr><td>Google cannot do this</td><td><span class="st c">contradicted</span></td><td>Search Live in Hindi in India, Oct 2025 <span class="tag m">M</span>; Ask Maps US and India, Mar 2026 <span class="tag m">M</span></td></tr>
+        <tr><td>Google cannot do this with restaurant-verified data</td><td><span class="st v">validated, for now</span></td><td>Crowd data; invented prices <span class="tag m">M</span>; "not every dish gets added" <span class="tag m">M</span>; Verge allergen disputes, Oct 2026 (secondary)</td></tr>
+        <tr><td>Better explanation lifts the check</td><td><span class="st u">vendor-only</span></td><td>Toast Coke pilot 15% on one line, 440 locations, 2025 <span class="tag v">V</span>; 10% decline from unscrolled QR <span class="tag v">V</span>; no independent dine-in study</td></tr>
+        <tr><td>Restaurants will pay for it as software</td><td><span class="st c">contradicted above Rs 3,000</span></td><td>Petpooja Rs 20-30k a year with QR bundled <span class="tag v">V</span>; NWaiter Rs 999 a month <span class="tag v">V</span></td></tr>
+        <tr><td>Restaurants will pay as marketing or guest experience</td><td><span class="st p">plausible, unproven</span></td><td>Zomato ads Rs 15-75k a month <span class="tag v">V</span>; commission resentment, NRAI 2022 <span class="tag m">M</span>; no owner discourse exists</td></tr>
+        <tr><td>Memory across visits is wanted</td><td><span class="st v">validated, restaurant-held</span> <span class="st u">unproven, diner-owned</span></td><td>48% value being remembered, Toast/Resy 2026 <span class="tag v">V</span>; 82% and 82%, Qualtrics 2024 <span class="tag m">M</span>; Zesty shut in 4 months <span class="tag m">M</span></td></tr>
+        <tr><td>A regret rate is valuable to the restaurant</td><td><span class="st p">mechanic has precedent, metric does not</span></td><td>Toast Pay item review <span class="tag v">V</span>; Tattle 10% participation <span class="tag v">V</span>; nobody publishes a regret KPI</td></tr>
+        <tr><td>Zomato, Swiggy or Google will build it</td><td><span class="st u">possible, off-strategy</span></td><td>District loss Rs 121 crore, Q3 FY26 <span class="tag m">M</span>; Swiggy rents Sarvam for GOV <span class="tag m">M</span>; NRAI logouts 2019, 2022 <span class="tag m">M</span></td></tr>
+        <tr><td>Petpooja will build it</td><td><span class="st c">live risk</span></td><td>Rs 137 crore Series C for AI, Sept 2025 <span class="tag m">M</span>; 100k+ outlets <span class="tag v">V</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 8. WHAT CHANGES -->
+  <div class="eyebrow section-eyebrow">08 · What changes</div>
+  <h2>Move the unit of value from the confused table to every cover</h2>
+  <p class="lede">A product sold on "explains the dish you don't know" is sold on a moment that happens at a few tables a day, against a free generic answer on every phone, into a software budget anchored at Rs 1,000 a month. The same product sold as the restaurant's own table layer fires on every cover and competes with the marketing budget.</p>
+
+  <figure>
+    <div class="fig-scroll">
+      <svg viewBox="0 0 960 380" role="img" aria-label="Before and after. Pitched today: the unit of value is the confused table, which fires on about four to five tables a day, competes with free Google, and is filed under software at one to three thousand rupees a month. Proposed: the unit of value is every cover, with ordering into the kitchen ticket, any Indian language, the narrowing flow, per-venue memory and dish feedback firing on every table; dish explanation becomes the demo, and it is filed under marketing at five to fifteen thousand rupees a month for groups.">
+        <defs>
+          <marker id="arr4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--accent)"/></marker>
+        </defs>
+        <text x="20" y="26" class="k">PITCHED TODAY</text>
+        <rect x="20" y="44" width="400" height="56" rx="3" class="box"/>
+        <text x="220" y="67" text-anchor="middle" class="t">Unit of value: the confused table</text>
+        <text x="220" y="86" text-anchor="middle" class="s">"explains the dish you don't know"</text>
+        <rect x="20" y="118" width="400" height="44" rx="3" class="box soft"/>
+        <text x="40" y="145">Fires on ~4-5 tables a day per restaurant</text>
+        <rect x="20" y="172" width="400" height="44" rx="3" class="box soft"/>
+        <text x="40" y="199">Competes with a free generic answer on every phone</text>
+        <rect x="20" y="226" width="400" height="44" rx="3" class="box soft"/>
+        <text x="40" y="253">Filed under software: anchor Rs 1,000-3,000 a month</text>
+        <rect x="20" y="280" width="400" height="44" rx="3" class="box soft"/>
+        <text x="40" y="307">Sold to single independents, who cannot see a 1% lift</text>
+
+        <path d="M440 190 H518" class="edge hi" marker-end="url(#arr4)"/>
+        <text x="480" y="176" text-anchor="middle" class="k a">REPOSITION</text>
+
+        <text x="540" y="26" class="k a">PROPOSED</text>
+        <rect x="540" y="44" width="400" height="56" rx="3" class="box hi"/>
+        <text x="740" y="67" text-anchor="middle" class="t">Unit of value: every cover</text>
+        <text x="740" y="86" text-anchor="middle" class="s">the restaurant's own table layer</text>
+        <rect x="540" y="118" width="195" height="44" rx="3" class="box"/>
+        <text x="637" y="145" text-anchor="middle">Orders into the KOT</text>
+        <rect x="745" y="118" width="195" height="44" rx="3" class="box"/>
+        <text x="842" y="145" text-anchor="middle">Any Indian language</text>
+        <rect x="540" y="172" width="195" height="44" rx="3" class="box"/>
+        <text x="637" y="199" text-anchor="middle">Narrowing flow</text>
+        <rect x="745" y="172" width="195" height="44" rx="3" class="box"/>
+        <text x="842" y="199" text-anchor="middle">Per-venue memory</text>
+        <rect x="540" y="226" width="195" height="44" rx="3" class="box"/>
+        <text x="637" y="253" text-anchor="middle">Dish feedback to kitchen</text>
+        <rect x="745" y="226" width="195" height="44" rx="3" class="box good"/>
+        <text x="842" y="246" text-anchor="middle" class="t">Explains every dish</text>
+        <text x="842" y="262" text-anchor="middle" class="s">the demo that wins the meeting</text>
+        <rect x="540" y="280" width="400" height="44" rx="3" class="box soft"/>
+        <text x="560" y="307">Filed under marketing: Rs 5,000-15,000 a month, 3-20 outlet groups</text>
+        <text x="540" y="356" class="s">Paper menu stays on the table. Host is additive. First scan must be worth it with no memory yet.</text>
+      </svg>
+    </div>
+    <figcaption><b>Figure 4.</b> The same code, a different invoice. On the right, four of the five boxes fire on every table whether or not anyone is confused, which is what lets the restaurant pay for every cover.</figcaption>
+  </figure>
+
+  <ol class="steps">
+    <li><div><b>Sell the restaurant its own table layer that fires on every cover.</b><p>Ordering into the kitchen ticket through a Petpooja or Restroworks integration, any Indian language, the narrowing flow, per-venue memory, the dish-level feedback loop. "Explains every dish" is the demo that wins the meeting, not the line on the invoice.</p></div></li>
+    <li><div><b>Price against the marketing and guest-experience budget, not the software budget.</b><p>Rs 5,000-15,000 a month per outlet for groups, with an insight dashboard, feedback counts and a review story as the visible proxies. Rs 1,500-3,000 for single independents only once a pooled uplift number exists. A per-table-session fee (Rs 2-5) is worth testing; owners hate percentage-of-bill on dine-in, as the Zomato Pay backlash showed.</p></div></li>
+    <li><div><b>Pick the first buyer deliberately.</b><p>3-20 outlet casual-dining and cafe groups in Bengaluru, Mumbai, Delhi NCR and Hyderabad with long non-native or hyper-regional menus, mixed-language guests and a head of operations who reads dashboards.</p></div></li>
+    <li><div><b>Design against the QR backlash rather than arguing with it.</b><p>The paper menu stays. The host is additive. The first scan must be worth it with no memory yet. The feedback tap works anonymously. The account lives on WhatsApp before or after the visit, never at the table.</p></div></li>
+    <li><div><b>Stop pitching "the phone cannot do this" and pitch "this kitchen, tonight, for you".</b><p>Restaurant-supplied truth. Verified allergens as the global differentiator; Jain, veg, spice and portion in the diner's language as the Indian one. Push the restaurant's structured menu to Google Business Profile as a feature so Google becomes distribution.</p></div></li>
+  </ol>
+
+  <!-- 9. RESEARCH PLAN -->
+  <div class="eyebrow section-eyebrow">09 · Settle it cheaply</div>
+  <h2>Five studies before more code</h2>
+  <p class="lede">The two unknowns that matter most, how often the moment actually occurs and whether the host moves the check, are cheap to measure and nobody has measured them. Each gate below has a real "no" branch.</p>
+
+  <figure>
+    <div class="fig-scroll">
+      <svg viewBox="0 0 960 660" role="img" aria-label="Decision flow: an intercept survey of 300 to 500 diners at ten Bengaluru restaurants leads to a gate asking whether the moment occurs at a quarter or more of tables; yes leads to an alternating-week pilot at three to five outlets of one group, no leads to narrowing to non-native and regional menus only or stopping. The pilot leads to a gate on whether the check, attach rate or reviews move; yes leads to twenty owner interviews with a price ladder, no leads to integrating as a Petpooja feature rather than a product. The interviews lead to a gate on whether owners file it under marketing; yes leads to selling to three to twenty outlet groups at five to fifteen thousand rupees a month, no leads to a volume play needing a pooled uplift number. In parallel: a hands-on timing test of Lens, Search Live and Ask Maps on twenty dishes, table observation at ten restaurants, a QR count across two hundred restaurants, and a manual read of Reddit and Quora threads.">
+        <defs>
+          <marker id="arr5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker>
+          <marker id="arr5A" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--accent)"/></marker>
+        </defs>
+        <rect x="40" y="30" width="320" height="64" rx="3" class="box"/>
+        <text x="200" y="54" text-anchor="middle" class="t">1 · Intercept survey</text>
+        <text x="200" y="72" text-anchor="middle" class="s">300-500 departing diners, 10 Bengaluru restaurants:</text>
+        <text x="200" y="86" text-anchor="middle" class="s">Pan-Asian, hyper-regional, North Indian</text>
+        <path d="M200 94 V126" class="edge" marker-end="url(#arr5)"/>
+        <polygon points="60,160 200,128 340,160 200,192" class="box"/>
+        <text x="200" y="156" text-anchor="middle" class="t">Moment at 1 in 4</text>
+        <text x="200" y="172" text-anchor="middle" class="t">tables or more?</text>
+        <path d="M340 160 H558" class="edge dash" marker-end="url(#arr5)"/>
+        <text x="449" y="150" text-anchor="middle" class="k">NO</text>
+        <rect x="560" y="132" width="360" height="56" rx="3" class="box soft"/>
+        <text x="740" y="156" text-anchor="middle">Narrow to non-native and regional menus only,</text>
+        <text x="740" y="174" text-anchor="middle">or stop. India's first menu-confusion number either way.</text>
+        <path d="M200 192 V226" class="edge" marker-end="url(#arr5)"/>
+        <text x="212" y="214" class="k">YES</text>
+
+        <rect x="40" y="228" width="320" height="64" rx="3" class="box"/>
+        <text x="200" y="252" text-anchor="middle" class="t">2 · Alternating-week pilot</text>
+        <text x="200" y="270" text-anchor="middle" class="s">3-5 outlets of one group; scan rate, order value,</text>
+        <text x="200" y="284" text-anchor="middle" class="s">dessert and drink attach, send-backs, reviews vs off weeks</text>
+        <path d="M200 292 V324" class="edge" marker-end="url(#arr5)"/>
+        <polygon points="60,358 200,326 340,358 200,390" class="box"/>
+        <text x="200" y="354" text-anchor="middle" class="t">Check, attach</text>
+        <text x="200" y="370" text-anchor="middle" class="t">or reviews move?</text>
+        <path d="M340 358 H558" class="edge dash" marker-end="url(#arr5)"/>
+        <text x="449" y="348" text-anchor="middle" class="k">NO</text>
+        <rect x="560" y="330" width="360" height="56" rx="3" class="box soft"/>
+        <text x="740" y="354" text-anchor="middle">Integrate as a Petpooja or Restroworks feature,</text>
+        <text x="740" y="372" text-anchor="middle">not a standalone product.</text>
+        <path d="M200 390 V424" class="edge" marker-end="url(#arr5)"/>
+        <text x="212" y="412" class="k">YES</text>
+
+        <rect x="40" y="426" width="320" height="64" rx="3" class="box"/>
+        <text x="200" y="450" text-anchor="middle" class="t">3 · Twenty owner interviews</text>
+        <text x="200" y="468" text-anchor="middle" class="s">price ladder Rs 1,000 / 5,000 / 15,000 and one question:</text>
+        <text x="200" y="482" text-anchor="middle" class="s">which budget line would this come from?</text>
+        <path d="M200 490 V522" class="edge" marker-end="url(#arr5)"/>
+        <polygon points="60,556 200,524 340,556 200,588" class="box"/>
+        <text x="200" y="552" text-anchor="middle" class="t">Filed under</text>
+        <text x="200" y="568" text-anchor="middle" class="t">marketing?</text>
+        <path d="M340 556 H558" class="edge dash" marker-end="url(#arr5)"/>
+        <text x="449" y="546" text-anchor="middle" class="k">NO</text>
+        <rect x="560" y="528" width="360" height="56" rx="3" class="box soft"/>
+        <text x="740" y="552" text-anchor="middle">Volume play at Rs 1,500-3,000 a month,</text>
+        <text x="740" y="570" text-anchor="middle">only with a pooled uplift number to quote.</text>
+        <path d="M200 588 V618" class="edge hi" marker-end="url(#arr5A)"/>
+        <text x="212" y="608" class="k a">YES</text>
+        <rect x="40" y="620" width="320" height="34" rx="3" class="box hi"/>
+        <text x="200" y="642" text-anchor="middle" class="t">Sell to 3-20 outlet groups at Rs 5-15k a month</text>
+
+        <rect x="560" y="30" width="360" height="84" rx="3" class="box soft"/>
+        <text x="576" y="50" class="k">IN PARALLEL</text>
+        <text x="576" y="68" class="s">4 · Time Lens, Search Live and Ask Maps on 20 dishes at 5 restaurants</text>
+        <text x="576" y="84" class="s">5 · Watch 10 tables: waiter explanation minutes, language mismatch</text>
+        <text x="576" y="100" class="s">Count QR codes on tables across 200 restaurants; read r/bangalore, r/mumbai, Quora</text>
+      </svg>
+    </div>
+    <figcaption><b>Figure 5.</b> Each gate replaces an assumption in this memo with a measurement. The survey replaces the two unsourced steps in the frequency estimate; the pilot is the only route to an uplift number the literature cannot supply; the interviews decide which budget line the sale lives on.</figcaption>
+  </figure>
+
+  <!-- 10. GAPS -->
+  <div class="eyebrow section-eyebrow">10 · What this memo could not reach</div>
+  <h2>Gaps, stated</h2>
+  <ul>
+    <li>No Indian survey exists on menu confusion, QR sentiment or willingness to pay. Every India-specific claim here is by inference from language, diet and cuisine-growth data.</li>
+    <li>Reddit and Quora could not be fetched from this environment, so the verbatim Indian diner voice is missing. A manual read of r/bangalore, r/mumbai, r/FoodIndia and Quora India would add it in an afternoon.</li>
+    <li>No Indian restaurant-owner voices on AI table hosts surfaced anywhere, which is itself a finding: the category does not exist in owners' minds yet.</li>
+    <li>NRAI IFSR full tables are paywalled; several primary pages (Bain, Business Standard, Ministry of Tourism PDF) returned 403, so their figures come from search snippets and are flagged in the notes.</li>
+    <li>Ask Maps availability in India and The Verge's October 2026 allergen-dispute piece are cited through secondary sources. Check both before quoting externally.</li>
+    <li>No hands-on test of any assistant on a real Indian restaurant menu was run. Study 4 fixes this.</li>
+  </ul>
+  <div class="quiet">
+    Full report with 154 inline sources: <code>reports/Tabled pain validation.md</code>. The six research notes behind it, each with Takeaway, Cited Findings, Inferences and Gaps per question, are in <code>research_notes/Tabled pain validation/</code>. This page is <code>reports/tabled-pain-validation.html</code>.
+  </div>
+
+  <!-- 11. SOURCES -->
+  <div class="eyebrow section-eyebrow">11 · Key sources</div>
+  <h2>The sources that carry the argument</h2>
+  <p class="lede">A selection of the 154 citations, grouped by section. Tags as above.</p>
+  <h3>Diner pain</h3>
+  <ul class="srcs">
+    <li><a href="https://www.usfoods.com/our-services/business-trends/american-menu-choices.html">US Foods Diner Dispatch, Sept 2023</a> <span class="tag v">V</span></li>
+    <li><a href="https://studyfinds.com/menu-anxiety-restaurants/">OnePoll menu anxiety poll, June 2023</a> <span class="tag v">V</span></li>
+    <li><a href="https://fortune.com/2023/12/13/gen-z-menu-anxiety-eating-out-habits/">Prezzo Gen Z survey, Dec 2023</a> <span class="tag v">V</span></li>
+    <li><a href="https://qmro.qmul.ac.uk/xmlui/handle/123456789/54931">Hou, Yang and Sun, IJHM 2017, ambiguous names and photos</a> <span class="tag m">M</span></li>
+    <li><a href="https://arxiv.org/abs/2604.19088">Zhang and Chen, arXiv April 2026, cultural newcomers ordering</a> <span class="tag m">M</span></li>
+    <li><a href="https://science.food.gov.uk/article/142304-allergen-information-for-non-prepacked-foods-key-findings-from-consumers-and-food-service-workers">FSA/Ipsos allergen information research, 2025</a> <span class="tag m">M</span></li>
+    <li><a href="https://abcwest.cogs.indiana.edu/pmwiki/pdf/scheibehenne.options.2010.pdf">Scheibehenne et al. 2010 choice-overload meta-analysis</a> <span class="tag m">M</span></li>
+    <li><a href="https://soranews24.com/2025/05/08/survey-asks-foreign-tourists-what-bothered-them-in-japan-more-than-half-gave-same-answer/">Japan Tourism Agency departing-tourist survey, 2024</a> <span class="tag m">M</span></li>
+    <li><a href="https://fssai.gov.in/upload/uploadfiles/files/Guidance_Note_Labelling_23_02_2022.pdf">FSSAI menu labelling guidance, Feb 2022</a> <span class="tag m">M</span></li>
+    <li><a href="https://india.entrepreneur.com/news-and-trends/swiggy-kearney-report-projects-125-billion-food-market/500233">Swiggy-Kearney How India Eats, 2025</a> <span class="tag v">V</span></li>
+    <li><a href="https://www.businesstoday.in/latest/trends/story/gen-z-drives-korean-cuisine-craze-in-india-as-orders-jump-50-in-a-year-489092-2025-08-12">Swiggy Korean orders +50%, Aug 2025</a> <span class="tag v">V</span></li>
+    <li><a href="https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers_in_India">Census 2011 language figures</a> <span class="tag m">M</span></li>
+  </ul>
+  <h3>Google at the table</h3>
+  <ul class="srcs">
+    <li><a href="https://blog.google/intl/en-in/products/supercharging-search-for-india-new-languages-in-ai-mode-search-live-debuts/">Google India: Search Live and AI Mode languages, Oct 2025</a> <span class="tag m">M</span></li>
+    <li><a href="https://m.gsmarena.com/google_maps_gets_geminipowered_ask_maps_and_immersive_navigation-amp-71935.php">Ask Maps launch, March 2026</a> (secondary)</li>
+    <li><a href="https://www.droid-life.com/2026/08/06/google-maps-can-now-take-your-food-orders-via-gemini/">Maps ordering via Gemini, Aug 2026</a> <span class="tag m">M</span></li>
+    <li><a href="https://support.google.com/maps/answer/7321152?hl=en-IN">Google Maps help: popular dishes</a> <span class="tag m">M</span></li>
+    <li><a href="https://9to5google.com/2025/04/08/gemini-live-video-hands-on-the-world-facing-camera-weve-waited-for-video/">9to5Google Gemini Live camera hands-on, 2025</a> <span class="tag m">M</span></li>
+    <li><a href="https://ppc.land/google-launches-ai-powered-menu-creation-tool-for-business-profiles/">Google Business Profile AI menu tool invented prices</a> <span class="tag m">M</span></li>
+    <li><a href="https://www.sciencedirect.com/science/article/pii/S0899900723001053">ChatGPT nut-free diet errors, Clinical Nutrition 2023</a> <span class="tag m">M</span></li>
+    <li><a href="https://businesstoday.in/technology/news/story/zomato-to-ditch-ai-generated-food-images-after-customer-complaints-442158-2024-08-20">Zomato drops AI dish images, Aug 2024</a> <span class="tag m">M</span></li>
+    <li><a href="https://inc42.com/buzz/about-third-search-queries-india-spoken-top-google-exec/">A third of Indian search is spoken, Google 2023</a> <span class="tag m">M</span></li>
+  </ul>
+  <h3>Frequency and market</h3>
+  <ul class="srcs">
+    <li><a href="https://www.deccanchronicle.com/southern-states/telangana/hyderabads-food-services-industry-booms-nrais-2024-report-1809982">NRAI IFSR 2024 Hyderabad chapter</a> <span class="tag v">V</span></li>
+    <li><a href="https://www.business-standard.com/industry/news/food-delivery-market-to-grow-18-to-rs-2-trn-by-2030-bain-swiggy-report-124070300980_1.html">Bain-Swiggy How India Eats, July 2024</a> <span class="tag v">V</span></li>
+    <li><a href="https://insight.rakuten.com/wordpress/wp-content/uploads/RI-Dining-Out-2025.pdf">Rakuten Insight dining out APAC, May 2025</a> <span class="tag v">V</span></li>
+    <li><a href="https://indianfoodtimes.com/zomato-2024-year-end-report-9-crore-biryanis-5-crore-pizzas-125-crore-reservations-more">Zomato 2024 year-end report</a> <span class="tag v">V</span></li>
+    <li><a href="https://www.policyedge.in/p/domestic-tourism-surges-in-2025-but-foreign-arrivals-and-earnings-fall">India tourism statistics 2025</a> <span class="tag m">M</span></li>
+    <li><a href="https://atta.travel/resource/global-arrivals-reach-1-52bn-in-2025-africa-leads-as-demand-stays-strong.html">UN Tourism arrivals 2025</a> <span class="tag m">M</span></li>
+    <li><a href="https://invidis.com/sixteen-nine/2023/11/03/old-habits-die-hard-at-qsr-ordering-positions-cri-research/">CRI QSR ordering habits, 2023</a> <span class="tag v">V</span></li>
+  </ul>
+  <h3>Willingness to pay</h3>
+  <ul class="srcs">
+    <li><a href="https://www.petpooja.com/pricing">Petpooja pricing</a> <span class="tag v">V</span></li>
+    <li><a href="https://nwaiter.com/pricing">NWaiter pricing</a> <span class="tag v">V</span></li>
+    <li><a href="https://entrackr.com/news/petpooja-raises-155-mn-series-c-at-over-3x-valuation-premium-10512396">Petpooja Series C, Sept 2025</a> <span class="tag m">M</span></li>
+    <li><a href="https://www.medianama.com/2022/09/223-nrai-advisory-zomato-pay-swiggy-diner/">NRAI advisory on Zomato Pay and Swiggy Diner, 2022</a> <span class="tag m">M</span></li>
+    <li><a href="https://www.restaurantindia.in/article/zomato-ads-cost-is-restaurant-advertising-worth-it.16009">Zomato ad costs estimate</a> <span class="tag v">V</span></li>
+    <li><a href="https://pos.toasttab.com/au/products/toast-iq">Toast Coca-Cola menu pilot, 2025</a> <span class="tag v">V</span></li>
+    <li><a href="https://www.harvardmagazine.com/print/33472?page=all">Luca, Yelp star and revenue</a> <span class="tag m">M</span></li>
+    <li><a href="https://news.berkeley.edu/2012/09/04/yelp-reviews-boost-restaurant-business/">Anderson and Magruder 2012</a> <span class="tag m">M</span></li>
+    <li><a href="https://www.sciencedirect.com/science/article/abs/pii/S1447677024001190">QR menus and loyalty, JHTM 2024/25</a> <span class="tag m">M</span></li>
+    <li><a href="https://www.ipsos.com/en-us/qr-code-menus-are-growing-even-less-popular">Ipsos QR menu tracker, 2025</a> <span class="tag m">M</span></li>
+    <li><a href="https://www.axios.com/local/twin-cities/2023/04/10/resturants-ditching-qr-codes-twin-cities">Axios Twin Cities QR drop, 2023</a> <span class="tag m">M</span></li>
+    <li><a href="https://blog.resy.com/newsroom/the-regulars-report-2026-resy-toast/">Toast and Resy Regulars Report, 2026</a> <span class="tag v">V</span></li>
+    <li><a href="https://restaurantdive.com/news/national-restaurant-assocation-operator-artificial-intelligence-adoption/812418">NRA State of the Industry 2026, AI adoption</a> <span class="tag m">M</span></li>
+  </ul>
+  <h3>Competitors and incumbents</h3>
+  <ul class="srcs">
+    <li><a href="https://www.medianama.com/2026/01/223-eternal-doubling-down-district-despite-rising-losses/">Eternal Q3 FY26, District losses</a> <span class="tag m">M</span></li>
+    <li><a href="https://www.swiggy.com/corporate/wp-content/uploads/2026/05/Press-release_Q4FY26.pdf">Swiggy Q4 FY26 release</a> <span class="tag m">M</span></li>
+    <li><a href="https://storyboard18.com/digital/swiggy-partners-sarvam-to-enable-multilingual-voice-ordering-across-services-93251.html">Swiggy and Sarvam voice ordering, March 2026</a> <span class="tag m">M</span></li>
+    <li><a href="https://www.restroworks.com/llm-info/">Restroworks product summary, 2026</a> <span class="tag v">V</span></li>
+    <li><a href="https://seekingalpha.com/pr/20166333-opentable-launches-gen-ai-powered-concierge-to-arm-diners-with-instant-insights-for-its-60000">OpenTable Concierge, July 2025</a> <span class="tag v">V</span></li>
+    <li><a href="https://www.nasdaq.com/press-release/yelp-expands-ai-features-make-local-discovery-more-conversational-visual-and-seamless">Yelp Menu Vision, Oct 2025</a> <span class="tag v">V</span></li>
+    <li><a href="https://sevenrooms.com/press/DoorDash-Acquires-SevenRooms/">DoorDash acquires SevenRooms, 2025</a> <span class="tag m">M</span></li>
+    <li><a href="https://www.businessnewsaustralia.com/articles/hospitality-platforms-mr-yum-and-me-u-merging-to-become-a-new-global-giant.html">Mr Yum and me&amp;u merger, 2023</a> <span class="tag m">M</span></li>
+    <li><a href="https://www.iamenu.ai/en/best-ai-menu-software-2026">IAMenu, EU AI waiter</a> <span class="tag v">V</span></li>
+    <li><a href="https://www.ycombinator.com/companies/industry/restaurant-tech">YC restaurant tech directory</a></li>
+  </ul>
+  <h3>Memory, feedback, privacy</h3>
+  <ul class="srcs">
+    <li><a href="https://www.qualtrics.com/m/www.xminstitute.com/wp-content/uploads/2025/03/XMI_RR-DS_ConsumerPreferencePrivacyPersonalization-2025.pdf">Qualtrics XM Institute personalisation and privacy, 2025</a> <span class="tag m">M</span></li>
+    <li><a href="https://sevenrooms.com/press/2025-US-data-report/">SevenRooms US diner report, 2025</a> <span class="tag v">V</span></li>
+    <li><a href="https://www.gurufocus.com/news/2905142/gartner-survey-reveals-personalization-can-triple-the-likelihood-of-customer-regret-at-key-journey-points-it-stock-news">Gartner personalisation and regret, June 2025</a> <span class="tag m">M</span></li>
+    <li><a href="https://rinyoon.com/assets/pdf/yoon-et-al-2025-increasing-hotel-loyalty-through-psychological-ownership.pdf">Yoon, Peck and Shu, Cornell Hospitality Quarterly 2025</a> <span class="tag m">M</span></li>
+    <li><a href="https://www.nrn.com/restaurant-technology/doordash-winds-down-restaurant-discovery-app-zesty">DoorDash winds down Zesty, April 2026</a> <span class="tag m">M</span></li>
+    <li><a href="https://support.toasttab.com/en/article/Toast-Pay-Menu-Item-Review">Toast Pay Menu Item Review</a> <span class="tag v">V</span></li>
+    <li><a href="https://get.tattleapp.com/resources/faq/">Tattle item-level feedback</a> <span class="tag v">V</span></li>
+    <li><a href="https://www.pib.gov.in/PressNoteDetails.aspx?NoteId=156054&amp;ModuleId=3&amp;reg=3&amp;lang=2">PIB: DPDP Rules notified, Nov 2025</a> <span class="tag m">M</span></li>
+    <li><a href="https://psalegal.com/issue-ii-when-the-welcome-desk-becomes-a-data-desk-dpdpa-knocks-on-hospitalitys-door/">PSA Legal on DPDP in hospitality</a></li>
+    <li><a href="https://www.food.gov.uk/news-alerts/news/updated-industry-guidance-issued-for-food-allergen-information-in-the-out-of-home-sector">UK FSA allergen guidance, March 2025</a> <span class="tag m">M</span></li>
+    <li><a href="https://www.sarvam.ai/speech-to-text">Sarvam speech-to-text coverage</a> <span class="tag v">V</span></li>
+  </ul>
+</div>
